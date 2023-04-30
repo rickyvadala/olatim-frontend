@@ -1,17 +1,5 @@
-import {
-    createStyles,
-    Image,
-    Container,
-    Title,
-    Button,
-    Group,
-    Text,
-    List,
-    ThemeIcon,
-    rem,
-    Flex,
-} from '@mantine/core';
-import { IconCheck } from '@tabler/icons-react';
+import {Button, Container, createStyles, Flex, Group, Image, List, rem, Text, ThemeIcon, Title,} from '@mantine/core';
+import {IconCheck} from '@tabler/icons-react';
 import image from '@/assets/images/hero-1.svg';
 
 const useStyles = createStyles((theme) => ({
@@ -60,21 +48,21 @@ const useStyles = createStyles((theme) => ({
 
     highlight: {
         position: 'relative',
-        backgroundColor: theme.fn.variant({ variant: 'light', color: theme.primaryColor }).background,
+        backgroundColor: theme.fn.variant({variant: 'light', color: theme.primaryColor}).background,
         borderRadius: theme.radius.sm,
         padding: `${rem(4)} ${rem(12)}`,
     },
 }));
 
-export function OlaHero() {
-    const { classes } = useStyles();
+export const OlaHero = () => {
+    const {classes} = useStyles();
     return (
         <Flex pt={60} pb={60} mih={'100vh'} align={'center'} style={{background: '#f8f9fa'}}>
             <Container size={'lg'} w={'100%'} p={"xl"}>
                 <div className={classes.inner}>
                     <div className={classes.content}>
                         <Title className={classes.title}>
-                            A <span className={classes.highlight}>modern</span> React <br /> components library
+                            A <span className={classes.highlight}>modern</span> React <br/> components library
                         </Title>
                         <Text color="dimmed" mt="md">
                             Build fully functional accessible web applications faster than ever – Mantine includes
@@ -87,7 +75,7 @@ export function OlaHero() {
                             size="sm"
                             icon={
                                 <ThemeIcon size={20} radius="xl">
-                                    <IconCheck size={rem(12)} stroke={1.5} />
+                                    <IconCheck size={rem(12)} stroke={1.5}/>
                                 </ThemeIcon>
                             }
                         >

@@ -7,14 +7,14 @@ import {OlaContact} from "@/components/organisms/OlaContact/OlaContact";
 import {OlaFeatures} from "@/components/organisms/OlaFeatures/OlaFeatures";
 
 export default function Home() {
-  return (
-    <>
-      <OlaHead />
-      <OlaNavbar />
-      <OlaHero />
-      <OlaFeatures />
-      <OlaContact />
-      <OlaFooter data={footer.data} />
-    </>
-  )
+    return (
+        <>
+            <OlaHead/>
+            <OlaNavbar/>
+            <OlaHero/>
+            <OlaFeatures/>
+            <OlaContact/>
+            <OlaFooter data={footer.data}/>
+        </>
+    )
 }

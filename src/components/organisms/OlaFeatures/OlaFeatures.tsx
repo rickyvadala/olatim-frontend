@@ -1,15 +1,5 @@
-import {
-    createStyles,
-    Badge,
-    Group,
-    Title,
-    Text,
-    Card,
-    SimpleGrid,
-    Container,
-    rem, Flex,
-} from '@mantine/core';
-import { IconGauge, IconUser, IconCookie } from '@tabler/icons-react';
+import {Badge, Card, Container, createStyles, Flex, Group, rem, SimpleGrid, Text, Title,} from '@mantine/core';
+import {IconCookie, IconGauge, IconUser} from '@tabler/icons-react';
 
 const mockdata = [
     {
@@ -51,6 +41,7 @@ const mockdata = [
 ];
 
 const useStyles = createStyles((theme) => ({
+
     title: {
         fontSize: rem(34),
         fontWeight: 900,
@@ -94,15 +85,15 @@ const useStyles = createStyles((theme) => ({
     },
 }));
 
-export function OlaFeatures() {
-    const { classes, theme } = useStyles();
+export const OlaFeatures = () => {
+    const {classes, theme} = useStyles();
     const features = mockdata.map((feature) => (
         <Card key={feature.title} shadow="md" radius="md" className={classes.card} padding="xl">
             <Flex justify={"space-between"} align={'center'}>
                 <Text fz="lg" fw={500} className={classes.cardTitle}>
                     {feature.title}
                 </Text>
-                <feature.icon size={rem(50)} stroke={2} color={theme.fn.primaryColor()} />
+                <feature.icon size={rem(50)} stroke={2} color={theme.fn.primaryColor()}/>
             </Flex>
 
             <Text fz="sm" c="dimmed" mt="sm">
@@ -112,7 +103,7 @@ export function OlaFeatures() {
     ));
 
     return (
-        <Container size="lg" my="xl" p={"xl"} id={'about'}>
+        <Container size="lg" my="xl" px={"xl"} id={'about'} py={96}>
             <Group position="center">
                 <Badge variant="filled" size="lg">
                     Best company ever
@@ -128,7 +119,7 @@ export function OlaFeatures() {
                 hunger drives it to try biting a Steel-type Pokémon.
             </Text>
 
-            <SimpleGrid cols={3} spacing="xl" mt={50} breakpoints={[{ maxWidth: 'md', cols: 1 }]}>
+            <SimpleGrid cols={3} spacing="xl" mt={50} breakpoints={[{maxWidth: 'md', cols: 1}]}>
                 {features}
             </SimpleGrid>
         </Container>

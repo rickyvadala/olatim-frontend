@@ -1,21 +1,22 @@
 import {
-    createStyles,
-    Text,
-    Title,
-    SimpleGrid,
-    TextInput,
-    Textarea,
-    Button,
-    Group,
     ActionIcon,
-    rem, Box, Container,
+    Box,
+    Button,
+    Container,
+    createStyles,
+    Group,
+    rem,
+    SimpleGrid,
+    Text,
+    Textarea,
+    TextInput,
+    Title,
 } from '@mantine/core';
-import { IconBrandTwitter, IconBrandYoutube, IconBrandInstagram } from '@tabler/icons-react';
+import {IconBrandInstagram, IconBrandTwitter, IconBrandYoutube} from '@tabler/icons-react';
 import {OlaContactIcons} from "@/components/organisms/OlaContact/OlaContactIcons/OlaContactIcons";
 
 const useStyles = createStyles((theme) => ({
     wrapper: {
-        minHeight: '100vh',
         display: 'flex',
         justifyContent: 'center',
         alignItems: "center",
@@ -74,26 +75,26 @@ const useStyles = createStyles((theme) => ({
 
 const social = [IconBrandTwitter, IconBrandYoutube, IconBrandInstagram];
 
-export function OlaContact() {
-    const { classes } = useStyles();
+export const OlaContact = () => {
+    const {classes} = useStyles();
 
     const icons = social.map((Icon, index) => (
         <ActionIcon key={index} size={28} className={classes.social} variant="transparent">
-            <Icon size="1.4rem" stroke={1.5} />
+            <Icon size="1.4rem" stroke={1.5}/>
         </ActionIcon>
     ));
 
     return (
         <Box className={classes.wrapper} id={'contact'}>
-            <Container size={'lg'} w={'100%'} p={"xl"}>
-                <SimpleGrid cols={2} spacing={50} breakpoints={[{ maxWidth: 'sm', cols: 1 }]} >
+            <Container size={'lg'} w={'100%'} p={"xl"} py={96}>
+                <SimpleGrid cols={2} spacing={50} breakpoints={[{maxWidth: 'sm', cols: 1}]}>
                     <div>
                         <Title className={classes.title}>Contact us</Title>
                         <Text className={classes.description} mt="sm" mb={30}>
                             Leave your email and we will get back to you within 24 hours
                         </Text>
 
-                        <OlaContactIcons variant="white" />
+                        <OlaContactIcons variant="white"/>
 
                         <Group mt="xl">{icons}</Group>
                     </div>
@@ -102,13 +103,13 @@ export function OlaContact() {
                             label="Email"
                             placeholder="your@email.com"
                             required
-                            classNames={{ input: classes.input, label: classes.inputLabel }}
+                            classNames={{input: classes.input, label: classes.inputLabel}}
                         />
                         <TextInput
                             label="Name"
                             placeholder="John Doe"
                             mt="md"
-                            classNames={{ input: classes.input, label: classes.inputLabel }}
+                            classNames={{input: classes.input, label: classes.inputLabel}}
                         />
                         <Textarea
                             required
@@ -116,7 +117,7 @@ export function OlaContact() {
                             placeholder="I want to order your goods"
                             minRows={4}
                             mt="md"
-                            classNames={{ input: classes.input, label: classes.inputLabel }}
+                            classNames={{input: classes.input, label: classes.inputLabel}}
                         />
 
                         <Group position="right" mt="md">

@@ -1,5 +1,5 @@
-import {createStyles, Text, Container, ActionIcon, Group, rem, Box} from '@mantine/core';
-import { IconBrandTwitter, IconBrandYoutube, IconBrandInstagram } from '@tabler/icons-react';
+import {ActionIcon, Box, Container, createStyles, Group, rem, Text} from '@mantine/core';
+import {IconBrandInstagram, IconBrandTwitter, IconBrandYoutube} from '@tabler/icons-react';
 import {OlaLogo} from "@/components/atoms/OlaLogo/OlaLogo";
 
 const useStyles = createStyles((theme) => ({
@@ -103,8 +103,8 @@ export type OlaFooterProps = {
     }[];
 }
 
-export function OlaFooter({ data }: OlaFooterProps) {
-    const { classes } = useStyles();
+export const OlaFooter = ({data}: OlaFooterProps) => {
+    const {classes} = useStyles();
 
     const groups = data.map((group) => {
         const links = group.links.map((link, index) => (
@@ -132,7 +132,7 @@ export function OlaFooter({ data }: OlaFooterProps) {
             <Container className={classes.inner} size={'lg'} px={'xl'}>
                 <div className={classes.logo}>
                     <Box mb={16}>
-                        <OlaLogo />
+                        <OlaLogo/>
                     </Box>
                     <Text size="xs" color="dimmed" className={classes.description}>
                         Build fully functional accessible web applications faster than ever
@@ -142,18 +142,18 @@ export function OlaFooter({ data }: OlaFooterProps) {
             </Container>
             <Container className={classes.afterFooter} size={'lg'}>
                 <Text color="dimmed" size="sm">
-                    © 2020 mantine.dev. All rights reserved.
+                    © 2022 Olatim. All rights reserved.
                 </Text>
 
                 <Group spacing={0} className={classes.social} position="right" noWrap>
                     <ActionIcon size="lg">
-                        <IconBrandTwitter size="1.05rem" stroke={1.5} />
+                        <IconBrandTwitter size="1.05rem" stroke={1.5}/>
                     </ActionIcon>
                     <ActionIcon size="lg">
-                        <IconBrandYoutube size="1.05rem" stroke={1.5} />
+                        <IconBrandYoutube size="1.05rem" stroke={1.5}/>
                     </ActionIcon>
                     <ActionIcon size="lg">
-                        <IconBrandInstagram size="1.05rem" stroke={1.5} />
+                        <IconBrandInstagram size="1.05rem" stroke={1.5}/>
                     </ActionIcon>
                 </Group>
             </Container>

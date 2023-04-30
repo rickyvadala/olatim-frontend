@@ -1,5 +1,5 @@
-import { createStyles, ThemeIcon, Text, Box, Stack } from '@mantine/core';
-import { IconSun, IconPhone, IconMapPin, IconAt } from '@tabler/icons-react';
+import {Box, createStyles, Stack, Text, ThemeIcon} from '@mantine/core';
+import {IconAt, IconMapPin, IconPhone, IconSun} from '@tabler/icons-react';
 
 type ContactIconVariant = 'white' | 'gradient';
 
@@ -7,7 +7,7 @@ interface ContactIconStyles {
     variant: ContactIconVariant;
 }
 
-const useStyles = createStyles((theme, { variant }: ContactIconStyles) => ({
+const useStyles = createStyles((theme, {variant}: ContactIconStyles) => ({
     wrapper: {
         display: 'flex',
         alignItems: 'center',
@@ -49,16 +49,16 @@ function ContactIcon({
                          className,
                          ...others
                      }: ContactIconProps) {
-    const { classes, cx } = useStyles({ variant });
+    const {classes, cx} = useStyles({variant});
     return (
         <div className={cx(classes.wrapper, className)} {...others}>
             {variant === 'gradient' ? (
                 <ThemeIcon size={40} radius="md" className={classes.icon}>
-                    <Icon size="1.5rem" />
+                    <Icon size="1.5rem"/>
                 </ThemeIcon>
             ) : (
                 <Box mr="md">
-                    <Icon size="1.5rem" />
+                    <Icon size="1.5rem"/>
                 </Box>
             )}
 
@@ -78,13 +78,13 @@ interface ContactIconsListProps {
 }
 
 const MOCKDATA = [
-    { title: 'Email', description: 'hello@mantine.dev', icon: IconAt },
-    { title: 'Phone', description: '+49 (800) 335 35 35', icon: IconPhone },
-    { title: 'Address', description: '844 Morris Park avenue', icon: IconMapPin },
-    { title: 'Working hours', description: '8 a.m. – 11 p.m.', icon: IconSun },
+    {title: 'Email', description: 'hello@mantine.dev', icon: IconAt},
+    {title: 'Phone', description: '+49 (800) 335 35 35', icon: IconPhone},
+    {title: 'Address', description: '844 Morris Park avenue', icon: IconMapPin},
+    {title: 'Working hours', description: '8 a.m. – 11 p.m.', icon: IconSun},
 ];
 
-export function OlaContactIcons({ data = MOCKDATA, variant }: ContactIconsListProps) {
+export function OlaContactIcons({data = MOCKDATA, variant}: ContactIconsListProps) {
     const items = data.map((item, index) => <ContactIcon key={index} variant={variant} {...item} />);
     return <Stack>{items}</Stack>;
 }

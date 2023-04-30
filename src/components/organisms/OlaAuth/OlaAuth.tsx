@@ -3,7 +3,8 @@ import {useForm} from '@mantine/form';
 import {
     Anchor,
     Button,
-    Checkbox, createStyles,
+    Checkbox,
+    createStyles,
     Divider,
     Flex,
     Group,
@@ -17,13 +18,13 @@ import {
 import {IconBrandGoogle, IconBrandTwitter} from "@tabler/icons-react";
 
 const useStyles = createStyles(() => ({
-   wrapper: {
-       background: 'linear-gradient(90deg, rgba(34,139,230,1) 50%, rgba(0,212,255,1) 100%)'
-   }
+    wrapper: {
+        background: 'linear-gradient(90deg, rgba(34,139,230,1) 50%, rgba(0,212,255,1) 100%)'
+    }
 }))
 
-export function OlaAuth(props: PaperProps) {
-    const { classes } = useStyles();
+export const OlaAuth = (props: PaperProps) => {
+    const {classes} = useStyles();
 
     const [type, toggle] = useToggle(['login', 'register']);
     const form = useForm({
