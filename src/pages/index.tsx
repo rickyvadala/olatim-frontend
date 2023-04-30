@@ -4,7 +4,7 @@ import {OlaFooter} from "@/components/organisms/OlaFooter/OlaFooter";
 import {footer} from '@/common/data/footer'
 import {OlaHead} from "@/components/organisms/OlaHead/OlaHead";
 import {OlaContact} from "@/components/organisms/OlaContact/OlaContact";
-import {OlaFeatures} from "@/components/organisms/OlaFeatures/OlaFeatures";
+import {OlaAbout} from "@/components/organisms/OlaAbout/OlaAbout";
 import {OLA_LANDING} from "@/common/data/landing";
 
 export default function Home() {
@@ -13,7 +13,7 @@ export default function Home() {
             <OlaHead/>
             <OlaNavbar/>
             <OlaHero {...OLA_LANDING.home.hero}/>
-            <OlaFeatures/>
+            <OlaAbout {...OLA_LANDING.home.about}/>
             <OlaContact/>
             <OlaFooter data={footer.data}/>
         </>
