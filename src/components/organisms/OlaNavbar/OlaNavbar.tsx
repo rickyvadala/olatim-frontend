@@ -179,9 +179,6 @@ export const OlaNavbar = () => {
                                 </div>
                             </HoverCard.Dropdown>
                         </HoverCard>
-                        <Link href="#about" scroll={false} className={classes.link}>
-                            About
-                        </Link>
                         <Link href="#contact" scroll={false} className={classes.link}>
                             Contact
                         </Link>
@@ -219,12 +216,8 @@ export const OlaNavbar = () => {
                         </Center>
                     </UnstyledButton>
                     <Collapse in={linksOpened}>{links}</Collapse>
-                    <Link onClick={closeDrawer} href="#about" className={classes.link}>
-                        <Text>About</Text>
-                    </Link>
                     <Link onClick={closeDrawer} href="#contact" className={classes.link}>
                         <Text>Contact</Text>
-
                     </Link>
 
                     <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'}/>

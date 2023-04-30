@@ -1,6 +1,7 @@
 import {Button, Container, createStyles, Flex, Group, Image, List, rem, Text, ThemeIcon, Title,} from '@mantine/core';
 import {IconCheck} from '@tabler/icons-react';
 import image from '@/assets/images/lady-hero.svg';
+import Link from "next/link";
 
 
 const useStyles = createStyles((theme) => ({
@@ -55,18 +56,27 @@ const useStyles = createStyles((theme) => ({
     },
 }));
 
-export const OlaHero = () => {
+export type OlaHeroProps = {
+    title: string,
+    subtitle: string,
+    items: Array<{ name: string, description: string }>,
+    buttons: Array<{label: string, href: string}>
+}
+
+export const OlaHero = ({title, subtitle, items, buttons}: OlaHeroProps) => {
     const {classes} = useStyles();
+
     return (
         <Flex pt={60} pb={60} mih={'100vh'} align={'center'} style={{background: '#f8f9fa'}}>
             <Container size={'lg'} w={'100%'} p={"xl"}>
                 <div className={classes.inner}>
                     <div className={classes.content}>
                         <Title className={classes.title}>
-                            Team <span className={classes.highlight}>growth</span> powered by Latam Talent
+                            {/*Team <span className={classes.highlight}>growth</span> powered by Latam Talent*/}
+                            {title}
                         </Title>
                         <Text color="dimmed" mt="md">
-                        Olatim is building a community of top-notch professionals to help you easily scale your business.
+                            {subtitle}
                         </Text>
 
                         <List
@@ -79,24 +89,24 @@ export const OlaHero = () => {
                                 </ThemeIcon>
                             }
                         >
-                            <List.Item>
-                                <b>Software Engineers</b> – build secure and scalable applications with experienced developers.
-                            </List.Item>
-                            <List.Item>
-                                <b>Data, DevOps, Cloud, Blockchain</b> – everything that your product needs to perform at the highest level.
-                            </List.Item>
-                            <List.Item>
-                                <b>Design, UX/UI, Animation</b> – website, storytelling, marketing and social media. 
-                            </List.Item>
+                            {items.map(({name, description}, i) => (
+                                <List.Item key={i}>
+                                    <b>{name}</b>{description}
+                                </List.Item>
+                            ))}
                         </List>
 
                         <Group mt={30}>
-                            <Button radius="xl" size="md" className={classes.control}>
-                                Start Hiring
-                            </Button>
-                            <Button variant="default" radius="xl" size="md" className={classes.control}>
-                                More Info
-                            </Button>
+                            {buttons.map(({label, href}, i) => (
+                                <Link href={href} key={i}>
+                                    <Button radius="xl" size="md"
+                                            className={classes.control}
+                                            variant={i ? 'default' : 'filled'}
+                                    >
+                                        {label}
+                                    </Button>
+                                </Link>
+                            ))}
                         </Group>
                     </div>
                     <Image src={image.src} className={classes.image} alt={''}/>
