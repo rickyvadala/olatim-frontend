@@ -135,7 +135,7 @@ export const OlaFooter = ({data}: OlaFooterProps) => {
                         <OlaLogo/>
                     </Box>
                     <Text size="xs" color="dimmed" className={classes.description}>
-                        Build fully functional accessible web applications faster than ever
+                        A latam community for finding remote jobs 
                     </Text>
                 </div>
                 <div className={classes.groups}>{groups}</div>

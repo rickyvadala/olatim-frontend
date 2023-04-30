@@ -1,30 +1,30 @@
 import {Badge, Card, Container, createStyles, Flex, Group, rem, SimpleGrid, Text, Title,} from '@mantine/core';
-import {IconCookie, IconGauge, IconUser} from '@tabler/icons-react';
+import {IconDevices2, IconUserCheck, IconPigMoney, IconDirectionSign} from '@tabler/icons-react';
 
 const mockdata = [
     {
         title: 'Skills & Experience',
         description:
             'All of our professionals are pre-screened by our recruiting team, to asses not only their technical knowledge but their soft skills.',
-        icon: IconGauge,
+        icon: IconUserCheck,
     },
     {
         title: 'Risk Free',
         description:
             'Dont make any payments until we find the type of profile that fits your needs.',
-        icon: IconUser,
+        icon: IconDirectionSign,
     },
     {
         title: 'Nearshore Global Teams',
         description:
             'We help you to build and grow your remote team, by taking advantage of top talent in Latam.',
-        icon: IconCookie,
+        icon: IconDevices2,
     },
     {
         title: 'One-time-fee',
         description:
             'We are a community of tech talent connecting people with remote job opportunities. Make direct hires and pay once.',
-        icon: IconGauge,
+        icon: IconPigMoney,
     },
 ];
 
@@ -94,7 +94,7 @@ export const OlaFeatures = () => {
         <Container size="lg" my="xl" px={"xl"} id={'about'} py={96}>
             <Group position="center">
                 <Badge variant="filled" size="lg">
-                Connect with offshore talent
+                Olatim Community
                 </Badge>
             </Group>
 
