@@ -91,22 +91,22 @@ const useStyles = createStyles((theme) => ({
 const mockdata = [
     {
         icon: IconCode,
-        title: 'Open source',
+        title: 'Companies',
         description: 'This Pokémon’s cry is very loud and distracting',
     },
     {
         icon: IconCoin,
-        title: 'Free for everyone',
+        title: 'Creators',
         description: 'The fluid of Smeargle’s tail secretions changes',
     },
     {
         icon: IconBook,
-        title: 'Documentation',
+        title: 'Get a job',
         description: 'Yanma is capable of seeing 360 degrees without',
     },
     {
         icon: IconFingerprint,
-        title: 'Security',
+        title: 'Tools',
         description: 'The shell’s rounded shape and the grooves on its.',
     },
 ];
