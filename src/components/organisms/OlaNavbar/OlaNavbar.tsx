@@ -18,7 +18,7 @@ import {
     UnstyledButton,
 } from '@mantine/core';
 import {useDisclosure} from '@mantine/hooks';
-import {IconBook, IconChevronDown, IconCode, IconCoin, IconFingerprint,} from '@tabler/icons-react';
+import {IconChevronDown, IconCode, IconCoin} from '@tabler/icons-react';
 import {OlaLogo} from "@/components/atoms/OlaLogo/OlaLogo";
 import Link from "next/link";
 
@@ -91,23 +91,13 @@ const useStyles = createStyles((theme) => ({
 const mockdata = [
     {
         icon: IconCode,
-        title: 'Companies',
+        title: 'Referrals Program',
         description: 'This Pokémon’s cry is very loud and distracting',
     },
     {
         icon: IconCoin,
-        title: 'Creators',
+        title: 'Find a job',
         description: 'The fluid of Smeargle’s tail secretions changes',
-    },
-    {
-        icon: IconBook,
-        title: 'Get a job',
-        description: 'Yanma is capable of seeing 360 degrees without',
-    },
-    {
-        icon: IconFingerprint,
-        title: 'Tools',
-        description: 'The shell’s rounded shape and the grooves on its.',
     },
 ];
 
@@ -144,12 +134,15 @@ export const OlaNavbar = () => {
                         <Link href="/" className={classes.link}>
                             Home
                         </Link>
+                        <Link href="/" className={classes.link}>
+                            I&apos;m Hiring
+                        </Link>
                         <HoverCard width={600} position="bottom" radius="md" shadow="md" withinPortal>
                             <HoverCard.Target>
                                 <a href="javascript:void(0)" className={classes.link}>
                                     <Center inline>
                                         <Box component="span" mr={5}>
-                                            Services
+                                            Talent
                                         </Box>
                                         <IconChevronDown size={16} color={theme.fn.primaryColor()}/>
                                     </Center>
@@ -175,13 +168,13 @@ export const OlaNavbar = () => {
                                     <Group position="apart">
                                         <div>
                                             <Text fw={500} fz="sm">
-                                                Get started
+                                                Tools
                                             </Text>
                                             <Text size="xs" color="dimmed">
                                                 Their food sources have decreased, and their numbers
                                             </Text>
                                         </div>
-                                        <Button variant="default">Get started</Button>
+                                        <Button variant="default">Get Started</Button>
                                     </Group>
                                 </div>
                             </HoverCard.Dropdown>
