@@ -89,7 +89,7 @@ export const OlaContact = () => {
             <Container size={'lg'} w={'100%'} p={"xl"} py={96}>
                 <SimpleGrid cols={2} spacing={50} breakpoints={[{maxWidth: 'sm', cols: 1}]}>
                     <div>
-                        <Title className={classes.title}>Contact us</Title>
+                        <Title className={classes.title}>Let's talk!</Title>
                         <Text className={classes.description} mt="sm" mb={30}>
                             Leave your email and we will get back to you within 24 hours
                         </Text>
@@ -114,7 +114,7 @@ export const OlaContact = () => {
                         <Textarea
                             required
                             label="Your message"
-                            placeholder="I want to order your goods"
+                            placeholder="I want to start hiring"
                             minRows={4}
                             mt="md"
                             classNames={{input: classes.input, label: classes.inputLabel}}
