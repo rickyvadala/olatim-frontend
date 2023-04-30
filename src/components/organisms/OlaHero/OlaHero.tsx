@@ -8,7 +8,8 @@ import {
     Text,
     List,
     ThemeIcon,
-    rem, Box,
+    rem,
+    Flex,
 } from '@mantine/core';
 import { IconCheck } from '@tabler/icons-react';
 import image from '@/assets/images/hero-1.svg';
@@ -68,8 +69,8 @@ const useStyles = createStyles((theme) => ({
 export function OlaHero() {
     const { classes } = useStyles();
     return (
-        <Box pt={60} mih={'100vh'}>
-            <Container>
+        <Flex pt={60} pb={60} mih={'100vh'} align={'center'} style={{background: '#f8f9fa'}}>
+            <Container size={'lg'} w={'100%'} p={"xl"}>
                 <div className={classes.inner}>
                     <div className={classes.content}>
                         <Title className={classes.title}>
@@ -116,6 +117,6 @@ export function OlaHero() {
                     <Image src={image.src} className={classes.image} alt={''}/>
                 </div>
             </Container>
-        </Box>
+        </Flex>
     );
 }

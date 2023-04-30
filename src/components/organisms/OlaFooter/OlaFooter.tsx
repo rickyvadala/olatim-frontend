@@ -1,11 +1,10 @@
-import { createStyles, Text, Container, ActionIcon, Group, rem } from '@mantine/core';
+import {createStyles, Text, Container, ActionIcon, Group, rem, Box} from '@mantine/core';
 import { IconBrandTwitter, IconBrandYoutube, IconBrandInstagram } from '@tabler/icons-react';
-import { MantineLogo } from '@mantine/ds';
+import {OlaLogo} from "@/components/atoms/OlaLogo/OlaLogo";
 
 const useStyles = createStyles((theme) => ({
     footer: {
         paddingTop: `calc(${theme.spacing.xl} * 2)`,
-        paddingBottom: `calc(${theme.spacing.xl} * 2)`,
         backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
         borderTop: `${rem(1)} solid ${
             theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[2]
@@ -130,16 +129,18 @@ export function OlaFooter({ data }: OlaFooterProps) {
 
     return (
         <footer className={classes.footer}>
-            <Container className={classes.inner}>
+            <Container className={classes.inner} size={'lg'} px={'xl'}>
                 <div className={classes.logo}>
-                    <MantineLogo size={30} />
+                    <Box mb={16}>
+                        <OlaLogo />
+                    </Box>
                     <Text size="xs" color="dimmed" className={classes.description}>
                         Build fully functional accessible web applications faster than ever
                     </Text>
                 </div>
                 <div className={classes.groups}>{groups}</div>
             </Container>
-            <Container className={classes.afterFooter}>
+            <Container className={classes.afterFooter} size={'lg'}>
                 <Text color="dimmed" size="sm">
                     © 2020 mantine.dev. All rights reserved.
                 </Text>

@@ -112,7 +112,7 @@ export function OlaFeatures() {
     ));
 
     return (
-        <Container size="lg" py="xl">
+        <Container size="lg" my="xl" p={"xl"} id={'about'}>
             <Group position="center">
                 <Badge variant="filled" size="lg">
                     Best company ever
@@ -128,7 +128,7 @@ export function OlaFeatures() {
                 hunger drives it to try biting a Steel-type Pokémon.
             </Text>
 
-            <SimpleGrid cols={3} spacing="xl" mt={50} mb={50} breakpoints={[{ maxWidth: 'md', cols: 1 }]}>
+            <SimpleGrid cols={3} spacing="xl" mt={50} breakpoints={[{ maxWidth: 'md', cols: 1 }]}>
                 {features}
             </SimpleGrid>
         </Container>

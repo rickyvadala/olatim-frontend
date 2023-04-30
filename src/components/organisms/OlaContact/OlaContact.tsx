@@ -8,7 +8,7 @@ import {
     Button,
     Group,
     ActionIcon,
-    rem, Box,
+    rem, Box, Container,
 } from '@mantine/core';
 import { IconBrandTwitter, IconBrandYoutube, IconBrandInstagram } from '@tabler/icons-react';
 import {OlaContactIcons} from "@/components/organisms/OlaContact/OlaContactIcons/OlaContactIcons";
@@ -20,14 +20,7 @@ const useStyles = createStyles((theme) => ({
         justifyContent: 'center',
         alignItems: "center",
         boxSizing: 'border-box',
-        backgroundImage: `linear-gradient(-60deg, ${theme.colors[theme.primaryColor][4]} 0%, ${
-            theme.colors[theme.primaryColor][7]
-        } 100%)`,
-        padding: `calc(${theme.spacing.xl} * 2.5)`,
-
-        [theme.fn.smallerThan('sm')]: {
-            padding: `calc(${theme.spacing.xl} * 1.5)`,
-        },
+        backgroundImage: `linear-gradient(90deg, rgba(34,139,230,1) 50%, rgba(0,212,255,1) 100%)`,
     },
 
     title: {
@@ -91,45 +84,47 @@ export function OlaContact() {
     ));
 
     return (
-        <Box className={classes.wrapper}>
-            <SimpleGrid cols={2} spacing={50} breakpoints={[{ maxWidth: 'sm', cols: 1 }]}>
-                <div>
-                    <Title className={classes.title}>Contact us</Title>
-                    <Text className={classes.description} mt="sm" mb={30}>
-                        Leave your email and we will get back to you within 24 hours
-                    </Text>
+        <Box className={classes.wrapper} id={'contact'}>
+            <Container size={'lg'} w={'100%'} p={"xl"}>
+                <SimpleGrid cols={2} spacing={50} breakpoints={[{ maxWidth: 'sm', cols: 1 }]} >
+                    <div>
+                        <Title className={classes.title}>Contact us</Title>
+                        <Text className={classes.description} mt="sm" mb={30}>
+                            Leave your email and we will get back to you within 24 hours
+                        </Text>
 
-                    <OlaContactIcons variant="white" />
+                        <OlaContactIcons variant="white" />
 
-                    <Group mt="xl">{icons}</Group>
-                </div>
-                <div className={classes.form}>
-                    <TextInput
-                        label="Email"
-                        placeholder="your@email.com"
-                        required
-                        classNames={{ input: classes.input, label: classes.inputLabel }}
-                    />
-                    <TextInput
-                        label="Name"
-                        placeholder="John Doe"
-                        mt="md"
-                        classNames={{ input: classes.input, label: classes.inputLabel }}
-                    />
-                    <Textarea
-                        required
-                        label="Your message"
-                        placeholder="I want to order your goods"
-                        minRows={4}
-                        mt="md"
-                        classNames={{ input: classes.input, label: classes.inputLabel }}
-                    />
+                        <Group mt="xl">{icons}</Group>
+                    </div>
+                    <div className={classes.form}>
+                        <TextInput
+                            label="Email"
+                            placeholder="your@email.com"
+                            required
+                            classNames={{ input: classes.input, label: classes.inputLabel }}
+                        />
+                        <TextInput
+                            label="Name"
+                            placeholder="John Doe"
+                            mt="md"
+                            classNames={{ input: classes.input, label: classes.inputLabel }}
+                        />
+                        <Textarea
+                            required
+                            label="Your message"
+                            placeholder="I want to order your goods"
+                            minRows={4}
+                            mt="md"
+                            classNames={{ input: classes.input, label: classes.inputLabel }}
+                        />
 
-                    <Group position="right" mt="md">
-                        <Button className={classes.control}>Send message</Button>
-                    </Group>
-                </div>
-            </SimpleGrid>
+                        <Group position="right" mt="md">
+                            <Button className={classes.control}>Send message</Button>
+                        </Group>
+                    </div>
+                </SimpleGrid>
+            </Container>
         </Box>
     );
 }

@@ -8,7 +8,6 @@ import {
     Text,
     SimpleGrid,
     ThemeIcon,
-    Anchor,
     Divider,
     Center,
     Box,
@@ -18,17 +17,16 @@ import {
     ScrollArea,
     rem,
 } from '@mantine/core';
-import { MantineLogo } from '@mantine/ds';
 import { useDisclosure } from '@mantine/hooks';
 import {
-    IconNotification,
     IconCode,
     IconBook,
-    IconChartPie3,
     IconFingerprint,
     IconCoin,
     IconChevronDown,
 } from '@tabler/icons-react';
+import {OlaLogo} from "@/components/atoms/OlaLogo/OlaLogo";
+import Link from "next/link";
 
 const useStyles = createStyles((theme) => ({
     wrapper: {
@@ -117,16 +115,6 @@ const mockdata = [
         title: 'Security',
         description: 'The shell’s rounded shape and the grooves on its.',
     },
-    {
-        icon: IconChartPie3,
-        title: 'Analytics',
-        description: 'This Pokémon uses its flying ability to quickly chase',
-    },
-    {
-        icon: IconNotification,
-        title: 'Notifications',
-        description: 'Combusken battles with the intensely hot flames it spews',
-    },
 ];
 
 export function OlaNavbar() {
@@ -156,18 +144,18 @@ export function OlaNavbar() {
         <Box className={classes.wrapper}>
             <Header height={60} px="md">
                 <Group position="apart" sx={{ height: '100%' }}>
-                    <MantineLogo size={30} />
+                    <OlaLogo />
 
                     <Group sx={{ height: '100%' }} spacing={0} className={classes.hiddenMobile}>
-                        <a href="#" className={classes.link}>
+                        <Link href="/" className={classes.link}>
                             Home
-                        </a>
+                        </Link>
                         <HoverCard width={600} position="bottom" radius="md" shadow="md" withinPortal>
                             <HoverCard.Target>
                                 <a href="#" className={classes.link}>
                                     <Center inline>
                                         <Box component="span" mr={5}>
-                                            Features
+                                            Services
                                         </Box>
                                         <IconChevronDown size={16} color={theme.fn.primaryColor()} />
                                     </Center>
@@ -176,10 +164,7 @@ export function OlaNavbar() {
 
                             <HoverCard.Dropdown sx={{ overflow: 'hidden' }}>
                                 <Group position="apart" px="md">
-                                    <Text fw={500}>Features</Text>
-                                    <Anchor href="#" fz="xs">
-                                        View all
-                                    </Anchor>
+                                    <Text fw={500}>Services</Text>
                                 </Group>
 
                                 <Divider
@@ -207,17 +192,17 @@ export function OlaNavbar() {
                                 </div>
                             </HoverCard.Dropdown>
                         </HoverCard>
-                        <a href="#" className={classes.link}>
-                            Learn
-                        </a>
-                        <a href="#" className={classes.link}>
-                            Academy
-                        </a>
+                        <Link href="#about" scroll={false} className={classes.link}>
+                            About
+                        </Link>
+                        <Link href="#contact" scroll={false} className={classes.link}>
+                            Contact
+                        </Link>
                     </Group>
 
                     <Group className={classes.hiddenMobile}>
-                        <Button variant="default">Log in</Button>
-                        <Button>Sign up</Button>
+                        <Link href={'/auth'} scroll={false}><Button variant="default">Log in</Button></Link>
+                        <Link href={'/auth'} scroll={false}><Button>Sign up</Button></Link>
                     </Group>
 
                     <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.hiddenDesktop} />
@@ -236,30 +221,30 @@ export function OlaNavbar() {
                 <ScrollArea h={`calc(100vh - ${rem(60)})`} mx="-md">
                     <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
 
-                    <a href="#" className={classes.link}>
+                    <Link href="/" className={classes.link}>
                         Home
-                    </a>
+                    </Link>
                     <UnstyledButton className={classes.link} onClick={toggleLinks}>
                         <Center inline>
                             <Box component="span" mr={5}>
-                                Features
+                                Services
                             </Box>
                             <IconChevronDown size={16} color={theme.fn.primaryColor()} />
                         </Center>
                     </UnstyledButton>
                     <Collapse in={linksOpened}>{links}</Collapse>
-                    <a href="#" className={classes.link}>
-                        Learn
-                    </a>
-                    <a href="#" className={classes.link}>
-                        Academy
-                    </a>
+                    <Link href="#about" className={classes.link}>
+                        About
+                    </Link>
+                    <Link href="#contact" className={classes.link}>
+                        Contact
+                    </Link>
 
                     <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
 
                     <Group position="center" grow pb="xl" px="md">
-                        <Button variant="default">Log in</Button>
-                        <Button>Sign up</Button>
+                        <Link href={'/auth'}><Button variant="default">Log in</Button></Link>
+                        <Link href={'/auth'}><Button>Sign up</Button></Link>
                     </Group>
                 </ScrollArea>
             </Drawer>
