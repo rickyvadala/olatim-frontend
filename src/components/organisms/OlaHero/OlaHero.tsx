@@ -1,6 +1,7 @@
 import {Button, Container, createStyles, Flex, Group, Image, List, rem, Text, ThemeIcon, Title,} from '@mantine/core';
 import {IconCheck} from '@tabler/icons-react';
-import image from '@/assets/images/hero-1.svg';
+import image from '@/assets/images/lady-hero.svg';
+
 
 const useStyles = createStyles((theme) => ({
     inner: {
@@ -62,11 +63,10 @@ export const OlaHero = () => {
                 <div className={classes.inner}>
                     <div className={classes.content}>
                         <Title className={classes.title}>
-                            A <span className={classes.highlight}>modern</span> React <br/> components library
+                            Team <span className={classes.highlight}>growth</span> powered by Latam Talent
                         </Title>
                         <Text color="dimmed" mt="md">
-                            Build fully functional accessible web applications faster than ever – Mantine includes
-                            more than 120 customizable components and hooks to cover you in any situation
+                        Olatim is building a community of top-notch professionals to help you easily scale your business.
                         </Text>
 
                         <List
@@ -80,25 +80,22 @@ export const OlaHero = () => {
                             }
                         >
                             <List.Item>
-                                <b>TypeScript based</b> – build type safe applications, all components and hooks
-                                export types
+                                <b>Software Engineers</b> – build secure and scalable applications with experienced developers.
                             </List.Item>
                             <List.Item>
-                                <b>Free and open source</b> – all packages have MIT license, you can use Mantine in
-                                any project
+                                <b>Data, DevOps, Cloud, Blockchain</b> – everything that your product needs to perform at the highest level.
                             </List.Item>
                             <List.Item>
-                                <b>No annoying focus ring</b> – focus ring will appear only when user navigates with
-                                keyboard
+                                <b>Design, UX/UI, Animation</b> – website, storytelling, marketing and social media. 
                             </List.Item>
                         </List>
 
                         <Group mt={30}>
                             <Button radius="xl" size="md" className={classes.control}>
-                                Get started
+                                Start Hiring
                             </Button>
                             <Button variant="default" radius="xl" size="md" className={classes.control}>
-                                Source code
+                                More Info
                             </Button>
                         </Group>
                     </div>

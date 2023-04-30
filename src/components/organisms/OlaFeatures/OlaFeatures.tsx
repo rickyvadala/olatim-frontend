@@ -3,27 +3,27 @@ import {IconCookie, IconGauge, IconUser} from '@tabler/icons-react';
 
 const mockdata = [
     {
-        title: 'Extreme performance',
+        title: 'Skills & Experience',
         description:
-            'This dust is actually a powerful poison that will even make a pro wrestler sick, Regice cloaks itself with frigid air of -328 degrees Fahrenheit',
+            'All of our professionals are pre-screened by our recruiting team, to asses not only their technical knowledge but their soft skills.',
         icon: IconGauge,
     },
     {
-        title: 'Privacy focused',
+        title: 'Risk Free',
         description:
-            'People say it can run at the same speed as lightning striking, Its icy body is so cold, it will not melt even if it is immersed in magma',
+            'Dont make any payments until we find the type of profile that fits your needs.',
         icon: IconUser,
     },
     {
-        title: 'No third parties',
+        title: 'Nearshore Global Teams',
         description:
-            'They’re popular, but they’re rare. Trainers who show them off recklessly may be targeted by thieves',
+            'We help you to build and grow your remote team, by taking advantage of top talent in Latam.',
         icon: IconCookie,
     },
     {
-        title: 'Extreme performance 2',
+        title: 'One-time-fee',
         description:
-            'This dust is actually a powerful poison that will even make a pro wrestler sick, Regice cloaks itself with frigid air of -328 degrees Fahrenheit',
+            'We are a community of tech talent connecting people with remote job opportunities. Make direct hires and pay once.',
         icon: IconGauge,
     },
 ];
@@ -94,17 +94,16 @@ export const OlaFeatures = () => {
         <Container size="lg" my="xl" px={"xl"} id={'about'} py={96}>
             <Group position="center">
                 <Badge variant="filled" size="lg">
-                    Best company ever
+                Connect with offshore talent
                 </Badge>
             </Group>
 
             <Title order={2} className={classes.title} ta="center" mt="sm">
-                Integrate effortlessly with any technology stack
+                Hire without frictions
             </Title>
 
             <Text c="dimmed" className={classes.description} ta="center" mt="md">
-                Every once in a while, you’ll see a Golbat that’s missing some fangs. This happens when
-                hunger drives it to try biting a Steel-type Pokémon.
+            Olatim is your best recruiting partner and team builder. We tap into our network of quality professionals to help you find the perfect fit.
             </Text>
 
             <SimpleGrid cols={2} spacing="xl" mt={50} breakpoints={[{maxWidth: 'md', cols: 1}]}>
