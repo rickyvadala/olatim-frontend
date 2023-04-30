@@ -68,7 +68,7 @@ export const OlaHero = ({title, subtitle, items, buttons}: OlaHeroProps) => {
 
     return (
         <Flex pt={60} pb={60} mih={'100vh'} align={'center'} style={{background: '#f8f9fa'}}>
-            <Container size={'lg'} w={'100%'} p={"xl"}>
+            <Container size={'lg'} w={'100%'} px={"xl"}>
                 <div className={classes.inner}>
                     <div className={classes.content}>
                         <Title className={classes.title}>

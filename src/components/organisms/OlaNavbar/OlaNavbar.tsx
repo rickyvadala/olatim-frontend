@@ -30,6 +30,7 @@ const useStyles = createStyles((theme) => ({
     },
 
     link: {
+        cursor: "pointer",
         display: 'flex',
         alignItems: 'center',
         height: '100%',
@@ -106,22 +107,24 @@ export const OlaNavbar = () => {
     const [linksOpened, {toggle: toggleLinks}] = useDisclosure(false);
     const {classes, theme} = useStyles();
 
-    const links = mockdata.map((item) => (
-        <UnstyledButton className={classes.subLink} key={item.title}>
-            <Group noWrap align="flex-start">
-                <ThemeIcon size={34} variant="default" radius="md">
-                    <item.icon size={rem(22)} color={theme.fn.primaryColor()}/>
-                </ThemeIcon>
-                <div>
-                    <Text size="sm" fw={500}>
-                        {item.title}
-                    </Text>
-                    <Text size="xs" color="dimmed">
-                        {item.description}
-                    </Text>
-                </div>
-            </Group>
-        </UnstyledButton>
+    const links = mockdata.map((item, i) => (
+        <Link href="/munity" key={i}>
+            <UnstyledButton className={classes.subLink} key={item.title}>
+                <Group noWrap align="flex-start">
+                    <ThemeIcon size={34} variant="default" radius="md">
+                        <item.icon size={rem(22)} color={theme.fn.primaryColor()}/>
+                    </ThemeIcon>
+                    <div>
+                        <Text size="sm" fw={500}>
+                            {item.title}
+                        </Text>
+                        <Text size="xs" color="dimmed">
+                            {item.description}
+                        </Text>
+                    </div>
+                </Group>
+            </UnstyledButton>
+        </Link>
     ));
 
     return (
@@ -134,19 +137,19 @@ export const OlaNavbar = () => {
                         <Link href="/" className={classes.link}>
                             Home
                         </Link>
-                        <Link href="/" className={classes.link}>
+                        <Link href="/hiring" className={classes.link}>
                             I&apos;m Hiring
                         </Link>
                         <HoverCard width={600} position="bottom" radius="md" shadow="md" withinPortal>
                             <HoverCard.Target>
-                                <a href="javascript:void(0)" className={classes.link}>
+                                <span className={classes.link}>
                                     <Center inline>
                                         <Box component="span" mr={5}>
                                             Talent
                                         </Box>
                                         <IconChevronDown size={16} color={theme.fn.primaryColor()}/>
                                     </Center>
-                                </a>
+                                </span>
                             </HoverCard.Target>
 
                             <HoverCard.Dropdown sx={{overflow: 'hidden'}}>
@@ -209,9 +212,7 @@ export const OlaNavbar = () => {
                     </Link>
                     <UnstyledButton className={classes.link} onClick={toggleLinks}>
                         <Center inline>
-                            <Box component="span" mr={5}>
-                                Services
-                            </Box>
+                            <Box component="span" mr={5}>Services</Box>
                             <IconChevronDown size={16} color={theme.fn.primaryColor()}/>
                         </Center>
                     </UnstyledButton>

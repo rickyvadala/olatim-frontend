@@ -56,6 +56,7 @@ export type OlaAboutProps = {
 
 export const OlaAbout = ({badge, title, subtitle, features: _features}: OlaAboutProps) => {
     const {classes, theme} = useStyles();
+
     const features = _features.map((feature) => (
         <Card key={feature.name} shadow="md" radius="md" className={classes.card} padding="xl">
             <Flex justify={"space-between"} align={'center'}>
