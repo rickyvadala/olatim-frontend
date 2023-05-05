@@ -1,4 +1,4 @@
-import {Badge, Card, Container, createStyles, Flex, Group, rem, SimpleGrid, Text, Title,} from '@mantine/core';
+import {Badge, Card, Container, createStyles, Flex, Group, rem, SimpleGrid, Text, Title, Timeline} from '@mantine/core';
 import type {TablerIconsProps} from '@tabler/icons-react';
 import React from "react";
 

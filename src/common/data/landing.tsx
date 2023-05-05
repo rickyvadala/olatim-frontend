@@ -1,5 +1,6 @@
 import {OlaHeroProps} from "@/components/organisms/OlaHero/OlaHero";
 import {OlaAboutProps} from "@/components/organisms/OlaAbout/OlaAbout";
+import {OlaAboutProps1} from "@/components/organisms/OlaAbout/OlaAboutHiring";
 import {IconDevices2, IconDirectionSign, IconPigMoney, IconUserCheck} from "@tabler/icons-react";
 
 type OlaLandingProps = {
@@ -9,7 +10,7 @@ type OlaLandingProps = {
     }
     hiring: {
         hero: OlaHeroProps,
-        about?: OlaAboutProps
+        about: OlaAboutProps1
     }
     munity: {
         hero: OlaHeroProps,
@@ -21,7 +22,7 @@ export const OLA_LANDING: OlaLandingProps = {
     home: {
         hero: {
             title: 'Team growth powered by Latam Talent',
-            subtitle: 'Olatim is building a community of top-notch professionals to help you easily scale your business.',
+            subtitle: 'Scale your global team with top-notch professionals, aligned with your goals and strategy.',
             items: [
                 {
                     name: 'Software Engineers',
@@ -49,13 +50,13 @@ export const OLA_LANDING: OlaLandingProps = {
         },
         about: {
             badge: 'Olatim Community',
-            title: 'Hire without frictions',
+            title: 'A solution for hiring without frictions',
             subtitle: 'Olatim is your best recruiting partner and team builder. We tap into our network of quality professionals to help you find the perfect fit.',
             features: [
                 {
                     name: 'Skills & Experience',
                     description:
-                        'All of our professionals are pre-screened by our recruiting team, to asses not only their technical knowledge but their soft skills.',
+                        'Access a curated pool of professionals pre-screened by our team.',
                     icon: IconUserCheck,
                 },
                 {
@@ -67,13 +68,13 @@ export const OLA_LANDING: OlaLandingProps = {
                 {
                     name: 'Nearshore Global Teams',
                     description:
-                        'We help you to build and grow your remote team, by taking advantage of top talent in Latam.',
+                        'We help you build and grow your remote team by taking advantage of our wide network of talent in Latam.',
                     icon: IconDevices2,
                 },
                 {
                     name: 'One-time-fee',
                     description:
-                        'We are a community of tech talent connecting people with remote job opportunities. Make direct hires and pay once.',
+                        'We are a community helping each other connect with remote job opportunities. Make direct hires and pay once.',
                     icon: IconPigMoney,
                 },
             ]
@@ -81,20 +82,20 @@ export const OLA_LANDING: OlaLandingProps = {
     },
     hiring: {
         hero: {
-            title: 'Team growth powered by Latam Talent',
-            subtitle: 'Olatim is building a community of top-notch professionals to help you easily scale your business.',
+            title: 'Hire directly, with a one-time-fee.',
+            subtitle: 'Take your business to the next level by hiring globally in a effortless way, while saving money on overhead costs.',
             items: [
                 {
-                    name: 'Software Engineers',
-                    description: '– build secure and scalable applications with experienced developers.'
+                    name: 'Access curated and qualified talent.',
+                    description: ''
                 },
                 {
-                    name: 'Data, DevOps, Cloud, Blockchain',
-                    description: '– everything that your product needs to perform at the highest level.'
+                    name: 'Get support all the way.',
+                    description: ''
                 },
                 {
-                    name: 'Design, UX/UI, Animation',
-                    description: '– website, storytelling, marketing and social media.'
+                    name: 'Find people aligned with your goals and strategy.',
+                    description: ''
                 },
             ],
             buttons: [
@@ -108,6 +109,18 @@ export const OLA_LANDING: OlaLandingProps = {
                 },
             ]
         },
+        about: {
+            badge: 'How it works',
+            title: 'Your Technology Partner',
+            subtitle: 'We know recruiting is expensive and time consuming. Olatim allows you to build your team while you keep focus on your business.',
+            features: [
+                {
+                    name: 'Define your hiring needs',
+                    description: 'Talk to our team about the perfect fit for the role.',
+                    icon: IconUserCheck,
+                },
+            ]
+        }
     },
     munity: {
         hero: {
