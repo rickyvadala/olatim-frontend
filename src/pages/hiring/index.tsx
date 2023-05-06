@@ -6,7 +6,7 @@ import {OlaContact} from "@/components/organisms/OlaContact/OlaContact";
 import {OlaFooter} from "@/components/organisms/OlaFooter/OlaFooter";
 import {footer} from "@/common/data/footer";
 import {OLA_LANDING} from "@/common/data/landing";
-import {OlaAboutHiring} from "@/components/organisms/OlaAbout/OlaAboutHiring";
+import { OlaAboutHiring } from "@/components/organisms/OlaAbout/OlaAboutHiring";
 
 export default function Index() {
     return (

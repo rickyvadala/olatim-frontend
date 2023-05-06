@@ -59,45 +59,20 @@ export type OlaAboutProps1 = {
 export const OlaAboutHiring = ({badge, title, subtitle, features: _features}: OlaAboutProps1) => {
     const {classes, theme} = useStyles();
 
-    const features = _features.map((feature) => (
-        <Timeline color={'yellow'} active={4} bulletSize={30} lineWidth={2} radius="md">
-            <Timeline.Item bullet={<IconGitBranch size={12}/>} title={feature.name}>
+    const features = (
+        <Timeline color={'blue'} active={4} bulletSize={32} lineWidth={2} radius="md">
+            {_features.map(feature => (                
+            <Timeline.Item bullet={<feature.icon size={20}/>} title={feature.name}>
                 <Text
                     color="dimmed"
                     size="sm"
                 >
                     {feature.description}
                 </Text><Text size="xs" mt={4}>&nbsp;</Text>
-            </Timeline.Item>
-
-            <Timeline.Item bullet={<IconGitCommit size={12}/>} title="Get Pre-screened profiles">
-                <Text
-                    color="dimmed"
-                    size="sm"
-                >
-                    Review qualified candidates that match your goals.
-                </Text><Text size="xs" mt={4}>&nbsp;</Text>
-            </Timeline.Item>
-
-            <Timeline.Item bullet={<IconGitPullRequest size={12}/>} title="Interviews & Meet Ups">
-                <Text
-                    color="dimmed"
-                    size="sm"
-                >
-                    Carry out your recruitment process. Get our help if needed!
-                </Text><Text size="xs" mt={4}>&nbsp;</Text>
-            </Timeline.Item>
-
-            <Timeline.Item bullet={<IconMessageDots size={12}/>} title="Hire & Keep Building">
-                <Text
-                    color="dimmed"
-                    size="sm"
-                >
-                    Our goal is get you here as fast as possible.
-                </Text>
-            </Timeline.Item>
+            </Timeline.Item>))}
+    
         </Timeline>
-    ));
+    );
 
     return (
         <Container size="lg" my="xl" px={"xl"} id={'about'} py={96}>

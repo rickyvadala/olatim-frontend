@@ -1,7 +1,7 @@
 import {OlaHeroProps} from "@/components/organisms/OlaHero/OlaHero";
 import {OlaAboutProps} from "@/components/organisms/OlaAbout/OlaAbout";
 import {OlaAboutProps1} from "@/components/organisms/OlaAbout/OlaAboutHiring";
-import {IconDevices2, IconDirectionSign, IconPigMoney, IconUserCheck} from "@tabler/icons-react";
+import {IconDevices2, IconDirectionSign, IconPigMoney, IconUserCheck, IconCircleNumber1, IconCircleNumber2, IconCircleNumber3, IconCircleNumber4 } from "@tabler/icons-react";
 
 type OlaLandingProps = {
     home: {
@@ -117,7 +117,22 @@ export const OLA_LANDING: OlaLandingProps = {
                 {
                     name: 'Define your hiring needs',
                     description: 'Talk to our team about the perfect fit for the role.',
-                    icon: IconUserCheck,
+                    icon: IconCircleNumber1,
+                },
+                {
+                    name: 'Get Pre-screened profiles',
+                    description: 'Review qualified candidates that match your goals.',
+                    icon: IconCircleNumber2,
+                },
+                {
+                    name: 'Interviews & Meet Ups',
+                    description: 'Carry out your recruitment process. Get our help if needed!',
+                    icon: IconCircleNumber3,
+                },
+                {
+                    name: 'Hire & Keep Building',
+                    description: 'Our goal is get you here as fast as possible.',
+                    icon: IconCircleNumber4,
                 },
             ]
         }
