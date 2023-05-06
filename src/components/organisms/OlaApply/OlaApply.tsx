@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { Stepper, Button, Group, TextInput, PasswordInput, Code } from '@mantine/core';
-import { useForm } from '@mantine/form';
+import {useState} from 'react';
+import {Button, Code, Group, PasswordInput, Stepper, TextInput} from '@mantine/core';
+import {useForm} from '@mantine/form';
 
 function OlaApply() {
     const [active, setActive] = useState(0);

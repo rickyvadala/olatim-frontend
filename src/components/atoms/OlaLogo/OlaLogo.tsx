@@ -17,7 +17,7 @@ export const OlaLogo = () => {
 
     return (
         <Flex gap={8} align={"center"} className={classes.wrapper}>
-                <Image src={'/olatim.svg'} alt='Olatim Logo' width={48}/>
+            <Image src={'/olatim.svg'} alt='Olatim Logo' width={48}/>
             <Title className={classes.text} mt={6}>Olatim</Title>
         </Flex>
     )

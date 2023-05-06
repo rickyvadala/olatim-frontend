@@ -60,7 +60,7 @@ export type OlaHeroProps = {
     title: string,
     subtitle: string,
     items: Array<{ name: string, description: string }>,
-    buttons: Array<{label: string, href: string}>
+    buttons: Array<{ label: string, href: string }>
 }
 
 export const OlaHero = ({title, subtitle, items, buttons}: OlaHeroProps) => {

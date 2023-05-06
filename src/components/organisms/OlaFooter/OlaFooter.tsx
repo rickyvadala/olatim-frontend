@@ -1,5 +1,5 @@
 import {ActionIcon, Box, Container, createStyles, Group, rem, Text} from '@mantine/core';
-import {IconBrandInstagram, IconBrandTwitter, IconBrandLinkedin} from '@tabler/icons-react';
+import {IconBrandInstagram, IconBrandLinkedin, IconBrandTwitter} from '@tabler/icons-react';
 import {OlaLogo} from "@/components/atoms/OlaLogo/OlaLogo";
 
 const useStyles = createStyles((theme) => ({
@@ -135,7 +135,7 @@ export const OlaFooter = ({data}: OlaFooterProps) => {
                         <OlaLogo/>
                     </Box>
                     <Text size="xs" color="dimmed" className={classes.description}>
-                        A latam community for finding remote jobs 
+                        A latam community for finding remote jobs
                     </Text>
                 </div>
                 <div className={classes.groups}>{groups}</div>

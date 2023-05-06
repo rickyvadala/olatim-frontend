@@ -1,4 +1,6 @@
 import {
+    ActionIcon,
+    Avatar,
     Box,
     Burger,
     Button,
@@ -10,6 +12,7 @@ import {
     Group,
     Header,
     HoverCard,
+    Menu,
     rem,
     ScrollArea,
     SimpleGrid,
@@ -18,9 +21,13 @@ import {
     UnstyledButton,
 } from '@mantine/core';
 import {useDisclosure} from '@mantine/hooks';
-import {IconChevronDown, IconCode, IconCoin} from '@tabler/icons-react';
+import {IconChevronDown, IconCode, IconCoin, IconLogout, IconSettings} from '@tabler/icons-react';
 import {OlaLogo} from "@/components/atoms/OlaLogo/OlaLogo";
 import Link from "next/link";
+import {useDispatch, useSelector} from "react-redux";
+import {selectAuthUser, setAuthUser} from "@/store/authSlice";
+import {User} from "firebase/auth";
+import {googleSignOut} from "@/services/auth.service";
 
 const useStyles = createStyles((theme) => ({
     wrapper: {
@@ -105,7 +112,14 @@ const mockdata = [
 export const OlaNavbar = () => {
     const [drawerOpened, {toggle: toggleDrawer, close: closeDrawer}] = useDisclosure(false);
     const [linksOpened, {toggle: toggleLinks}] = useDisclosure(false);
+    const user: User | undefined = useSelector(selectAuthUser)
     const {classes, theme} = useStyles();
+    const dispatch = useDispatch()
+
+    const handleGoogleSignOut = async () => {
+        await googleSignOut()
+        dispatch(setAuthUser(undefined))
+    }
 
     const links = mockdata.map((item, i) => (
         <Link href="/munity" key={i}>
@@ -192,6 +206,22 @@ export const OlaNavbar = () => {
                         <Link href={'/auth'} scroll={false}><Button>Sign up</Button></Link>
                     </Group>
 
+                    {user &&
+                        <Menu shadow="md" width={200}>
+                            <Menu.Target>
+                                <ActionIcon>
+                                    <Avatar radius="xl" src={user.photoURL} alt="it's me"/>
+                                </ActionIcon>
+                            </Menu.Target>
+
+                            <Menu.Dropdown>
+                                <Menu.Item icon={<IconSettings size={14}/>}>Settings</Menu.Item>
+                                <Menu.Divider/>
+                                <Menu.Item onClick={handleGoogleSignOut} color="red" icon={<IconLogout size={14}/>}>Sign
+                                    out</Menu.Item>
+                            </Menu.Dropdown>
+                        </Menu>
+                    }
                     <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.hiddenDesktop}/>
                 </Group>
             </Header>

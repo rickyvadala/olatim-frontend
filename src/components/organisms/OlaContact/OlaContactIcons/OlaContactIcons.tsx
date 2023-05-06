@@ -1,5 +1,5 @@
 import {Box, createStyles, Stack, Text, ThemeIcon} from '@mantine/core';
-import {IconAt, IconMapPin, IconSun} from '@tabler/icons-react';
+import {IconAt, IconMapPin} from '@tabler/icons-react';
 
 type ContactIconVariant = 'white' | 'gradient';
 

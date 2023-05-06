@@ -1,8 +1,9 @@
 import '@/styles/globals.css'
 import type {AppProps} from 'next/app'
 import {MantineProvider} from "@mantine/core";
+import {wrapper} from "@/store/store";
 
-export default function App({Component, pageProps}: AppProps) {
+function App({Component, pageProps}: AppProps) {
     return (
         <MantineProvider
             withGlobalStyles
@@ -10,7 +11,7 @@ export default function App({Component, pageProps}: AppProps) {
             theme={{
                 /** Put your mantine theme override here */
                 colors: {
-                  blue: ['#e0edfc', '#b3d2f8', '#80b5f4', '#4d97f0', '#2680ec', '#006ae9', '#0062e6', '#0057e3', '#004ddf', '#003cd9']
+                    blue: ['#e0edfc', '#b3d2f8', '#80b5f4', '#4d97f0', '#2680ec', '#006ae9', '#0062e6', '#0057e3', '#004ddf', '#003cd9']
                 },
                 colorScheme: 'light',
             }}
@@ -19,3 +20,6 @@ export default function App({Component, pageProps}: AppProps) {
         </MantineProvider>
     )
 }
+
+export default wrapper.withRedux(App);
+

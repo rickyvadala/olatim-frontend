@@ -12,7 +12,7 @@ import {
     TextInput,
     Title,
 } from '@mantine/core';
-import {IconBrandInstagram, IconBrandTwitter, IconBrandLinkedin} from '@tabler/icons-react';
+import {IconBrandInstagram, IconBrandLinkedin, IconBrandTwitter} from '@tabler/icons-react';
 import {OlaContactIcons} from "@/components/organisms/OlaContact/OlaContactIcons/OlaContactIcons";
 
 const useStyles = createStyles((theme) => ({

@@ -15,7 +15,10 @@ import {
     Text,
     TextInput,
 } from '@mantine/core';
-import {IconBrandGoogle, IconBrandTwitter} from "@tabler/icons-react";
+import {IconBrandGoogle} from "@tabler/icons-react";
+import {googleSignIn} from "@/services/auth.service";
+import {useDispatch} from "react-redux";
+import {setAuthUser} from "@/store/authSlice";
 
 const useStyles = createStyles(() => ({
     wrapper: {
@@ -25,6 +28,7 @@ const useStyles = createStyles(() => ({
 
 export const OlaAuth = (props: PaperProps) => {
     const {classes} = useStyles();
+    const dispatch = useDispatch()
 
     const [type, toggle] = useToggle(['login', 'register']);
     const form = useForm({
@@ -41,6 +45,11 @@ export const OlaAuth = (props: PaperProps) => {
         },
     });
 
+    const handleGoogleSignIn = async () => {
+        const user = await googleSignIn()
+        dispatch(setAuthUser(user))
+    }
+
     return (
         <Flex align={"center"} justify={"center"} h={'100vh'} className={classes.wrapper}>
             <Paper radius="md" p="xl" withBorder {...props} miw={320} w={'40%'} shadow={'lg'}>
@@ -49,8 +58,7 @@ export const OlaAuth = (props: PaperProps) => {
                 </Text>
 
                 <Group grow mb="md" mt="md">
-                    <Button leftIcon={<IconBrandGoogle/>}>Google</Button>
-                    <Button leftIcon={<IconBrandTwitter/>}>Twitter</Button>
+                    <Button onClick={handleGoogleSignIn} leftIcon={<IconBrandGoogle/>}>Google</Button>
                 </Group>
 
                 <Divider label="Or continue with email" labelPosition="center" my="lg"/>
