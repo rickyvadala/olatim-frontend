@@ -50,7 +50,7 @@ export const OlaApply: React.FC = () => {
             email: '',
             professionalTitle: '',
             professionalTechStack: '',
-            experience: [{jobTitle: '', jobCompany: '', jobDates: '', jobDescription: ''}],
+            experience: [{jobTitle: '', jobCompany: '', jobDates: [undefined, undefined], jobDescription: ''}],
             education: [{educationTitle: ''}],
             salaryExpected: '',
             yearsOfExperience: '',
@@ -213,14 +213,17 @@ export const OlaApply: React.FC = () => {
                                         </ActionIcon>
                                         <Flex gap={"md"}>
                                             <TextInput w={'calc(100%/3)'} label="Job Title"
-                                                       placeholder="Senior frontend developer" {...form.getInputProps(`experience.${i}.jobTitle`)} />
+                                                       placeholder="Senior frontend developer"
+                                                       {...form.getInputProps(`experience.${i}.jobTitle`)} />
                                             <TextInput w={'calc(100%/3)'} label="Company"
-                                                       placeholder="Olatim.com" {...form.getInputProps(`experience.${i}.jobCompany`)} />
+                                                       placeholder="Olatim.com"
+                                                       {...form.getInputProps(`experience.${i}.jobCompany`)} />
                                             <YearPickerInput
                                                 w={'calc(100%/3)'}
                                                 type="range"
                                                 label="Dates"
                                                 placeholder="Dates range"
+                                                {...form.getInputProps(`experience.${i}.jobDates`)}
                                             />
                                         </Flex>
                                         <Textarea w={'100%'}

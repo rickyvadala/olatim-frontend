@@ -14,8 +14,6 @@ import {
 } from '@mantine/core';
 import {IconBrandInstagram, IconBrandLinkedin, IconBrandTwitter} from '@tabler/icons-react';
 import {OlaContactIcons} from "@/components/organisms/OlaContact/OlaContactIcons/OlaContactIcons";
-import {addDoc, collection, doc, setDoc} from "@firebase/firestore";
-import {DB} from "../../../../firebase";
 
 const useStyles = createStyles((theme) => ({
     wrapper: {

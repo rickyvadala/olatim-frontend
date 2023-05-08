@@ -17,7 +17,7 @@ function App({Component, pageProps}: AppProps) {
                 colorScheme: 'light',
             }}
         >
-            <RouterTransition />
+            <RouterTransition/>
             <Component {...pageProps} />
         </MantineProvider>
     )

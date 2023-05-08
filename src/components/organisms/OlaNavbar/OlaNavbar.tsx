@@ -207,7 +207,7 @@ export const OlaNavbar = () => {
                                 />
 
                                 <SimpleGrid cols={2} spacing={0}>
-                                    <Links />
+                                    <Links/>
                                 </SimpleGrid>
 
                                 <div className={classes.dropdownFooter}>
@@ -263,7 +263,7 @@ export const OlaNavbar = () => {
                             <IconChevronDown size={16} color={theme.fn.primaryColor()}/>
                         </Center>
                     </UnstyledButton>
-                    <Collapse in={linksOpened}><Links /></Collapse>
+                    <Collapse in={linksOpened}><Links/></Collapse>
                     <Link onClick={closeDrawer} href="#contact" className={classes.link}>
                         <Text>Contact</Text>
                     </Link>
