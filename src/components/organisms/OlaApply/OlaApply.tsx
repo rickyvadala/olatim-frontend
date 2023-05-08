@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {
     ActionIcon,
-    Avatar,
+    Avatar, Box,
     Button,
     Code,
     Divider,
@@ -24,6 +24,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {IUser} from "@/models/IUser.interface";
 import {OlaLogo} from "@/components/atoms/OlaLogo/OlaLogo";
 import {YearPickerInput} from "@mantine/dates";
+import {postResume} from "@/services/resumes.service";
+import {PagesEnum} from "@/common/enums/PagesEnum";
+import Link from "next/link";
 
 const data = [
     {value: 'react', label: 'React'},
@@ -37,6 +40,7 @@ const data = [
 
 export const OlaApply: React.FC = () => {
     const [active, setActive] = useState(0);
+    const [submitting, setSubmitting] = useState<boolean>(false);
     const dispatch = useDispatch()
     const user: IUser | undefined = useSelector(selectAuthUser)
 
@@ -48,8 +52,9 @@ export const OlaApply: React.FC = () => {
             professionalTechStack: '',
             experience: [{jobTitle: '', jobCompany: '', jobDates: '', jobDescription: ''}],
             education: [{educationTitle: ''}],
-            website: '',
-            github: '',
+            salaryExpected: '',
+            yearsOfExperience: '',
+            linkedin: '',
         },
 
         validate: (values) => {
@@ -79,7 +84,7 @@ export const OlaApply: React.FC = () => {
                 email: user.email || ''
             })
         }
-    }, [user, form])
+    }, [user])
 
     const nextStep = () =>
         setActive((current) => {
@@ -94,6 +99,13 @@ export const OlaApply: React.FC = () => {
     const handleGoogleSignIn = async () => {
         const {email, photoURL, displayName, uid, phoneNumber} = await googleSignIn()
         dispatch(setAuthUser({email, photoURL, displayName, uid, phoneNumber}))
+    }
+
+    const handlePostResume = async () => {
+        setSubmitting(true)
+        await postResume(form.values)
+        nextStep()
+        setSubmitting(false)
     }
 
     const experience = form.getInputProps('experience').value
@@ -128,17 +140,14 @@ export const OlaApply: React.FC = () => {
         })
     }
 
-    const AddExperience: React.FC<{ showButton: boolean }> = ({showButton}) => <Divider my={"xs"} labelPosition="center"
-                                                                                        label={
-                                                                                            showButton ?
-                                                                                                <Button
-                                                                                                    leftIcon={<IconPlus
-                                                                                                        size="1rem"/>}
-                                                                                                    compact
-                                                                                                    onClick={handleAddExperience}>
-                                                                                                    Add experience
-                                                                                                </Button> : ''
-                                                                                        }/>
+    const AddExperience: React.FC<{ showButton: boolean }> = ({showButton}) => (
+        <Divider my={"xs"} labelPosition="center"
+                 label={showButton ?
+                     <Button leftIcon={<IconPlus size="1rem"/>} compact onClick={handleAddExperience}>
+                         Add experience
+                     </Button> : ''
+                 }/>
+    )
 
     return (
         <Flex align={"center"} justify={"center"} mih={'100vh'} direction={"column"}
@@ -256,6 +265,7 @@ export const OlaApply: React.FC = () => {
                                     placeholder="2000"
                                     min={0}
                                     icon={<IconCurrencyDollar size="1rem"/>}
+                                    {...form.getInputProps('salaryExpected')}
                                 />
                                 <NumberInput
                                     w={'50%'}
@@ -263,30 +273,37 @@ export const OlaApply: React.FC = () => {
                                     placeholder="5"
                                     min={0}
                                     icon={<IconCalendar size="1rem"/>}
+                                    {...form.getInputProps('yearsOfExperience')}
                                 />
                             </Flex>
                             <TextInput label="LinkedIn"
                                        placeholder="https://www.linkedin.com/in/olatim"
-                                       {...form.getInputProps('website')}
+                                       {...form.getInputProps('linkedin')}
                             />
 
                         </Flex>
                     </Stepper.Step>
                     <Stepper.Completed>
-                        Completed! Form values:
-                        <Code block mt="xl">
-                            {JSON.stringify(form.values, null, 2)}
-                        </Code>
+                        <Flex direction={"column"} align={"center"}>
+                            <Title size={"larger"} my={'md'}>
+                                Completed!
+                            </Title>
+                            <Flex gap={"md"}>
+                                <Link href={PagesEnum.ROOT}>
+                                    <Button>Home</Button>
+                                </Link>
+                                <Link href={PagesEnum.ROOT}>
+                                    <Button variant={"outline"}>Profile</Button>
+                                </Link>
+                            </Flex>
+                        </Flex>
                     </Stepper.Completed>
                 </Stepper>
 
                 <Group position="right" mt="xl">
-                    {active !== 0 && (
-                        <Button variant="default" onClick={prevStep}>
-                            Back
-                        </Button>
-                    )}
-                    {active !== 3 && <Button onClick={nextStep}>Next step</Button>}
+                    {active === 1 || active === 2 && (<Button variant="default" onClick={prevStep}>Back</Button>)}
+                    {active < 2 && <Button onClick={nextStep}>Next step</Button>}
+                    {active === 2 && <Button onClick={handlePostResume} loading={submitting}>Send</Button>}
                 </Group>
             </Paper>
         </Flex>

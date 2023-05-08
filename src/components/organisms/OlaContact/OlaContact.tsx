@@ -14,6 +14,8 @@ import {
 } from '@mantine/core';
 import {IconBrandInstagram, IconBrandLinkedin, IconBrandTwitter} from '@tabler/icons-react';
 import {OlaContactIcons} from "@/components/organisms/OlaContact/OlaContactIcons/OlaContactIcons";
+import {addDoc, collection, doc, setDoc} from "@firebase/firestore";
+import {DB} from "../../../../firebase";
 
 const useStyles = createStyles((theme) => ({
     wrapper: {
@@ -121,7 +123,9 @@ export const OlaContact = () => {
                         />
 
                         <Group position="right" mt="md">
-                            <Button className={classes.control}>Send message</Button>
+                            <Button className={classes.control} onClick={() => console.log('send')}>
+                                Send message
+                            </Button>
                         </Group>
                     </div>
                 </SimpleGrid>

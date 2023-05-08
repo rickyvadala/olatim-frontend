@@ -4,4 +4,5 @@ export enum PagesEnum {
     HIRING = '/hiring',
     COMMUNITY = '/munity',
     APPLY = '/apply',
+    PROFILE = '/profile',
 }
