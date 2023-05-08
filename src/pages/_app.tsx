@@ -2,6 +2,7 @@ import '@/styles/globals.css'
 import type {AppProps} from 'next/app'
 import {MantineProvider} from "@mantine/core";
 import {wrapper} from "@/store/store";
+import {RouterTransition} from "@/router/OlaRouterTransition";
 
 function App({Component, pageProps}: AppProps) {
     return (
@@ -16,6 +17,7 @@ function App({Component, pageProps}: AppProps) {
                 colorScheme: 'light',
             }}
         >
+            <RouterTransition />
             <Component {...pageProps} />
         </MantineProvider>
     )

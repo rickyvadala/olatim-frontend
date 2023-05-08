@@ -1,4 +1,4 @@
-export enum PagesEnum {
+export enum OlaRouter {
     ROOT = '/',
     AUTH = '/auth',
     HIRING = '/hiring',

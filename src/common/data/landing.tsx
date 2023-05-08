@@ -11,7 +11,7 @@ import {
     IconPigMoney,
     IconUserCheck
 } from "@tabler/icons-react";
-import {PagesEnum} from "@/common/enums/PagesEnum";
+import {OlaRouter} from "@/router/OlaRouter";
 
 type OlaLandingProps = {
     home: {
@@ -51,7 +51,7 @@ export const OLA_LANDING: OlaLandingProps = {
             buttons: [
                 {
                     label: 'Start Hiring',
-                    href: PagesEnum.HIRING
+                    href: OlaRouter.HIRING
                 },
                 {
                     label: 'More Info',
@@ -113,7 +113,7 @@ export const OLA_LANDING: OlaLandingProps = {
             buttons: [
                 {
                     label: 'Start Hiring',
-                    href: PagesEnum.HIRING
+                    href: OlaRouter.HIRING
                 },
                 {
                     label: 'More Info',
@@ -171,7 +171,7 @@ export const OLA_LANDING: OlaLandingProps = {
             buttons: [
                 {
                     label: 'Start Hiring',
-                    href: PagesEnum.HIRING
+                    href: OlaRouter.HIRING
                 },
                 {
                     label: 'More Info',

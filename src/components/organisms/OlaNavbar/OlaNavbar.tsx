@@ -29,7 +29,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {selectAuthUser, setAuthUser} from "@/store/authSlice";
 import {googleSignOut} from "@/services/auth.service";
 import {IUser} from "@/models/IUser.interface";
-import {PagesEnum} from "@/common/enums/PagesEnum";
+import {OlaRouter} from "@/router/OlaRouter";
 import React from "react";
 
 const useStyles = createStyles((theme) => ({
@@ -104,13 +104,13 @@ const links = [
         icon: IconCode,
         title: 'Referrals Program',
         description: 'This Pokémon’s cry is very loud and distracting',
-        href: PagesEnum.COMMUNITY
+        href: OlaRouter.COMMUNITY
     },
     {
         icon: IconCoin,
         title: 'Find a job',
         description: 'The fluid of Smeargle’s tail secretions changes',
-        href: PagesEnum.APPLY
+        href: OlaRouter.APPLY
     },
 ];
 
@@ -177,10 +177,10 @@ export const OlaNavbar = () => {
                     <OlaLogo text={'Olatim'}/>
 
                     <Group sx={{height: '100%'}} spacing={0} className={classes.hiddenMobile}>
-                        <Link href={PagesEnum.ROOT} className={classes.link}>
+                        <Link href={OlaRouter.ROOT} className={classes.link}>
                             Home
                         </Link>
-                        <Link href={PagesEnum.HIRING} className={classes.link}>
+                        <Link href={OlaRouter.HIRING} className={classes.link}>
                             I&apos;m Hiring
                         </Link>
                         <HoverCard width={600} position="bottom" radius="md" shadow="md" withinPortal>
@@ -234,8 +234,8 @@ export const OlaNavbar = () => {
                         {user ? <OlaNavbarAvatar user={user}/>
                             :
                             <Group className={classes.hiddenMobile}>
-                                <Link href={PagesEnum.AUTH}><Button variant="default">Log in</Button></Link>
-                                <Link href={PagesEnum.AUTH}><Button>Sign up</Button></Link>
+                                <Link href={OlaRouter.AUTH}><Button variant="default">Log in</Button></Link>
+                                <Link href={OlaRouter.AUTH}><Button>Sign up</Button></Link>
                             </Group>
                         }
                         <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.hiddenDesktop}/>
@@ -254,7 +254,7 @@ export const OlaNavbar = () => {
             >
                 <ScrollArea h={`calc(100vh - ${rem(60)})`} mx="-md">
                     <Divider mb="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'}/>
-                    <Link onClick={closeDrawer} href={PagesEnum.ROOT} className={classes.link}>
+                    <Link onClick={closeDrawer} href={OlaRouter.ROOT} className={classes.link}>
                         <Text>Home</Text>
                     </Link>
                     <UnstyledButton className={classes.link} onClick={toggleLinks}>
@@ -271,10 +271,10 @@ export const OlaNavbar = () => {
                     <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'}/>
 
                     <Group position="center" grow pb="xl" px="md">
-                        <Link onClick={closeDrawer} href={PagesEnum.ROOT}>
+                        <Link onClick={closeDrawer} href={OlaRouter.ROOT}>
                             <Button w={'100%'} variant="default">Log in</Button>
                         </Link>
-                        <Link onClick={closeDrawer} href={PagesEnum.ROOT}>
+                        <Link onClick={closeDrawer} href={OlaRouter.ROOT}>
                             <Button w={'100%'}>Sign up</Button>
                         </Link>
                     </Group>

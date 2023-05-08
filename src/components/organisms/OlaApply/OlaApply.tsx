@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {
     ActionIcon,
-    Avatar, Box,
+    Avatar,
     Button,
-    Code,
     Divider,
     Flex,
-    Group, Highlight,
+    Group,
+    Highlight,
     MultiSelect,
     NumberInput,
     Paper,
@@ -25,7 +25,7 @@ import {IUser} from "@/models/IUser.interface";
 import {OlaLogo} from "@/components/atoms/OlaLogo/OlaLogo";
 import {YearPickerInput} from "@mantine/dates";
 import {postResume} from "@/services/resumes.service";
-import {PagesEnum} from "@/common/enums/PagesEnum";
+import {OlaRouter} from "@/router/OlaRouter";
 import Link from "next/link";
 
 const data = [
@@ -296,10 +296,10 @@ export const OlaApply: React.FC = () => {
                                 Completed!
                             </Title>
                             <Flex gap={"md"}>
-                                <Link href={PagesEnum.ROOT}>
+                                <Link href={OlaRouter.ROOT}>
                                     <Button>Home</Button>
                                 </Link>
-                                <Link href={PagesEnum.ROOT}>
+                                <Link href={OlaRouter.ROOT}>
                                     <Button variant={"outline"}>Profile</Button>
                                 </Link>
                             </Flex>

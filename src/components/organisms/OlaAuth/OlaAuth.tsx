@@ -19,7 +19,7 @@ import {googleSignIn} from "@/services/auth.service";
 import {useDispatch} from "react-redux";
 import {setAuthUser} from "@/store/authSlice";
 import {useRouter} from "next/router";
-import {PagesEnum} from "@/common/enums/PagesEnum";
+import {OlaRouter} from "@/router/OlaRouter";
 
 const useStyles = createStyles(() => ({
     wrapper: {
@@ -50,7 +50,7 @@ export const OlaAuth = () => {
     const handleGoogleSignIn = async () => {
         const {email, photoURL, displayName, uid, phoneNumber} = await googleSignIn()
         dispatch(setAuthUser({email, photoURL, displayName, uid, phoneNumber}))
-        void router.push(PagesEnum.ROOT)
+        void router.push(OlaRouter.ROOT)
     }
 
     return (
