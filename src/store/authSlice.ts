@@ -1,11 +1,11 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {AppState} from "./store";
 import {HYDRATE} from "next-redux-wrapper";
-import {User} from "firebase/auth";
+import {IUser} from "@/models/IUser.interface";
 
 // Type for our state
 export interface AuthState {
-    authUser?: User
+    authUser?: IUser
 }
 
 // Initial state
@@ -19,7 +19,7 @@ export const authSlice = createSlice({
     initialState,
     reducers: {
         // Action to set the authentication status
-        setAuthUser(state, {payload}: { payload: User | undefined }) {
+        setAuthUser(state, {payload}: { payload: IUser | undefined }) {
             state.authUser = payload;
         },
     },

@@ -1,16 +1,53 @@
-import {useState} from 'react';
-import {Button, Code, Group, PasswordInput, Stepper, TextInput} from '@mantine/core';
+import React, {useEffect, useState} from 'react';
+import {
+    ActionIcon,
+    Avatar,
+    Button,
+    Code,
+    Divider,
+    Flex,
+    Group,
+    MultiSelect,
+    NumberInput,
+    Paper,
+    Stepper,
+    Text,
+    Textarea,
+    TextInput,
+    Title
+} from '@mantine/core';
 import {useForm} from '@mantine/form';
+import {IconBrandGoogle, IconCalendar, IconCurrencyDollar, IconMinus, IconPlus, IconTrash} from "@tabler/icons-react";
+import {googleSignIn} from "@/services/auth.service";
+import {selectAuthUser, setAuthUser} from "@/store/authSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {IUser} from "@/models/IUser.interface";
+import {OlaLogo} from "@/components/atoms/OlaLogo/OlaLogo";
+import {YearPickerInput} from "@mantine/dates";
 
-function OlaApply() {
+const data = [
+    {value: 'react', label: 'React'},
+    {value: 'ng', label: 'Angular'},
+    {value: 'svelte', label: 'Svelte'},
+    {value: 'vue', label: 'Vue'},
+    {value: 'riot', label: 'Riot'},
+    {value: 'next', label: 'Next.js'},
+    {value: 'blitz', label: 'Blitz.js'},
+];
+
+export const OlaApply: React.FC = () => {
     const [active, setActive] = useState(0);
+    const dispatch = useDispatch()
+    const user: IUser | undefined = useSelector(selectAuthUser)
 
     const form = useForm({
         initialValues: {
-            username: '',
-            password: '',
             name: '',
             email: '',
+            professionalTitle: '',
+            professionalTechStack: '',
+            experience: [{jobTitle: '', jobCompany: '', jobDates: '', jobDescription: ''}],
+            education: [{educationTitle: ''}],
             website: '',
             github: '',
         },
@@ -18,12 +55,8 @@ function OlaApply() {
         validate: (values) => {
             if (active === 0) {
                 return {
-                    username:
-                        values.username.trim().length < 6
-                            ? 'Username must include at least 6 characters'
-                            : null,
-                    password:
-                        values.password.length < 6 ? 'Password must include at least 6 characters' : null,
+                    name: values.name.trim().length < 2 ? 'Name must include at least 2 characters' : null,
+                    email: /^\S+@\S+$/.test(values.email) ? null : 'Invalid email',
                 };
             }
 
@@ -38,6 +71,16 @@ function OlaApply() {
         },
     });
 
+
+    useEffect(() => {
+        if (user) {
+            form.setValues({
+                name: user.displayName || '',
+                email: user.email || ''
+            })
+        }
+    }, [user, form])
+
     const nextStep = () =>
         setActive((current) => {
             if (form.validate().hasErrors) {
@@ -48,49 +91,204 @@ function OlaApply() {
 
     const prevStep = () => setActive((current) => (current > 0 ? current - 1 : current));
 
+    const handleGoogleSignIn = async () => {
+        const {email, photoURL, displayName, uid, phoneNumber} = await googleSignIn()
+        dispatch(setAuthUser({email, photoURL, displayName, uid, phoneNumber}))
+    }
+
+    const experience = form.getInputProps('experience').value
+    const education = form.getInputProps('education').value
+    const handleAddExperience = () => {
+        form.setValues({
+            experience: [
+                ...form.getInputProps('experience').value,
+                {jobTitle: '', jobCompany: '', jobDescription: ''}
+            ]
+        })
+    }
+
+    const handleRemoveExperience = (index: number) => {
+        form.setValues({
+            experience: experience.filter((e: any, i: number) => i !== index)
+        })
+    }
+
+    const handleAddEducation = () => {
+        form.setValues({
+            education: [
+                ...form.getInputProps('education').value,
+                {educationTitle: ''}
+            ]
+        })
+    }
+
+    const handleRemoveEducation = (index: number) => {
+        form.setValues({
+            education: education.filter((e: any, i: number) => i !== index)
+        })
+    }
+
+    const AddExperience: React.FC<{ showButton: boolean }> = ({showButton}) => <Divider my={"xs"} labelPosition="center"
+                                                                                        label={
+                                                                                            showButton ?
+                                                                                                <Button
+                                                                                                    leftIcon={<IconPlus
+                                                                                                        size="1rem"/>}
+                                                                                                    compact
+                                                                                                    onClick={handleAddExperience}>
+                                                                                                    Add experience
+                                                                                                </Button> : ''
+                                                                                        }/>
+
     return (
-        <>
-            <Stepper active={active} breakpoint="sm">
-                <Stepper.Step label="First step" description="Profile settings">
-                    <TextInput label="Username" placeholder="Username" {...form.getInputProps('username')} />
-                    <PasswordInput
-                        mt="md"
-                        label="Password"
-                        placeholder="Password"
-                        {...form.getInputProps('password')}
-                    />
-                </Stepper.Step>
+        <Flex align={"center"} justify={"center"} mih={'100vh'} direction={"column"}
+              p={"xl"} py={96}
+              style={{background: 'linear-gradient(90deg, rgba(34,139,230,1) 50%, rgba(0,212,255,1) 100%)'}}>
+            <Paper radius="md" p="xl" withBorder miw={320} shadow={'lg'} w={'100%'} maw={960}>
+                <Title align={"center"} weight={500} mb='md' size={"x-large"}>
+                    Apply for you next dream job!
+                </Title>
 
-                <Stepper.Step label="Second step" description="Personal information">
-                    <TextInput label="Name" placeholder="Name" {...form.getInputProps('name')} />
-                    <TextInput mt="md" label="Email" placeholder="Email" {...form.getInputProps('email')} />
-                </Stepper.Step>
+                {!user ?
+                    <>
+                        <Group grow my="md">
+                            <Button onClick={handleGoogleSignIn} leftIcon={<IconBrandGoogle/>}>Google</Button>
+                        </Group>
+                        <Divider label="Or just complete the form" labelPosition="center" my="lg"/>
+                    </> :
+                    <Flex align={"center"} gap='sm' direction={"column"} mb={"lg"}>
+                        <Text weight={500}>Welcome {user.displayName}</Text>
+                        <Flex justify={"center"} align={"center"} gap={16}>
+                            <OlaLogo/>
+                            <Avatar size={42} src={user?.photoURL} radius={"xl"}/>
+                        </Flex>
+                    </Flex>
+                }
 
-                <Stepper.Step label="Final step" description="Social media">
-                    <TextInput label="Website" placeholder="Website" {...form.getInputProps('website')} />
-                    <TextInput
-                        mt="md"
-                        label="GitHub"
-                        placeholder="GitHub"
-                        {...form.getInputProps('github')}
-                    />
-                </Stepper.Step>
-                <Stepper.Completed>
-                    Completed! Form values:
-                    <Code block mt="xl">
-                        {JSON.stringify(form.values, null, 2)}
-                    </Code>
-                </Stepper.Completed>
-            </Stepper>
 
-            <Group position="right" mt="xl">
-                {active !== 0 && (
-                    <Button variant="default" onClick={prevStep}>
-                        Back
-                    </Button>
-                )}
-                {active !== 3 && <Button onClick={nextStep}>Next step</Button>}
-            </Group>
-        </>
+                <Stepper active={active} breakpoint="sm">
+                    <Stepper.Step label="First step" description="Personal information">
+                        <TextInput label="Name" placeholder="Name" {...form.getInputProps('name')} />
+                        <TextInput mt="md" label="Email" placeholder="Email" {...form.getInputProps('email')} />
+                    </Stepper.Step>
+
+                    <Stepper.Step label="Second step" description="Professional information">
+                        <Flex direction={"column"} gap={"md"}>
+                            <TextInput label="Professional Title"
+                                       placeholder="Full stack developer"
+                                       {...form.getInputProps('professionalTitle')}
+                            />
+                            <MultiSelect searchable
+                                         data={data}
+                                         label="Tech stack"
+                                         placeholder="Pick the ones you have experience with"
+                                         {...form.getInputProps('professionalTechStack')}
+                            />
+                            <Flex direction={"column"} gap={"xs"}>
+                                <Text weight={500}>Experience</Text>
+                                {!experience.length && <AddExperience showButton={true}/>}
+                                {experience.map((_: any, i: number) => (
+                                    <Flex gap={"xs"} direction={"column"} key={i} pos={"relative"}>
+                                        <ActionIcon variant="outline" color={'red'}
+                                                    pos={"absolute"} top={-11} right={0}
+                                                    onClick={() => handleRemoveExperience(i)}
+                                        >
+                                            <IconTrash size="1rem"/>
+                                        </ActionIcon>
+                                        <Flex gap={"md"}>
+                                            <TextInput w={'calc(100%/3)'} label="Job Title"
+                                                       placeholder="Senior frontend developer" {...form.getInputProps(`experience.${i}.jobTitle`)} />
+                                            <TextInput w={'calc(100%/3)'} label="Company"
+                                                       placeholder="Olatim.com" {...form.getInputProps(`experience.${i}.jobCompany`)} />
+                                            <YearPickerInput
+                                                w={'calc(100%/3)'}
+                                                type="range"
+                                                label="Dates"
+                                                placeholder="Dates range"
+                                            />
+                                        </Flex>
+                                        <Textarea w={'100%'}
+                                                  label="Description"
+                                                  placeholder="- Platform development with Vue, etc..."
+                                                  autosize
+                                                  minRows={2}
+                                                  maxRows={4}
+                                                  {...form.getInputProps(`experience.${i}.jobDescription`)}
+                                        />
+                                        <AddExperience showButton={experience.length - 1 === i}/>
+                                    </Flex>
+                                ))}
+                            </Flex>
+                            <Flex direction={"column"} gap={"xs"}>
+                                <Text weight={500}>Education</Text>
+                                {education.map((_: any, i: number) => (
+                                    <Flex key={i} justify={"space-between"} align={"end"} gap={"xs"}>
+                                        <TextInput key={i}
+                                                   w={'100%'}
+                                                   placeholder="Software engineering, Online full-stack course, etc"
+                                                   {...form.getInputProps(`education.${i}.educationTitle`)}
+                                        />
+                                        {!i ?
+                                            <ActionIcon my={4} variant="outline" color={'green'}
+                                                        onClick={handleAddEducation}
+                                            >
+                                                <IconPlus size="1rem"/>
+                                            </ActionIcon> :
+                                            <ActionIcon my={4} variant="outline" color={'red'}
+                                                        onClick={() => handleRemoveEducation(i)}
+                                            >
+                                                <IconMinus size="1rem"/>
+                                            </ActionIcon>
+                                        }
+                                    </Flex>
+
+                                ))}
+                            </Flex>
+                        </Flex>
+                    </Stepper.Step>
+
+                    <Stepper.Step label="Final step" description="Extra information (optional)">
+                        <Flex direction={'column'} gap={"md"}>
+                            <Flex gap={"md"}>
+                                <NumberInput
+                                    w={'50%'}
+                                    label="Monthly salary expectations (U$D)"
+                                    placeholder="2000"
+                                    min={0}
+                                    icon={<IconCurrencyDollar size="1rem"/>}
+                                />
+                                <NumberInput
+                                    w={'50%'}
+                                    label="Years of experience"
+                                    placeholder="5"
+                                    min={0}
+                                    icon={<IconCalendar size="1rem"/>}
+                                />
+                            </Flex>
+                            <TextInput label="LinkedIn"
+                                       placeholder="https://www.linkedin.com/in/olatim"
+                                       {...form.getInputProps('website')}
+                            />
+
+                        </Flex>
+                    </Stepper.Step>
+                    <Stepper.Completed>
+                        Completed! Form values:
+                        <Code block mt="xl">
+                            {JSON.stringify(form.values, null, 2)}
+                        </Code>
+                    </Stepper.Completed>
+                </Stepper>
+
+                <Group position="right" mt="xl">
+                    {active !== 0 && (
+                        <Button variant="default" onClick={prevStep}>
+                            Back
+                        </Button>
+                    )}
+                    {active !== 3 && <Button onClick={nextStep}>Next step</Button>}
+                </Group>
+            </Paper>
+        </Flex>
     );
 }

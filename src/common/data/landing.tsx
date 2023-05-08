@@ -1,7 +1,17 @@
 import {OlaHeroProps} from "@/components/organisms/OlaHero/OlaHero";
 import {OlaAboutProps} from "@/components/organisms/OlaAbout/OlaAbout";
 import {OlaAboutProps1} from "@/components/organisms/OlaAbout/OlaAboutHiring";
-import {IconDevices2, IconDirectionSign, IconPigMoney, IconUserCheck, IconCircleNumber1, IconCircleNumber2, IconCircleNumber3, IconCircleNumber4 } from "@tabler/icons-react";
+import {
+    IconCircleNumber1,
+    IconCircleNumber2,
+    IconCircleNumber3,
+    IconCircleNumber4,
+    IconDevices2,
+    IconDirectionSign,
+    IconPigMoney,
+    IconUserCheck
+} from "@tabler/icons-react";
+import {PagesEnum} from "@/common/enums/PagesEnum";
 
 type OlaLandingProps = {
     home: {
@@ -40,7 +50,7 @@ export const OLA_LANDING: OlaLandingProps = {
             buttons: [
                 {
                     label: 'Start Hiring',
-                    href: '/hiring'
+                    href: PagesEnum.HIRING
                 },
                 {
                     label: 'More Info',
@@ -101,7 +111,7 @@ export const OLA_LANDING: OlaLandingProps = {
             buttons: [
                 {
                     label: 'Start Hiring',
-                    href: '/hiring'
+                    href: PagesEnum.HIRING
                 },
                 {
                     label: 'More Info',
@@ -158,7 +168,7 @@ export const OLA_LANDING: OlaLandingProps = {
             buttons: [
                 {
                     label: 'Start Hiring',
-                    href: '/hiring'
+                    href: PagesEnum.HIRING
                 },
                 {
                     label: 'More Info',

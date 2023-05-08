@@ -9,7 +9,6 @@ import {
     Flex,
     Group,
     Paper,
-    PaperProps,
     PasswordInput,
     Stack,
     Text,
@@ -26,7 +25,7 @@ const useStyles = createStyles(() => ({
     }
 }))
 
-export const OlaAuth = (props: PaperProps) => {
+export const OlaAuth = () => {
     const {classes} = useStyles();
     const dispatch = useDispatch()
 
@@ -46,13 +45,13 @@ export const OlaAuth = (props: PaperProps) => {
     });
 
     const handleGoogleSignIn = async () => {
-        const user = await googleSignIn()
-        dispatch(setAuthUser(user))
+        const {email, photoURL, displayName, uid, phoneNumber} = await googleSignIn()
+        dispatch(setAuthUser({email, photoURL, displayName, uid, phoneNumber}))
     }
 
     return (
         <Flex align={"center"} justify={"center"} h={'100vh'} className={classes.wrapper}>
-            <Paper radius="md" p="xl" withBorder {...props} miw={320} w={'40%'} shadow={'lg'}>
+            <Paper radius="md" p="xl" withBorder miw={320} w={'40%'} shadow={'lg'}>
                 <Text size="lg" weight={500}>
                     Welcome to Olatim, {type} with
                 </Text>

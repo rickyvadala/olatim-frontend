@@ -1,6 +1,5 @@
 import {Badge, Container, createStyles, Group, rem, SimpleGrid, Text, Timeline, Title} from '@mantine/core';
 import type {TablerIconsProps} from '@tabler/icons-react';
-import {IconGitBranch, IconGitCommit, IconGitPullRequest, IconMessageDots} from '@tabler/icons-react';
 import React from "react";
 
 
@@ -57,20 +56,20 @@ export type OlaAboutProps1 = {
 }
 
 export const OlaAboutHiring = ({badge, title, subtitle, features: _features}: OlaAboutProps1) => {
-    const {classes, theme} = useStyles();
+    const {classes} = useStyles();
 
     const features = (
         <Timeline color={'blue'} active={4} bulletSize={32} lineWidth={2} radius="md">
-            {_features.map(feature => (                
-            <Timeline.Item bullet={<feature.icon size={20}/>} title={feature.name}>
-                <Text
-                    color="dimmed"
-                    size="sm"
-                >
-                    {feature.description}
-                </Text><Text size="xs" mt={4}>&nbsp;</Text>
-            </Timeline.Item>))}
-    
+            {_features.map((feature, i) => (
+                <Timeline.Item key={i} bullet={<feature.icon size={20}/>} title={feature.name}>
+                    <Text
+                        color="dimmed"
+                        size="sm"
+                    >
+                        {feature.description}
+                    </Text><Text size="xs" mt={4}>&nbsp;</Text>
+                </Timeline.Item>))}
+
         </Timeline>
     );
 

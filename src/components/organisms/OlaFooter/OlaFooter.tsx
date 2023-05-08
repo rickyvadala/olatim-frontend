@@ -132,7 +132,7 @@ export const OlaFooter = ({data}: OlaFooterProps) => {
             <Container className={classes.inner} size={'lg'} px={'xl'}>
                 <div className={classes.logo}>
                     <Box mb={16}>
-                        <OlaLogo/>
+                        <OlaLogo text={'Olatim'}/>
                     </Box>
                     <Text size="xs" color="dimmed" className={classes.description}>
                         A latam community for finding remote jobs

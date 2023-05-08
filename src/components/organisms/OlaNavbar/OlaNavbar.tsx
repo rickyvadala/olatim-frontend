@@ -21,13 +21,14 @@ import {
     UnstyledButton,
 } from '@mantine/core';
 import {useDisclosure} from '@mantine/hooks';
-import {IconChevronDown, IconCode, IconCoin, IconLogout, IconSettings} from '@tabler/icons-react';
+import {IconChevronDown, IconCode, IconCoin, IconLogout, IconSettings, IconUser} from '@tabler/icons-react';
 import {OlaLogo} from "@/components/atoms/OlaLogo/OlaLogo";
 import Link from "next/link";
 import {useDispatch, useSelector} from "react-redux";
 import {selectAuthUser, setAuthUser} from "@/store/authSlice";
-import {User} from "firebase/auth";
 import {googleSignOut} from "@/services/auth.service";
+import {IUser} from "@/models/IUser.interface";
+import {PagesEnum} from "@/common/enums/PagesEnum";
 
 const useStyles = createStyles((theme) => ({
     wrapper: {
@@ -101,18 +102,20 @@ const mockdata = [
         icon: IconCode,
         title: 'Referrals Program',
         description: 'This Pokémon’s cry is very loud and distracting',
+        href: PagesEnum.COMMUNITY
     },
     {
         icon: IconCoin,
         title: 'Find a job',
         description: 'The fluid of Smeargle’s tail secretions changes',
+        href: PagesEnum.APPLY
     },
 ];
 
 export const OlaNavbar = () => {
     const [drawerOpened, {toggle: toggleDrawer, close: closeDrawer}] = useDisclosure(false);
     const [linksOpened, {toggle: toggleLinks}] = useDisclosure(false);
-    const user: User | undefined = useSelector(selectAuthUser)
+    const user: IUser | undefined = useSelector(selectAuthUser)
     const {classes, theme} = useStyles();
     const dispatch = useDispatch()
 
@@ -122,7 +125,7 @@ export const OlaNavbar = () => {
     }
 
     const links = mockdata.map((item, i) => (
-        <Link href="/munity" key={i}>
+        <Link href={item.href} key={i}>
             <UnstyledButton className={classes.subLink} key={item.title}>
                 <Group noWrap align="flex-start">
                     <ThemeIcon size={34} variant="default" radius="md">
@@ -145,13 +148,13 @@ export const OlaNavbar = () => {
         <Box className={classes.wrapper}>
             <Header height={60} px="md">
                 <Group position="apart" sx={{height: '100%'}}>
-                    <OlaLogo/>
+                    <OlaLogo text={'Olatim'}/>
 
                     <Group sx={{height: '100%'}} spacing={0} className={classes.hiddenMobile}>
-                        <Link href="/" className={classes.link}>
+                        <Link href={PagesEnum.ROOT} className={classes.link}>
                             Home
                         </Link>
-                        <Link href="/hiring" className={classes.link}>
+                        <Link href={PagesEnum.HIRING} className={classes.link}>
                             I&apos;m Hiring
                         </Link>
                         <HoverCard width={600} position="bottom" radius="md" shadow="md" withinPortal>
@@ -201,12 +204,7 @@ export const OlaNavbar = () => {
                         </Link>
                     </Group>
 
-                    <Group className={classes.hiddenMobile}>
-                        <Link href={'/auth'} scroll={false}><Button variant="default">Log in</Button></Link>
-                        <Link href={'/auth'} scroll={false}><Button>Sign up</Button></Link>
-                    </Group>
-
-                    {user &&
+                    {user ?
                         <Menu shadow="md" width={200}>
                             <Menu.Target>
                                 <ActionIcon>
@@ -215,12 +213,18 @@ export const OlaNavbar = () => {
                             </Menu.Target>
 
                             <Menu.Dropdown>
+                                <Menu.Item icon={<IconUser size={14}/>}>Profile</Menu.Item>
                                 <Menu.Item icon={<IconSettings size={14}/>}>Settings</Menu.Item>
                                 <Menu.Divider/>
-                                <Menu.Item onClick={handleGoogleSignOut} color="red" icon={<IconLogout size={14}/>}>Sign
-                                    out</Menu.Item>
+                                <Menu.Item onClick={handleGoogleSignOut} color="red" icon={<IconLogout size={14}/>}>
+                                    Sign out
+                                </Menu.Item>
                             </Menu.Dropdown>
-                        </Menu>
+                        </Menu> :
+                        <Group className={classes.hiddenMobile}>
+                            <Link href={PagesEnum.AUTH} scroll={false}><Button variant="default">Log in</Button></Link>
+                            <Link href={PagesEnum.AUTH} scroll={false}><Button>Sign up</Button></Link>
+                        </Group>
                     }
                     <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.hiddenDesktop}/>
                 </Group>
@@ -237,7 +241,7 @@ export const OlaNavbar = () => {
             >
                 <ScrollArea h={`calc(100vh - ${rem(60)})`} mx="-md">
                     <Divider mb="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'}/>
-                    <Link onClick={closeDrawer} href="/" className={classes.link}>
+                    <Link onClick={closeDrawer} href={PagesEnum.ROOT} className={classes.link}>
                         <Text>Home</Text>
                     </Link>
                     <UnstyledButton className={classes.link} onClick={toggleLinks}>
@@ -254,8 +258,9 @@ export const OlaNavbar = () => {
                     <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'}/>
 
                     <Group position="center" grow pb="xl" px="md">
-                        <Link onClick={closeDrawer} href={'/auth'}><Button w={'100%'} variant="default">Log in</Button></Link>
-                        <Link onClick={closeDrawer} href={'/auth'}><Button w={'100%'}>Sign up</Button></Link>
+                        <Link onClick={closeDrawer} href={PagesEnum.ROOT}><Button w={'100%'} variant="default">Log
+                            in</Button></Link>
+                        <Link onClick={closeDrawer} href={PagesEnum.ROOT}><Button w={'100%'}>Sign up</Button></Link>
                     </Group>
                 </ScrollArea>
             </Drawer>
