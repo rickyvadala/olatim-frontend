@@ -1,7 +1,21 @@
-import {Button, Container, createStyles, Flex, Group, Image, List, rem, Text, ThemeIcon, Title,} from '@mantine/core';
+import {
+    Button,
+    Container,
+    createStyles,
+    Flex,
+    Group,
+    Highlight,
+    Image,
+    List,
+    rem,
+    Text,
+    ThemeIcon,
+    Title,
+} from '@mantine/core';
 import {IconCheck} from '@tabler/icons-react';
 import image from '@/assets/images/lady-hero.svg';
 import Link from "next/link";
+import React from "react";
 
 
 const useStyles = createStyles((theme) => ({
@@ -47,23 +61,17 @@ const useStyles = createStyles((theme) => ({
             display: 'none',
         },
     },
-
-    highlight: {
-        position: 'relative',
-        backgroundColor: theme.fn.variant({variant: 'light', color: theme.primaryColor}).background,
-        borderRadius: theme.radius.sm,
-        padding: `${rem(4)} ${rem(12)}`,
-    },
 }));
 
 export type OlaHeroProps = {
     title: string,
+    titleHighlight: Array<string>,
     subtitle: string,
     items: Array<{ name: string, description: string }>,
     buttons: Array<{ label: string, href: string }>
 }
 
-export const OlaHero = ({title, subtitle, items, buttons}: OlaHeroProps) => {
+export const OlaHero = ({title, titleHighlight, subtitle, items, buttons}: OlaHeroProps) => {
     const {classes} = useStyles();
 
     return (
@@ -72,8 +80,13 @@ export const OlaHero = ({title, subtitle, items, buttons}: OlaHeroProps) => {
                 <div className={classes.inner}>
                     <div className={classes.content}>
                         <Title className={classes.title}>
-                            {/*Team <span className={classes.highlight}>growth</span> powered by Latam Talent*/}
-                            {title}
+                            <Highlight highlight={titleHighlight} highlightStyles={(theme) => ({
+                                backgroundImage: theme.fn.linearGradient(45, theme.colors.cyan[5], theme.colors.indigo[5]),
+                                WebkitBackgroundClip: 'text',
+                                WebkitTextFillColor: 'transparent',
+                            })}>
+                                {title}
+                            </Highlight>
                         </Title>
                         <Text color="dimmed" mt="md">
                             {subtitle}

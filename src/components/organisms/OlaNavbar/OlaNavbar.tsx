@@ -9,6 +9,7 @@ import {
     createStyles,
     Divider,
     Drawer,
+    Flex,
     Group,
     Header,
     HoverCard,
@@ -29,6 +30,7 @@ import {selectAuthUser, setAuthUser} from "@/store/authSlice";
 import {googleSignOut} from "@/services/auth.service";
 import {IUser} from "@/models/IUser.interface";
 import {PagesEnum} from "@/common/enums/PagesEnum";
+import React from "react";
 
 const useStyles = createStyles((theme) => ({
     wrapper: {
@@ -97,7 +99,7 @@ const useStyles = createStyles((theme) => ({
     },
 }));
 
-const mockdata = [
+const links = [
     {
         icon: IconCode,
         title: 'Referrals Program',
@@ -112,11 +114,7 @@ const mockdata = [
     },
 ];
 
-export const OlaNavbar = () => {
-    const [drawerOpened, {toggle: toggleDrawer, close: closeDrawer}] = useDisclosure(false);
-    const [linksOpened, {toggle: toggleLinks}] = useDisclosure(false);
-    const user: IUser | undefined = useSelector(selectAuthUser)
-    const {classes, theme} = useStyles();
+const OlaNavbarAvatar: React.FC<{ user: IUser }> = ({user}) => {
     const dispatch = useDispatch()
 
     const handleGoogleSignOut = async () => {
@@ -124,25 +122,53 @@ export const OlaNavbar = () => {
         dispatch(setAuthUser(undefined))
     }
 
-    const links = mockdata.map((item, i) => (
-        <Link href={item.href} key={i}>
-            <UnstyledButton className={classes.subLink} key={item.title}>
-                <Group noWrap align="flex-start">
-                    <ThemeIcon size={34} variant="default" radius="md">
-                        <item.icon size={rem(22)} color={theme.fn.primaryColor()}/>
-                    </ThemeIcon>
-                    <div>
-                        <Text size="sm" fw={500}>
-                            {item.title}
-                        </Text>
-                        <Text size="xs" color="dimmed">
-                            {item.description}
-                        </Text>
-                    </div>
-                </Group>
-            </UnstyledButton>
-        </Link>
-    ));
+    return (
+        <Menu shadow="md" width={200}>
+            <Menu.Target>
+                <ActionIcon>
+                    <Avatar radius="xl" src={user.photoURL} alt="it's me"/>
+                </ActionIcon>
+            </Menu.Target>
+
+            <Menu.Dropdown>
+                <Menu.Item icon={<IconUser size={14}/>}>Profile</Menu.Item>
+                <Menu.Item icon={<IconSettings size={14}/>}>Settings</Menu.Item>
+                <Menu.Divider/>
+                <Menu.Item onClick={handleGoogleSignOut} color="red" icon={<IconLogout size={14}/>}>
+                    Sign out
+                </Menu.Item>
+            </Menu.Dropdown>
+        </Menu>
+    )
+}
+
+export const OlaNavbar = () => {
+    const [drawerOpened, {toggle: toggleDrawer, close: closeDrawer}] = useDisclosure(false);
+    const [linksOpened, {toggle: toggleLinks}] = useDisclosure(false);
+    const user: IUser | undefined = useSelector(selectAuthUser)
+    const {classes, theme} = useStyles();
+
+    const Links: React.FC = () => (<>
+        {links.map((item, i) => (
+            <Link href={item.href} key={i}>
+                <UnstyledButton className={classes.subLink} key={item.title}>
+                    <Group noWrap align="flex-start">
+                        <ThemeIcon size={34} variant="default" radius="md">
+                            <item.icon size={rem(22)} color={theme.fn.primaryColor()}/>
+                        </ThemeIcon>
+                        <div>
+                            <Text size="sm" fw={500}>
+                                {item.title}
+                            </Text>
+                            <Text size="xs" color="dimmed">
+                                {item.description}
+                            </Text>
+                        </div>
+                    </Group>
+                </UnstyledButton>
+            </Link>
+        ))}
+    </>);
 
     return (
         <Box className={classes.wrapper}>
@@ -181,7 +207,7 @@ export const OlaNavbar = () => {
                                 />
 
                                 <SimpleGrid cols={2} spacing={0}>
-                                    {links}
+                                    <Links />
                                 </SimpleGrid>
 
                                 <div className={classes.dropdownFooter}>
@@ -204,29 +230,16 @@ export const OlaNavbar = () => {
                         </Link>
                     </Group>
 
-                    {user ?
-                        <Menu shadow="md" width={200}>
-                            <Menu.Target>
-                                <ActionIcon>
-                                    <Avatar radius="xl" src={user.photoURL} alt="it's me"/>
-                                </ActionIcon>
-                            </Menu.Target>
-
-                            <Menu.Dropdown>
-                                <Menu.Item icon={<IconUser size={14}/>}>Profile</Menu.Item>
-                                <Menu.Item icon={<IconSettings size={14}/>}>Settings</Menu.Item>
-                                <Menu.Divider/>
-                                <Menu.Item onClick={handleGoogleSignOut} color="red" icon={<IconLogout size={14}/>}>
-                                    Sign out
-                                </Menu.Item>
-                            </Menu.Dropdown>
-                        </Menu> :
-                        <Group className={classes.hiddenMobile}>
-                            <Link href={PagesEnum.AUTH} scroll={false}><Button variant="default">Log in</Button></Link>
-                            <Link href={PagesEnum.AUTH} scroll={false}><Button>Sign up</Button></Link>
-                        </Group>
-                    }
-                    <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.hiddenDesktop}/>
+                    <Flex gap={"md"} align={"center"}>
+                        {user ? <OlaNavbarAvatar user={user}/>
+                            :
+                            <Group className={classes.hiddenMobile}>
+                                <Link href={PagesEnum.AUTH}><Button variant="default">Log in</Button></Link>
+                                <Link href={PagesEnum.AUTH}><Button>Sign up</Button></Link>
+                            </Group>
+                        }
+                        <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.hiddenDesktop}/>
+                    </Flex>
                 </Group>
             </Header>
 
@@ -250,7 +263,7 @@ export const OlaNavbar = () => {
                             <IconChevronDown size={16} color={theme.fn.primaryColor()}/>
                         </Center>
                     </UnstyledButton>
-                    <Collapse in={linksOpened}>{links}</Collapse>
+                    <Collapse in={linksOpened}><Links /></Collapse>
                     <Link onClick={closeDrawer} href="#contact" className={classes.link}>
                         <Text>Contact</Text>
                     </Link>
@@ -258,9 +271,12 @@ export const OlaNavbar = () => {
                     <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'}/>
 
                     <Group position="center" grow pb="xl" px="md">
-                        <Link onClick={closeDrawer} href={PagesEnum.ROOT}><Button w={'100%'} variant="default">Log
-                            in</Button></Link>
-                        <Link onClick={closeDrawer} href={PagesEnum.ROOT}><Button w={'100%'}>Sign up</Button></Link>
+                        <Link onClick={closeDrawer} href={PagesEnum.ROOT}>
+                            <Button w={'100%'} variant="default">Log in</Button>
+                        </Link>
+                        <Link onClick={closeDrawer} href={PagesEnum.ROOT}>
+                            <Button w={'100%'}>Sign up</Button>
+                        </Link>
                     </Group>
                 </ScrollArea>
             </Drawer>

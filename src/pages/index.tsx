@@ -10,7 +10,7 @@ import {OLA_LANDING} from "@/common/data/landing";
 export default function Home() {
     return (
         <>
-            <OlaHead/>
+            <OlaHead title={'Olatim | Home'}/>
             <OlaNavbar/>
             <OlaHero {...OLA_LANDING.home.hero}/>
             <OlaAbout {...OLA_LANDING.home.about}/>

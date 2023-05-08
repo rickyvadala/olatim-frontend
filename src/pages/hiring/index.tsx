@@ -11,7 +11,7 @@ import {OlaAboutHiring} from "@/components/organisms/OlaAbout/OlaAboutHiring";
 export default function Index() {
     return (
         <>
-            <OlaHead/>
+            <OlaHead title={'Olatim | Hiring'}/>
             <OlaNavbar/>
             <OlaHero {...OLA_LANDING.hiring.hero}/>
             <OlaAboutHiring {...OLA_LANDING.hiring.about}/>

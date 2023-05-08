@@ -32,6 +32,7 @@ export const OLA_LANDING: OlaLandingProps = {
     home: {
         hero: {
             title: 'Team growth powered by Latam Talent',
+            titleHighlight: ['growth', 'talent'],
             subtitle: 'Scale your global team with top-notch professionals, aligned with your goals and strategy.',
             items: [
                 {
@@ -92,7 +93,8 @@ export const OLA_LANDING: OlaLandingProps = {
     },
     hiring: {
         hero: {
-            title: 'Hire directly, with a one-time-fee.',
+            title: 'Hire directly, with a one-time-fee.',
+            titleHighlight: ['Hire directly'],
             subtitle: 'Take your business to the next level by hiring globally in a effortless way, while saving money on overhead costs.',
             items: [
                 {
@@ -150,6 +152,7 @@ export const OLA_LANDING: OlaLandingProps = {
     munity: {
         hero: {
             title: 'Team growth powered by Latam Talent',
+            titleHighlight: ['growth', 'talent'],
             subtitle: 'Olatim is building a community of top-notch professionals to help you easily scale your business.',
             items: [
                 {

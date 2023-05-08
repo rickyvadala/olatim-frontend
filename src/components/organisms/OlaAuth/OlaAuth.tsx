@@ -18,6 +18,8 @@ import {IconBrandGoogle} from "@tabler/icons-react";
 import {googleSignIn} from "@/services/auth.service";
 import {useDispatch} from "react-redux";
 import {setAuthUser} from "@/store/authSlice";
+import {useRouter} from "next/router";
+import {PagesEnum} from "@/common/enums/PagesEnum";
 
 const useStyles = createStyles(() => ({
     wrapper: {
@@ -28,6 +30,7 @@ const useStyles = createStyles(() => ({
 export const OlaAuth = () => {
     const {classes} = useStyles();
     const dispatch = useDispatch()
+    const router = useRouter()
 
     const [type, toggle] = useToggle(['login', 'register']);
     const form = useForm({
@@ -47,6 +50,7 @@ export const OlaAuth = () => {
     const handleGoogleSignIn = async () => {
         const {email, photoURL, displayName, uid, phoneNumber} = await googleSignIn()
         dispatch(setAuthUser({email, photoURL, displayName, uid, phoneNumber}))
+        void router.push(PagesEnum.ROOT)
     }
 
     return (

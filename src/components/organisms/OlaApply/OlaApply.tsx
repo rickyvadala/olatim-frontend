@@ -6,7 +6,7 @@ import {
     Code,
     Divider,
     Flex,
-    Group,
+    Group, Highlight,
     MultiSelect,
     NumberInput,
     Paper,
@@ -67,8 +67,7 @@ export const OlaApply: React.FC = () => {
 
             if (active === 1) {
                 return {
-                    name: values.name.trim().length < 2 ? 'Name must include at least 2 characters' : null,
-                    email: /^\S+@\S+$/.test(values.email) ? null : 'Invalid email',
+                    professionalTitle: values.name.trim().length < 2 ? 'Name must include at least 2 characters' : null,
                 };
             }
 
@@ -149,13 +148,21 @@ export const OlaApply: React.FC = () => {
                  }/>
     )
 
+    console.log(active)
     return (
         <Flex align={"center"} justify={"center"} mih={'100vh'} direction={"column"}
               p={"xl"} py={96}
               style={{background: 'linear-gradient(90deg, rgba(34,139,230,1) 50%, rgba(0,212,255,1) 100%)'}}>
             <Paper radius="md" p="xl" withBorder miw={320} shadow={'lg'} w={'100%'} maw={960}>
                 <Title align={"center"} weight={500} mb='md' size={"x-large"}>
-                    Apply for you next dream job!
+                    <Highlight highlight={'dream job'} highlightStyles={(theme) => ({
+                        backgroundImage: theme.fn.linearGradient(45, theme.colors.cyan[5], theme.colors.indigo[5]),
+                        fontWeight: 700,
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                    })}>
+                        Apply for you next dream job!
+                    </Highlight>
                 </Title>
 
                 {!user ?
@@ -301,9 +308,9 @@ export const OlaApply: React.FC = () => {
                 </Stepper>
 
                 <Group position="right" mt="xl">
-                    {active === 1 || active === 2 && (<Button variant="default" onClick={prevStep}>Back</Button>)}
+                    {(active === 1 || active === 2) && (<Button variant="default" onClick={prevStep}>Back</Button>)}
                     {active < 2 && <Button onClick={nextStep}>Next step</Button>}
-                    {active === 2 && <Button onClick={handlePostResume} loading={submitting}>Send</Button>}
+                    {active === 2 && <Button onClick={handlePostResume} loading={submitting}>Submit</Button>}
                 </Group>
             </Paper>
         </Flex>

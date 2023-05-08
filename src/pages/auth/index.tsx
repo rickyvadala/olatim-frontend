@@ -5,7 +5,7 @@ import {OlaNavbar} from "@/components/organisms/OlaNavbar/OlaNavbar";
 export default function Index() {
     return (
         <>
-            <OlaHead/>
+            <OlaHead title={'Olatim | Auth'}/>
             <OlaNavbar/>
             <OlaAuth/>
         </>
