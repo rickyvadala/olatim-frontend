@@ -31,7 +31,6 @@ import {googleSignOut} from "@/services/auth.service";
 import {IUser} from "@/models/IUser.interface";
 import {OlaRouter} from "@/router/OlaRouter";
 import React from "react";
-import {OlaApply} from "@/components/organisms/OlaApply/OlaApply";
 
 const useStyles = createStyles((theme) => ({
     wrapper: {
