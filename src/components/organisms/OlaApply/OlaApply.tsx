@@ -67,7 +67,9 @@ export const OlaApply: React.FC = () => {
 
             if (active === 1) {
                 return {
-                    professionalTitle: values.name.trim().length < 2 ? 'Name must include at least 2 characters' : null,
+                    professionalTitle: values.professionalTitle.trim().length < 2
+                        ? 'Your professional title must include at least 2 characters'
+                        : null,
                 };
             }
 
@@ -75,15 +77,8 @@ export const OlaApply: React.FC = () => {
         },
     });
 
-
-    useEffect(() => {
-        if (user) {
-            form.setValues({
-                name: user.displayName || '',
-                email: user.email || ''
-            })
-        }
-    }, [user])
+    const experience = form.getInputProps('experience').value
+    const education = form.getInputProps('education').value
 
     const nextStep = () =>
         setActive((current) => {
@@ -107,8 +102,6 @@ export const OlaApply: React.FC = () => {
         setSubmitting(false)
     }
 
-    const experience = form.getInputProps('experience').value
-    const education = form.getInputProps('education').value
     const handleAddExperience = () => {
         form.setValues({
             experience: [
@@ -140,7 +133,8 @@ export const OlaApply: React.FC = () => {
     }
 
     const AddExperience: React.FC<{ showButton: boolean }> = ({showButton}) => (
-        <Divider my={"xs"} labelPosition="center"
+        <Divider my={"xs"}
+                 labelPosition="center"
                  label={showButton ?
                      <Button leftIcon={<IconPlus size="1rem"/>} compact onClick={handleAddExperience}>
                          Add experience
@@ -148,7 +142,15 @@ export const OlaApply: React.FC = () => {
                  }/>
     )
 
-    console.log(active)
+    useEffect(() => {
+        if (user) {
+            form.setValues({
+                name: user.displayName || '',
+                email: user.email || ''
+            })
+        }
+    }, [user])
+
     return (
         <Flex align={"center"} justify={"center"} mih={'100vh'} direction={"column"}
               p={"xl"} py={96}
@@ -302,7 +304,7 @@ export const OlaApply: React.FC = () => {
                                 <Link href={OlaRouter.ROOT}>
                                     <Button>Home</Button>
                                 </Link>
-                                <Link href={OlaRouter.ROOT}>
+                                <Link href={OlaRouter.PROFILE}>
                                     <Button variant={"outline"}>Profile</Button>
                                 </Link>
                             </Flex>

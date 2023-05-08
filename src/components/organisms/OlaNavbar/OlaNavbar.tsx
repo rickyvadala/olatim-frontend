@@ -31,6 +31,7 @@ import {googleSignOut} from "@/services/auth.service";
 import {IUser} from "@/models/IUser.interface";
 import {OlaRouter} from "@/router/OlaRouter";
 import React from "react";
+import {OlaApply} from "@/components/organisms/OlaApply/OlaApply";
 
 const useStyles = createStyles((theme) => ({
     wrapper: {
@@ -131,7 +132,9 @@ const OlaNavbarAvatar: React.FC<{ user: IUser }> = ({user}) => {
             </Menu.Target>
 
             <Menu.Dropdown>
-                <Menu.Item icon={<IconUser size={14}/>}>Profile</Menu.Item>
+                <Link href={OlaRouter.PROFILE} style={{textDecoration: "none"}}>
+                    <Menu.Item icon={<IconUser size={14}/>}>Profile</Menu.Item>
+                </Link>
                 <Menu.Item icon={<IconSettings size={14}/>}>Settings</Menu.Item>
                 <Menu.Divider/>
                 <Menu.Item onClick={handleGoogleSignOut} color="red" icon={<IconLogout size={14}/>}>
