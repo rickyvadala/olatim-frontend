@@ -1,4 +1,5 @@
 import {OlaFooterProps} from "@/components/organisms/OlaFooter/OlaFooter";
+import {OlaRouter} from "@/router/OlaRouter";
 
 export const footer: OlaFooterProps = {
     "data": [
@@ -6,61 +7,28 @@ export const footer: OlaFooterProps = {
             "title": "About",
             "links": [
                 {
-                    "label": "Features",
-                    "link": "#"
-                },
-                {
-                    "label": "Pricing",
-                    "link": "#"
+                    "label": "Apply Jobs",
+                    "link": OlaRouter.APPLY
                 },
                 {
                     "label": "Support",
-                    "link": "#"
+                    "link": "#contact"
                 },
-                {
-                    "label": "Forums",
-                    "link": "#"
-                }
-            ]
-        },
-        {
-            "title": "Project",
-            "links": [
-                {
-                    "label": "Contribute",
-                    "link": "#"
-                },
-                {
-                    "label": "Media assets",
-                    "link": "#"
-                },
-                {
-                    "label": "Changelog",
-                    "link": "#"
-                },
-                {
-                    "label": "Releases",
-                    "link": "#"
-                }
             ]
         },
         {
             "title": "Community",
             "links": [
                 {
-                    "label": "Join Discord",
-                    "link": "#"
+                    "label": "Follow on LinkedIn",
+                    "link": "https://www.linkedin.com/company/olatim-com/"
                 },
                 {
-                    "label": "Follow on Twitter",
-                    "link": "#"
+                    "label": "Referral Program",
+                    "link": OlaRouter.COMMUNITY
                 },
                 {
-                    "label": "Email newsletter",
-                    "link": "#"
-                },
-                {
-                    "label": "GitHub discussions",
+                    "label": "Email hello@olatim.com",
                     "link": "#"
                 }
             ]

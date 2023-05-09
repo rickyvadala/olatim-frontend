@@ -96,7 +96,7 @@ export const OlaContact = () => {
 
                         <OlaContactIcons variant="white"/>
 
-                        <Group mt="xl">{icons}</Group>
+                        {/* <Group mt="xl">{icons}</Group> */}
                     </div>
                     <div className={classes.form}>
                         <TextInput

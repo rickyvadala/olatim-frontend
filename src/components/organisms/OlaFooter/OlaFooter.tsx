@@ -1,6 +1,7 @@
 import {ActionIcon, Box, Container, createStyles, Group, rem, Text} from '@mantine/core';
 import {IconBrandInstagram, IconBrandLinkedin, IconBrandTwitter} from '@tabler/icons-react';
 import {OlaLogo} from "@/components/atoms/OlaLogo/OlaLogo";
+import Link from "next/link";
 
 const useStyles = createStyles((theme) => ({
     footer: {
@@ -146,15 +147,17 @@ export const OlaFooter = ({data}: OlaFooterProps) => {
                 </Text>
 
                 <Group spacing={0} className={classes.social} position="right" noWrap>
-                    <ActionIcon size="lg">
+                    {/* <ActionIcon size="lg">
                         <IconBrandTwitter size="1.05rem" stroke={1.5}/>
-                    </ActionIcon>
+                    </ActionIcon> */}
+                     <Link href="https://www.linkedin.com/company/olatim-com/">
                     <ActionIcon size="lg">
-                        <IconBrandLinkedin size="1.05rem" stroke={1.5}/>
+                        <IconBrandLinkedin size="1.5rem" stroke={1.5}/>
                     </ActionIcon>
-                    <ActionIcon size="lg">
+                    </Link>
+                    {/* <ActionIcon size="lg">
                         <IconBrandInstagram size="1.05rem" stroke={1.5}/>
-                    </ActionIcon>
+                    </ActionIcon> */}
                 </Group>
             </Container>
         </footer>

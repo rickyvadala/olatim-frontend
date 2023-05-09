@@ -22,7 +22,7 @@ import {
     UnstyledButton,
 } from '@mantine/core';
 import {useDisclosure} from '@mantine/hooks';
-import {IconChevronDown, IconCode, IconCoin, IconLogout, IconSettings, IconUser} from '@tabler/icons-react';
+import {IconChevronDown, IconArrowsLeftRight, IconLogout, IconSettings, IconUser, IconSearch} from '@tabler/icons-react';
 import {OlaLogo} from "@/components/atoms/OlaLogo/OlaLogo";
 import Link from "next/link";
 import {useDispatch, useSelector} from "react-redux";
@@ -101,15 +101,15 @@ const useStyles = createStyles((theme) => ({
 
 const links = [
     {
-        icon: IconCode,
-        title: 'Referrals Program',
-        description: 'This Pokémon’s cry is very loud and distracting',
+        icon: IconArrowsLeftRight,
+        title: 'Referral Program',
+        description: 'Connect others with top job opportunities and earn a fee.',
         href: OlaRouter.COMMUNITY
     },
     {
-        icon: IconCoin,
-        title: 'Find a job',
-        description: 'The fluid of Smeargle’s tail secretions changes',
+        icon: IconSearch,
+        title: 'Find a Job',
+        description: 'Access remote job opportunities that match your skillset',
         href: OlaRouter.APPLY
     },
 ];
@@ -199,7 +199,7 @@ export const OlaNavbar = () => {
 
                             <HoverCard.Dropdown sx={{overflow: 'hidden'}}>
                                 <Group position="apart" px="md">
-                                    <Text fw={500}>Services</Text>
+                                    <Text fw={500}>Olaboard!</Text>
                                 </Group>
 
                                 <Divider
@@ -216,13 +216,13 @@ export const OlaNavbar = () => {
                                     <Group position="apart">
                                         <div>
                                             <Text fw={500} fz="sm">
-                                                Tools
+                                                Resources
                                             </Text>
                                             <Text size="xs" color="dimmed">
-                                                Their food sources have decreased, and their numbers
+                                                Tips & tricks to improve your CV and job search.
                                             </Text>
                                         </div>
-                                        <Button variant="default">Get Started</Button>
+                                        <Button variant="default">Soon!</Button>
                                     </Group>
                                 </div>
                             </HoverCard.Dropdown>

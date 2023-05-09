@@ -10,8 +10,8 @@ export default function Index() {
         <>
             <OlaHead title={'Olatim | Community'}/>
             <OlaWebsiteLayout>
-                <OlaHero {...OLA_LANDING.home.hero}/>
-                <OlaAbout {...OLA_LANDING.home.about}/>
+                <OlaHero {...OLA_LANDING.munity.hero}/>
+                <OlaAbout {...OLA_LANDING.munity.about}/>
                 <OlaContact/>
             </OlaWebsiteLayout>
         </>

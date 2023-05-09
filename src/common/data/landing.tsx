@@ -1,6 +1,7 @@
 import {OlaHeroProps} from "@/components/organisms/OlaHero/OlaHero";
 import {OlaAboutProps} from "@/components/organisms/OlaAbout/OlaAbout";
 import {OlaAboutProps1} from "@/components/organisms/OlaAbout/OlaAboutHiring";
+import {OlaRouter} from "@/router/OlaRouter";
 import {
     IconCircleNumber1,
     IconCircleNumber2,
@@ -11,7 +12,6 @@ import {
     IconPigMoney,
     IconUserCheck
 } from "@tabler/icons-react";
-import {OlaRouter} from "@/router/OlaRouter";
 
 type OlaLandingProps = {
     home: {
@@ -24,14 +24,14 @@ type OlaLandingProps = {
     }
     munity: {
         hero: OlaHeroProps,
-        about?: OlaAboutProps
+        about: OlaAboutProps
     }
 }
 
 export const OLA_LANDING: OlaLandingProps = {
     home: {
         hero: {
-            title: 'Team growth powered by Latam Talent',
+            title: 'Team growth powered by Latam Talent.',
             titleHighlight: ['growth', 'talent'],
             subtitle: 'Scale your global team with top-notch professionals, aligned with your goals and strategy.',
             items: [
@@ -51,7 +51,7 @@ export const OLA_LANDING: OlaLandingProps = {
             buttons: [
                 {
                     label: 'Start Hiring',
-                    href: OlaRouter.HIRING
+                    href: '#contact'
                 },
                 {
                     label: 'More Info',
@@ -113,7 +113,7 @@ export const OLA_LANDING: OlaLandingProps = {
             buttons: [
                 {
                     label: 'Start Hiring',
-                    href: OlaRouter.HIRING
+                    href: '#contact'
                 },
                 {
                     label: 'More Info',
@@ -151,33 +151,52 @@ export const OLA_LANDING: OlaLandingProps = {
     },
     munity: {
         hero: {
-            title: 'Team growth powered by Latam Talent',
-            titleHighlight: ['growth', 'talent'],
-            subtitle: 'Olatim is building a community of top-notch professionals to help you easily scale your business.',
+            title: 'Earn up to 400 USD for referring a friend.',
+            titleHighlight: ['Earn', 'referring'],
+            subtitle: 'Already thinking about someone with awesome skills? Just by recommending them to Olatim, you earn money if they get hired.',
             items: [
                 {
-                    name: 'Software Engineers',
-                    description: '– build secure and scalable applications with experienced developers.'
+                    name: 'Email us at hello@olatim.com',
+                    description: ' – Attach your referral LinkedIn profile or CV, and your name.'
                 },
                 {
-                    name: 'Data, DevOps, Cloud, Blockchain',
-                    description: '– everything that your product needs to perform at the highest level.'
-                },
-                {
-                    name: 'Design, UX/UI, Animation',
-                    description: '– website, storytelling, marketing and social media.'
+                    name: 'Wait for the verification',
+                    description: ' – When accepted, you will receive a confirmation email with more info.'
                 },
             ],
             buttons: [
                 {
-                    label: 'Start Hiring',
-                    href: OlaRouter.HIRING
-                },
-                {
-                    label: 'More Info',
+                    label: 'Any Questions?',
                     href: '#about'
                 },
             ]
         },
+        about: {
+            badge: 'community powered recruiting',
+            title: 'FAQs 👇',
+            subtitle: 'Helping amazing Latam talent connect with their dream jobs.',
+            features: [
+                {
+                    name: 'What is the Referral Program about?',
+                    description: 'It’s our way to contribute to the community growth, so that everyone wins while job seekers find the opportunities they are looking for.',
+                    icon: IconCircleNumber1,
+                },
+                {
+                    name: 'Who are we looking for?',
+                    description: ' Software Engineers, Developers, Data Scientists, DevOps, Cloud, Blockchain, UX/UI, Designers, Animation, and other tech-related positions.',
+                    icon: IconCircleNumber2,
+                },
+                {
+                    name: 'Who can benefit from this?',
+                    description: 'Anyone can submit one or multiple recommendations!',
+                    icon: IconCircleNumber3,
+                },
+                {
+                    name: 'When do I get the benefit?',
+                    description: 'You are eligible to receive a payment if your recommendation was effectively hired through our services.',
+                    icon: IconCircleNumber4,
+                },
+            ]
+        }
     }
 }
