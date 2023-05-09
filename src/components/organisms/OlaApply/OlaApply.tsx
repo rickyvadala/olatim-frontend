@@ -50,7 +50,7 @@ export const OlaApply: React.FC = () => {
             email: '',
             professionalTitle: '',
             professionalTechStack: '',
-            experience: [{jobTitle: '', jobCompany: '', jobDates: [undefined, undefined], jobDescription: ''}],
+            experience: [{jobTitle: '', jobCompany: '', jobDates: [null, null], jobDescription: ''}],
             education: [{educationTitle: ''}],
             salaryExpected: '',
             yearsOfExperience: '',
@@ -67,8 +67,11 @@ export const OlaApply: React.FC = () => {
 
             if (active === 1) {
                 return {
-                    professionalTitle: values.professionalTitle.trim().length < 2
-                        ? 'Your professional title must include at least 2 characters'
+                    professionalTitle: values.professionalTitle.trim().length < 1
+                        ? 'You must include your professional title'
+                        : null,
+                    'education.0.educationTitle': values.education[0].educationTitle.trim().length < 1
+                        ? 'You must include some education'
                         : null,
                 };
             }
@@ -97,7 +100,7 @@ export const OlaApply: React.FC = () => {
 
     const handlePostResume = async () => {
         setSubmitting(true)
-        await postResume(form.values)
+        await postResume(form.values, form.getInputProps('email').value)
         nextStep()
         setSubmitting(false)
     }
@@ -243,20 +246,22 @@ export const OlaApply: React.FC = () => {
                             <Flex direction={"column"} gap={"xs"}>
                                 <Text weight={500}>Education</Text>
                                 {education.map((_: any, i: number) => (
-                                    <Flex key={i} justify={"space-between"} align={"end"} gap={"xs"}>
+                                    <Flex key={i} gap={"xs"}>
                                         <TextInput key={i}
                                                    w={'100%'}
                                                    placeholder="Software engineering, Online full-stack course, etc"
                                                    {...form.getInputProps(`education.${i}.educationTitle`)}
                                         />
                                         {!i ?
-                                            <ActionIcon my={4} variant="outline" color={'green'}
+                                            <ActionIcon variant="outline" color={'green'}
                                                         onClick={handleAddEducation}
+                                                        size={34} mt={1}
                                             >
                                                 <IconPlus size="1rem"/>
                                             </ActionIcon> :
-                                            <ActionIcon my={4} variant="outline" color={'red'}
+                                            <ActionIcon variant="outline" color={'red'}
                                                         onClick={() => handleRemoveEducation(i)}
+                                                        size={34} mt={1}
                                             >
                                                 <IconMinus size="1rem"/>
                                             </ActionIcon>

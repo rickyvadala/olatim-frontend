@@ -22,12 +22,20 @@ import {
     UnstyledButton,
 } from '@mantine/core';
 import {useDisclosure} from '@mantine/hooks';
-import {IconChevronDown, IconArrowsLeftRight, IconLogout, IconSettings, IconUser, IconSearch} from '@tabler/icons-react';
+import {
+    IconChevronDown,
+    IconArrowsLeftRight,
+    IconLogout,
+    IconSettings,
+    IconUser,
+    IconSearch,
+    IconNetwork
+} from '@tabler/icons-react';
 import {OlaLogo} from "@/components/atoms/OlaLogo/OlaLogo";
 import Link from "next/link";
 import {useDispatch, useSelector} from "react-redux";
 import {selectAuthUser, setAuthUser} from "@/store/authSlice";
-import {googleSignOut} from "@/services/auth.service";
+import {googleSignIn, googleSignOut} from "@/services/auth.service";
 import {IUser} from "@/models/IUser.interface";
 import {OlaRouter} from "@/router/OlaRouter";
 import React from "react";
@@ -101,9 +109,9 @@ const useStyles = createStyles((theme) => ({
 
 const links = [
     {
-        icon: IconArrowsLeftRight,
-        title: 'Referral Program',
-        description: 'Connect others with top job opportunities and earn a fee.',
+        icon: IconNetwork,
+        title: 'Community',
+        description: 'Join us and be part of the best digital professionals network',
         href: OlaRouter.COMMUNITY
     },
     {
@@ -149,6 +157,13 @@ export const OlaNavbar = () => {
     const [linksOpened, {toggle: toggleLinks}] = useDisclosure(false);
     const user: IUser | undefined = useSelector(selectAuthUser)
     const {classes, theme} = useStyles();
+    const dispatch = useDispatch()
+
+    const handleGoogleSignIn = async () => {
+        const {email, photoURL, displayName, uid, phoneNumber} = await googleSignIn()
+        dispatch(setAuthUser({email, photoURL, displayName, uid, phoneNumber}))
+        closeDrawer()
+    }
 
     const Links: React.FC = () => (<>
         {links.map((item, i) => (
@@ -214,15 +229,20 @@ export const OlaNavbar = () => {
 
                                 <div className={classes.dropdownFooter}>
                                     <Group position="apart">
-                                        <div>
-                                            <Text fw={500} fz="sm">
-                                                Resources
-                                            </Text>
-                                            <Text size="xs" color="dimmed">
-                                                Tips & tricks to improve your CV and job search.
-                                            </Text>
-                                        </div>
-                                        <Button variant="default">Soon!</Button>
+                                        <Flex gap={16} align={"center"}>
+                                            <ThemeIcon size={36} variant="default" radius="md">
+                                                <IconArrowsLeftRight size={rem(22)} color={theme.fn.primaryColor()}/>
+                                            </ThemeIcon>
+                                            <div>
+                                                <Text fw={500} fz="sm">
+                                                    Referral Program
+                                                </Text>
+                                                <Text size="xs" color="dimmed">
+                                                    Connect others with top job opportunities and earn a fee.
+                                                </Text>
+                                            </div>
+                                        </Flex>
+                                        <Button variant="default" disabled>Soon!</Button>
                                     </Group>
                                 </div>
                             </HoverCard.Dropdown>
@@ -236,8 +256,8 @@ export const OlaNavbar = () => {
                         {user ? <OlaNavbarAvatar user={user}/>
                             :
                             <Group className={classes.hiddenMobile}>
-                                <Link href={OlaRouter.AUTH}><Button variant="default">Log in</Button></Link>
-                                <Link href={OlaRouter.AUTH}><Button>Sign up</Button></Link>
+                                <Button onClick={handleGoogleSignIn} variant="default">Log in</Button>
+                                <Button onClick={handleGoogleSignIn}>Sign up</Button>
                             </Group>
                         }
                         <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.hiddenDesktop}/>
@@ -273,12 +293,8 @@ export const OlaNavbar = () => {
                     <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'}/>
 
                     <Group position="center" grow pb="xl" px="md">
-                        <Link onClick={closeDrawer} href={OlaRouter.ROOT}>
-                            <Button w={'100%'} variant="default">Log in</Button>
-                        </Link>
-                        <Link onClick={closeDrawer} href={OlaRouter.ROOT}>
-                            <Button w={'100%'}>Sign up</Button>
-                        </Link>
+                            <Button onClick={handleGoogleSignIn} variant="default">Log in</Button>
+                            <Button onClick={handleGoogleSignIn}>Sign up</Button>
                     </Group>
                 </ScrollArea>
             </Drawer>
