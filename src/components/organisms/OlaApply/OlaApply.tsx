@@ -27,6 +27,7 @@ import {YearPickerInput} from "@mantine/dates";
 import {postResume} from "@/services/resumes.service";
 import {OlaRouter} from "@/router/OlaRouter";
 import Link from "next/link";
+import {IResume} from "@/models/IResume.interface";
 
 const data = [
     {value: 'react', label: 'React'},
@@ -46,7 +47,7 @@ export const OlaApply: React.FC = () => {
 
     const form = useForm({
         initialValues: {
-            name: '',
+            displayName: '',
             email: '',
             professionalTitle: '',
             professionalTechStack: '',
@@ -55,13 +56,13 @@ export const OlaApply: React.FC = () => {
             salaryExpected: '',
             yearsOfExperience: '',
             linkedin: '',
-        },
+        } as IResume,
 
         validate: (values) => {
             if (active === 0) {
                 return {
-                    name: values.name.trim().length < 2 ? 'Name must include at least 2 characters' : null,
-                    email: /^\S+@\S+$/.test(values.email) ? null : 'Invalid email',
+                    displayName: (values.displayName || '').trim().length < 2 ? 'Name must include at least 2 characters' : null,
+                    email: /^\S+@\S+$/.test(values.email || '') ? null : 'Invalid email',
                 };
             }
 
@@ -108,7 +109,7 @@ export const OlaApply: React.FC = () => {
     const handleAddExperience = () => {
         form.setValues({
             experience: [
-                ...form.getInputProps('experience').value,
+                ...experience,
                 {jobTitle: '', jobCompany: '', jobDescription: ''}
             ]
         })
@@ -123,7 +124,7 @@ export const OlaApply: React.FC = () => {
     const handleAddEducation = () => {
         form.setValues({
             education: [
-                ...form.getInputProps('education').value,
+                ...education,
                 {educationTitle: ''}
             ]
         })
@@ -148,7 +149,7 @@ export const OlaApply: React.FC = () => {
     useEffect(() => {
         if (user) {
             form.setValues({
-                name: user.displayName || '',
+                displayName: user.displayName || '',
                 email: user.email || ''
             })
         }
@@ -189,7 +190,7 @@ export const OlaApply: React.FC = () => {
 
                 <Stepper active={active} breakpoint="sm">
                     <Stepper.Step label="First step" description="Personal information">
-                        <TextInput label="Name" placeholder="Name" {...form.getInputProps('name')} />
+                        <TextInput label="Name" placeholder="Name" {...form.getInputProps('displayName')} />
                         <TextInput mt="md" label="Email" placeholder="Email" {...form.getInputProps('email')} />
                     </Stepper.Step>
 
@@ -307,11 +308,16 @@ export const OlaApply: React.FC = () => {
                             </Title>
                             <Flex gap={"md"}>
                                 <Link href={OlaRouter.ROOT}>
-                                    <Button>Home</Button>
+                                    <Button variant={"outline"}>Home</Button>
                                 </Link>
-                                <Link href={OlaRouter.PROFILE}>
-                                    <Button variant={"outline"}>Profile</Button>
-                                </Link>
+                                {user
+                                    ? <Link href={OlaRouter.PROFILE}><Button>Profile</Button></Link>
+                                    : (
+                                        <Button onClick={handleGoogleSignIn} leftIcon={<IconBrandGoogle/>}>
+                                            Sign in
+                                        </Button>
+                                    )
+                                }
                             </Flex>
                         </Flex>
                     </Stepper.Completed>
