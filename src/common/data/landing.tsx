@@ -1,7 +1,6 @@
 import {OlaHeroProps} from "@/components/organisms/OlaHero/OlaHero";
 import {OlaAboutProps} from "@/components/organisms/OlaAbout/OlaAbout";
 import {OlaAboutProps1} from "@/components/organisms/OlaAbout/OlaAboutHiring";
-import {OlaRouter} from "@/router/OlaRouter";
 import {
     IconCircleNumber1,
     IconCircleNumber2,

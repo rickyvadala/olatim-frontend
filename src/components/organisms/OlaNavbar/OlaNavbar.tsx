@@ -23,13 +23,13 @@ import {
 } from '@mantine/core';
 import {useDisclosure} from '@mantine/hooks';
 import {
-    IconChevronDown,
     IconArrowsLeftRight,
+    IconChevronDown,
     IconLogout,
-    IconSettings,
-    IconUser,
+    IconNetwork,
     IconSearch,
-    IconNetwork
+    IconSettings,
+    IconUser
 } from '@tabler/icons-react';
 import {OlaLogo} from "@/components/atoms/OlaLogo/OlaLogo";
 import Link from "next/link";
@@ -39,6 +39,7 @@ import {googleSignIn, googleSignOut} from "@/services/auth.service";
 import {IUser} from "@/models/IUser.interface";
 import {OlaRouter} from "@/router/OlaRouter";
 import React from "react";
+import {useRouter} from "next/router";
 
 const useStyles = createStyles((theme) => ({
     wrapper: {
@@ -124,10 +125,12 @@ const links = [
 
 const OlaNavbarAvatar: React.FC<{ user: IUser }> = ({user}) => {
     const dispatch = useDispatch()
+    const router = useRouter();
 
     const handleGoogleSignOut = async () => {
         await googleSignOut()
         dispatch(setAuthUser(undefined))
+        void router.push(OlaRouter.AUTH)
     }
 
     return (
@@ -293,8 +296,8 @@ export const OlaNavbar = () => {
                     <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'}/>
 
                     <Group position="center" grow pb="xl" px="md">
-                            <Button onClick={handleGoogleSignIn} variant="default">Log in</Button>
-                            <Button onClick={handleGoogleSignIn}>Sign up</Button>
+                        <Button onClick={handleGoogleSignIn} variant="default">Log in</Button>
+                        <Button onClick={handleGoogleSignIn}>Sign up</Button>
                     </Group>
                 </ScrollArea>
             </Drawer>
