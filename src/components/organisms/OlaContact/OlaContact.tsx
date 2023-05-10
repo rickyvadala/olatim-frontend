@@ -12,6 +12,7 @@ import {
     TextInput,
     Title,
 } from '@mantine/core';
+import Link from "next/link";
 import {IconBrandInstagram, IconBrandLinkedin, IconBrandTwitter} from '@tabler/icons-react';
 import {OlaContactIcons} from "@/components/organisms/OlaContact/OlaContactIcons/OlaContactIcons";
 
@@ -93,10 +94,15 @@ export const OlaContact = () => {
                         <Text className={classes.description} mt="sm" mb={30}>
                             Leave your email and we will get back to you within 24 hours
                         </Text>
-
                         <OlaContactIcons variant="white"/>
-
                         {/* <Group mt="xl">{icons}</Group> */}
+                        <Group mt="xl">
+                            <Link href="https://www.linkedin.com/company/olatim-com/">
+                                <ActionIcon size="lg">
+                                    <IconBrandLinkedin size="1.5rem" color='white' stroke={1.5}/>
+                                </ActionIcon>
+                            </Link>
+                        </Group>
                     </div>
                     <div className={classes.form}>
                         <TextInput
