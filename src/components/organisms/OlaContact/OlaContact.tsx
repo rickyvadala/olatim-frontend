@@ -1,5 +1,4 @@
 import {
-    ActionIcon,
     Box,
     Button,
     Container,
@@ -12,8 +11,6 @@ import {
     TextInput,
     Title,
 } from '@mantine/core';
-import Link from "next/link";
-import {IconBrandInstagram, IconBrandLinkedin, IconBrandTwitter} from '@tabler/icons-react';
 import {OlaContactIcons} from "@/components/organisms/OlaContact/OlaContactIcons/OlaContactIcons";
 
 const useStyles = createStyles((theme) => ({
@@ -23,6 +20,7 @@ const useStyles = createStyles((theme) => ({
         alignItems: "center",
         boxSizing: 'border-box',
         backgroundImage: `linear-gradient(90deg, rgba(34,139,230,1) 50%, rgba(0,212,255,1) 100%)`,
+        minHeight: '100vh'
     },
 
     title: {
@@ -41,6 +39,7 @@ const useStyles = createStyles((theme) => ({
     },
 
     form: {
+        width: '100%',
         backgroundColor: theme.white,
         padding: theme.spacing.xl,
         borderRadius: theme.radius.md,
@@ -74,66 +73,49 @@ const useStyles = createStyles((theme) => ({
     },
 }));
 
-const social = [IconBrandTwitter, IconBrandLinkedin, IconBrandInstagram];
 
 export const OlaContact = () => {
     const {classes} = useStyles();
 
-    const icons = social.map((Icon, index) => (
-        <ActionIcon key={index} size={28} className={classes.social} variant="transparent">
-            <Icon size="1.4rem" stroke={1.5}/>
-        </ActionIcon>
-    ));
-
     return (
         <Box className={classes.wrapper} id={'contact'}>
-            <Container size={'lg'} w={'100%'} p={"xl"} py={96}>
-                <SimpleGrid cols={2} spacing={50} breakpoints={[{maxWidth: 'sm', cols: 1}]}>
-                    <div>
-                        <Title className={classes.title}>Talk to our team!</Title>
-                        <Text className={classes.description} mt="sm" mb={30}>
-                            Leave your email and we will get back to you within 24 hours
-                        </Text>
-                        <OlaContactIcons variant="white"/>
-                        {/* <Group mt="xl">{icons}</Group> */}
-                        <Group mt="xl">
-                            <Link href="https://www.linkedin.com/company/olatim-com/">
-                                <ActionIcon size="lg">
-                                    <IconBrandLinkedin size="1.5rem" color='white' stroke={1.5}/>
-                                </ActionIcon>
-                            </Link>
-                        </Group>
-                    </div>
-                    <div className={classes.form}>
-                        <TextInput
-                            label="Email"
-                            placeholder="your@email.com"
-                            required
-                            classNames={{input: classes.input, label: classes.inputLabel}}
-                        />
-                        <TextInput
-                            label="Name"
-                            placeholder="John Doe"
-                            mt="md"
-                            classNames={{input: classes.input, label: classes.inputLabel}}
-                        />
-                        <Textarea
-                            required
-                            label="Your message"
-                            placeholder="I want to start hiring"
-                            minRows={4}
-                            mt="md"
-                            classNames={{input: classes.input, label: classes.inputLabel}}
-                        />
+            <SimpleGrid cols={2} spacing={50} breakpoints={[{maxWidth: 'sm', cols: 1}]}>
+                <Container size={"xl"} px={"xl"}>
+                    <Title className={classes.title}>Talk to our team!</Title>
+                    <Text className={classes.description} mt="sm" mb={30}>
+                        Leave your email and we will get back to you within 24 hours
+                    </Text>
+                    <OlaContactIcons variant="white"/>
+                </Container>
+                <Container size={"xl"} className={classes.form}>
+                    <TextInput
+                        label="Email"
+                        placeholder="your@email.com"
+                        required
+                        classNames={{input: classes.input, label: classes.inputLabel}}
+                    />
+                    <TextInput
+                        label="Name"
+                        placeholder="John Doe"
+                        mt="md"
+                        classNames={{input: classes.input, label: classes.inputLabel}}
+                    />
+                    <Textarea
+                        required
+                        label="Your message"
+                        placeholder="I want to start hiring"
+                        minRows={4}
+                        mt="md"
+                        classNames={{input: classes.input, label: classes.inputLabel}}
+                    />
 
-                        <Group position="right" mt="md">
-                            <Button className={classes.control} onClick={() => console.log('send')}>
-                                Send message
-                            </Button>
-                        </Group>
-                    </div>
-                </SimpleGrid>
-            </Container>
+                    <Group position="right" mt="md">
+                        <Button className={classes.control} onClick={() => console.log('send')}>
+                            Send message
+                        </Button>
+                    </Group>
+                </Container>
+            </SimpleGrid>
         </Box>
     );
 }

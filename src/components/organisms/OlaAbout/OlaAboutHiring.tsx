@@ -59,17 +59,18 @@ export const OlaAboutHiring = ({badge, title, subtitle, features: _features}: Ol
     const {classes} = useStyles();
 
     const features = (
-        <Timeline color={'blue'} active={4} bulletSize={32} lineWidth={2} radius="md">
+        <Timeline color={'blue'} active={4} bulletSize={39} lineWidth={2} radius="md">
             {_features.map((feature, i) => (
-                <Timeline.Item key={i} bullet={<feature.icon size={20}/>} title={feature.name}>
+                <Timeline.Item key={i} bullet={<feature.icon size={24}/>} title={feature.name}>
                     <Text
                         color="dimmed"
                         size="sm"
                     >
                         {feature.description}
-                    </Text><Text size="xs" mt={4}>&nbsp;</Text>
-                </Timeline.Item>))}
-
+                    </Text>
+                    <Text size="xs" mt={4}>&nbsp;</Text>
+                </Timeline.Item>)
+            )}
         </Timeline>
     );
 

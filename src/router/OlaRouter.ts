@@ -5,4 +5,5 @@ export enum OlaRouter {
     COMMUNITY = '/munity',
     APPLY = '/apply',
     PROFILE = '/profile',
+    CONTACT = '/contact',
 }

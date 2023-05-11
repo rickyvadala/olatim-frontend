@@ -55,6 +55,7 @@ const useStyles = createStyles((theme) => ({
     },
 
     link: {
+        textDecoration: "none",
         display: 'block',
         color: theme.colorScheme === 'dark' ? theme.colors.dark[1] : theme.colors.gray[6],
         fontSize: theme.fontSizes.sm,
@@ -100,7 +101,7 @@ const useStyles = createStyles((theme) => ({
 export type OlaFooterProps = {
     data: {
         title: string;
-        links: { label: string; link: string }[];
+        links: { label: string; href: string, target: string }[];
     }[];
 }
 
@@ -109,15 +110,14 @@ export const OlaFooter = ({data}: OlaFooterProps) => {
 
     const groups = data.map((group) => {
         const links = group.links.map((link, index) => (
-            <Text<'a'>
+            <Link
                 key={index}
                 className={classes.link}
-                component="a"
-                href={link.link}
-                onClick={(event) => event.preventDefault()}
+                href={link.href}
+                target={link.target}
             >
                 {link.label}
-            </Text>
+            </Link>
         ));
 
         return (
@@ -147,17 +147,11 @@ export const OlaFooter = ({data}: OlaFooterProps) => {
                 </Text>
 
                 <Group spacing={0} className={classes.social} position="right" noWrap>
-                    {/* <ActionIcon size="lg">
-                        <IconBrandTwitter size="1.05rem" stroke={1.5}/>
-                    </ActionIcon> */}
-                    <Link href="https://www.linkedin.com/company/olatim-com/">
+                    <Link target={'_blank'} href="https://www.linkedin.com/company/olatim-com/">
                         <ActionIcon size="lg">
                             <IconBrandLinkedin size="1.5rem" stroke={1.5}/>
                         </ActionIcon>
                     </Link>
-                    {/* <ActionIcon size="lg">
-                        <IconBrandInstagram size="1.05rem" stroke={1.5}/>
-                    </ActionIcon> */}
                 </Group>
             </Container>
         </footer>

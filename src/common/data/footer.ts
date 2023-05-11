@@ -4,32 +4,47 @@ import {OlaRouter} from "@/router/OlaRouter";
 export const footer: OlaFooterProps = {
     "data": [
         {
-            "title": "About",
+            "title": "Hiring",
             "links": [
                 {
-                    "label": "Apply Jobs",
-                    "link": OlaRouter.APPLY
+                    "label": "Learn more",
+                    "href": OlaRouter.COMMUNITY,
+                    "target": ""
                 },
                 {
-                    "label": "Support",
-                    "link": "#contact"
-                },
+                    "label": "Contact us",
+                    "href": OlaRouter.CONTACT,
+                    "target": ""
+                }
             ]
         },
         {
             "title": "Community",
             "links": [
                 {
-                    "label": "Follow on LinkedIn",
-                    "link": "https://www.linkedin.com/company/olatim-com/"
+                    "label": "Learn more",
+                    "href": OlaRouter.COMMUNITY,
+                    "target": ""
                 },
                 {
-                    "label": "Referral Program",
-                    "link": OlaRouter.COMMUNITY
+                    "label": "Apply Jobs",
+                    "href": OlaRouter.APPLY,
+                    "target": ""
+                },
+            ]
+        },
+        {
+            "title": "Network",
+            "links": [
+                {
+                    "label": "LinkedIn",
+                    "href": "https://www.linkedin.com/company/olatim-com/",
+                    "target": "_blank"
                 },
                 {
-                    "label": "Email hello@olatim.com",
-                    "link": "#"
+                    "label": "Email Us",
+                    "href": "mailto:hello@olatim.com",
+                    "target": "_blank"
                 }
             ]
         }

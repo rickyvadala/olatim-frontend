@@ -1,5 +1,7 @@
 import {Box, createStyles, Stack, Text, ThemeIcon} from '@mantine/core';
-import {IconAt, IconMapPin} from '@tabler/icons-react';
+import {IconAt, IconBrandLinkedin, IconMapPin} from '@tabler/icons-react';
+import Link from "next/link";
+import React from "react";
 
 type ContactIconVariant = 'white' | 'gradient';
 
@@ -39,6 +41,7 @@ interface ContactIconProps extends Omit<React.ComponentPropsWithoutRef<'div'>, '
     title: React.ReactNode;
     description: React.ReactNode;
     variant?: ContactIconVariant;
+    href?: string;
 }
 
 function ContactIcon({
@@ -78,11 +81,21 @@ interface ContactIconsListProps {
 }
 
 const MOCKDATA = [
-    {title: 'Email', description: 'hello@olatim.com', icon: IconAt},
+    {title: 'Email', description: 'hello@olatim.com', icon: IconAt, href: 'mailto:hello@olatim.com'},
     {title: 'Location', description: 'Córdoba, Argentina', icon: IconMapPin},
+    {
+        title: 'Linkedin',
+        description: 'Olatim-com',
+        icon: IconBrandLinkedin,
+        href: 'https://www.linkedin.com/company/olatim-com/'
+    },
 ];
 
 export function OlaContactIcons({data = MOCKDATA, variant}: ContactIconsListProps) {
-    const items = data.map((item, index) => <ContactIcon key={index} variant={variant} {...item} />);
+    const items = data.map((item, index) => (
+        <Link target={'_blank'} style={{textDecoration: 'none'}} key={index} href={item.href || ''}>
+            <ContactIcon variant={variant} {...item} />
+        </Link>
+    ));
     return <Stack>{items}</Stack>;
 }

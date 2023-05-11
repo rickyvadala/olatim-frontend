@@ -4,7 +4,7 @@ import {IEducation} from "@/models/IEducation.interface";
 
 export interface IResume extends IUser {
     professionalTitle: string,
-    professionalTechStack: string,
+    professionalTechStack: Array<string>,
     experience: Array<IExperience>,
     education: Array<IEducation>,
     salaryExpected: string,

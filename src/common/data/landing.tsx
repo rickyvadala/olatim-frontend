@@ -11,6 +11,7 @@ import {
     IconPigMoney,
     IconUserCheck
 } from "@tabler/icons-react";
+import {OlaRouter} from "@/router/OlaRouter";
 
 type OlaLandingProps = {
     home: {
@@ -50,7 +51,7 @@ export const OLA_LANDING: OlaLandingProps = {
             buttons: [
                 {
                     label: 'Start Hiring',
-                    href: '#contact'
+                    href: OlaRouter.CONTACT
                 },
                 {
                     label: 'More Info',
@@ -112,7 +113,7 @@ export const OLA_LANDING: OlaLandingProps = {
             buttons: [
                 {
                     label: 'Start Hiring',
-                    href: '#contact'
+                    href: OlaRouter.CONTACT
                 },
                 {
                     label: 'More Info',

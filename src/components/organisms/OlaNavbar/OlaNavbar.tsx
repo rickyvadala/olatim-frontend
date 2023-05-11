@@ -250,7 +250,7 @@ export const OlaNavbar = () => {
                                 </div>
                             </HoverCard.Dropdown>
                         </HoverCard>
-                        <Link href="#contact" scroll={false} className={classes.link}>
+                        <Link href={OlaRouter.CONTACT} scroll={false} className={classes.link}>
                             Contact
                         </Link>
                     </Group>
@@ -289,7 +289,7 @@ export const OlaNavbar = () => {
                         </Center>
                     </UnstyledButton>
                     <Collapse in={linksOpened}><Links/></Collapse>
-                    <Link onClick={closeDrawer} href="#contact" className={classes.link}>
+                    <Link onClick={closeDrawer} href={OlaRouter.CONTACT} className={classes.link}>
                         <Text>Contact</Text>
                     </Link>
 
