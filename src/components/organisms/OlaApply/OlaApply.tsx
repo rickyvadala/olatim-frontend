@@ -28,6 +28,7 @@ import {OlaRouter} from "@/router/OlaRouter";
 import Link from "next/link";
 import {IResume} from "@/models/IResume.interface";
 import {TECHS} from "@/common/data/techs";
+import _ from 'lodash';
 
 export const OlaApply: React.FC = () => {
     const [active, setActive] = useState(0);
@@ -72,9 +73,6 @@ export const OlaApply: React.FC = () => {
         },
     });
 
-    const experience = form.getInputProps('experience').value
-    const education = form.getInputProps('education').value
-
     const nextStep = () =>
         setActive((current) => {
             if (form.validate().hasErrors) {
@@ -97,46 +95,6 @@ export const OlaApply: React.FC = () => {
         setSubmitting(false)
     }
 
-    const handleAddExperience = () => {
-        form.setValues({
-            experience: [
-                ...experience,
-                {title: '', company: '', description: ''}
-            ]
-        } as IResume)
-    }
-
-    const handleRemoveExperience = (index: number) => {
-        form.setValues({
-            experience: [...experience.filter((e: any, i: number) => i !== index)]
-        })
-    }
-
-    const handleAddEducation = () => {
-        form.setValues({
-            education: [
-                ...education,
-                {title: ''}
-            ]
-        })
-    }
-
-    const handleRemoveEducation = (index: number) => {
-        form.setValues({
-            education: [...education.filter((e: any, i: number) => i !== index)]
-        })
-    }
-
-    const AddExperience: React.FC<{ showButton: boolean }> = ({showButton}) => (
-        <Divider my={"xs"}
-                 labelPosition="center"
-                 label={showButton ?
-                     <Button leftIcon={<IconPlus size="1rem"/>} compact onClick={handleAddExperience}>
-                         Add experience
-                     </Button> : ''
-                 }/>
-    )
-
     useEffect(() => {
         if (user) {
             form.setValues({
@@ -147,15 +105,8 @@ export const OlaApply: React.FC = () => {
     }, [user])
 
     useEffect(() => {
-        if (resume) {
-            form.setValues({...resume})
-        }
+        resume && form.setValues(_.cloneDeep(resume))
     }, [resume])
-
-
-    useEffect(() => {
-        console.log(form.values)
-    }, [form.values])
 
     return (
         <Flex align={"center"} justify={"center"} mih={'100vh'} direction={"column"}
@@ -209,15 +160,19 @@ export const OlaApply: React.FC = () => {
                             />
                             <Flex direction={"column"} gap={"xs"}>
                                 <Text weight={500}>Experience</Text>
-                                {!experience.length && <AddExperience showButton={true}/>}
-                                {experience.map((_: any, i: number) => (
+                                {form.values.experience.map((_: any, i: number) => (
                                     <Flex gap={"xs"} direction={"column"} key={i} pos={"relative"}>
-                                        <ActionIcon variant="outline" color={'red'}
-                                                    pos={"absolute"} top={-11} right={0}
-                                                    onClick={() => handleRemoveExperience(i)}
-                                        >
-                                            <IconTrash size="1rem"/>
-                                        </ActionIcon>
+                                        {i > 0 && (
+                                            <>
+                                                <Divider my={"xs"}/>
+                                                <ActionIcon variant="outline" color={'red'}
+                                                            pos={"absolute"} top={0} right={0}
+                                                            onClick={() => form.removeListItem('experience', i)}
+                                                >
+                                                    <IconTrash size="1rem"/>
+                                                </ActionIcon>
+                                            </>
+                                        )}
                                         <Flex gap={"md"}>
                                             <TextInput w={'50%'} label="Job Title"
                                                        placeholder="Senior frontend developer"
@@ -234,13 +189,24 @@ export const OlaApply: React.FC = () => {
                                                   maxRows={4}
                                                   {...form.getInputProps(`experience.${i}.description`)}
                                         />
-                                        <AddExperience showButton={experience.length - 1 === i}/>
                                     </Flex>
                                 ))}
+                                <Divider my={"xs"}
+                                         labelPosition="center"
+                                         label={
+                                             <Button leftIcon={<IconPlus size="1rem"/>} compact
+                                                     onClick={() => form.insertListItem('experience', {
+                                                         title: '',
+                                                         company: '',
+                                                         description: ''
+                                                     })}>
+                                                 Add experience
+                                             </Button>
+                                         }/>
                             </Flex>
                             <Flex direction={"column"} gap={"xs"}>
                                 <Text weight={500}>Education</Text>
-                                {education.map((_: any, i: number) => (
+                                {form.values.education.map((_: any, i: number) => (
                                     <Flex key={i} gap={"xs"}>
                                         <TextInput key={i}
                                                    w={'100%'}
@@ -249,13 +215,13 @@ export const OlaApply: React.FC = () => {
                                         />
                                         {!i ?
                                             <ActionIcon variant="outline" color={'green'}
-                                                        onClick={handleAddEducation}
+                                                        onClick={() => form.insertListItem('education', {title: ''})}
                                                         size={34} mt={1}
                                             >
                                                 <IconPlus size="1rem"/>
                                             </ActionIcon> :
                                             <ActionIcon variant="outline" color={'red'}
-                                                        onClick={() => handleRemoveEducation(i)}
+                                                        onClick={() => form.removeListItem('education', i)}
                                                         size={34} mt={1}
                                             >
                                                 <IconMinus size="1rem"/>
