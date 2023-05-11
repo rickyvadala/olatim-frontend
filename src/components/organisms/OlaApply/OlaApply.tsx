@@ -23,7 +23,6 @@ import {selectAuthUser, selectResume, setAuthUser} from "@/store/authSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {IUser} from "@/models/IUser.interface";
 import {OlaLogo} from "@/components/atoms/OlaLogo/OlaLogo";
-import {YearPickerInput} from "@mantine/dates";
 import {postResume} from "@/services/resumes.service";
 import {OlaRouter} from "@/router/OlaRouter";
 import Link from "next/link";
@@ -43,8 +42,8 @@ export const OlaApply: React.FC = () => {
             email: '',
             professionalTitle: '',
             professionalTechStack: [''],
-            experience: [{jobTitle: '', jobCompany: '', jobDates: [null, null], jobDescription: ''}],
-            education: [{educationTitle: ''}],
+            experience: [{title: '', company: '', description: ''}],
+            education: [{title: ''}],
             salaryExpected: '',
             yearsOfExperience: '',
             linkedin: '',
@@ -63,7 +62,7 @@ export const OlaApply: React.FC = () => {
                     professionalTitle: values.professionalTitle.trim().length < 1
                         ? 'You must include your professional title'
                         : null,
-                    'education.0.educationTitle': values.education[0].educationTitle.trim().length < 1
+                    'education.0.title': values.education[0].title.trim().length < 1
                         ? 'You must include some education'
                         : null,
                 };
@@ -93,17 +92,7 @@ export const OlaApply: React.FC = () => {
 
     const handlePostResume = async () => {
         setSubmitting(true)
-        // const data: IResume = {
-        //     ...form.values,
-        //     experience: form.values.experience.map(job => ({
-        //         ...job,
-        //         jobDates: [
-        //             job.jobDates[0]?.toString() || null,
-        //             job.jobDates[1]?.toString() || null
-        //         ]
-        //     })) as Array<IExperience>
-        // }
-        await postResume(form.values, form.values.email!)
+        await postResume({...form.values}, form.values.email!)
         nextStep()
         setSubmitting(false)
     }
@@ -112,14 +101,14 @@ export const OlaApply: React.FC = () => {
         form.setValues({
             experience: [
                 ...experience,
-                {jobTitle: '', jobCompany: '', jobDescription: '', jobDates: [null, null]}
+                {title: '', company: '', description: ''}
             ]
-        })
+        } as IResume)
     }
 
     const handleRemoveExperience = (index: number) => {
         form.setValues({
-            experience: experience.filter((e: any, i: number) => i !== index)
+            experience: [...experience.filter((e: any, i: number) => i !== index)]
         })
     }
 
@@ -127,14 +116,14 @@ export const OlaApply: React.FC = () => {
         form.setValues({
             education: [
                 ...education,
-                {educationTitle: ''}
+                {title: ''}
             ]
         })
     }
 
     const handleRemoveEducation = (index: number) => {
         form.setValues({
-            education: education.filter((e: any, i: number) => i !== index)
+            education: [...education.filter((e: any, i: number) => i !== index)]
         })
     }
 
@@ -162,6 +151,11 @@ export const OlaApply: React.FC = () => {
             form.setValues({...resume})
         }
     }, [resume])
+
+
+    useEffect(() => {
+        console.log(form.values)
+    }, [form.values])
 
     return (
         <Flex align={"center"} justify={"center"} mih={'100vh'} direction={"column"}
@@ -225,20 +219,12 @@ export const OlaApply: React.FC = () => {
                                             <IconTrash size="1rem"/>
                                         </ActionIcon>
                                         <Flex gap={"md"}>
-                                            <TextInput w={'calc(100%/3)'} label="Job Title"
+                                            <TextInput w={'50%'} label="Job Title"
                                                        placeholder="Senior frontend developer"
-                                                       {...form.getInputProps(`experience.${i}.jobTitle`)} />
-                                            <TextInput w={'calc(100%/3)'} label="Company"
+                                                       {...form.getInputProps(`experience.${i}.title`)} />
+                                            <TextInput w={'50%'} label="Company"
                                                        placeholder="Olatim.com"
-                                                       {...form.getInputProps(`experience.${i}.jobCompany`)} />
-                                            <YearPickerInput
-                                                w={'calc(100%/3)'}
-                                                type="range"
-                                                label="Dates"
-                                                clearable
-                                                placeholder="Dates range"
-                                                {...form.getInputProps(`experience.${i}.jobDates`)}
-                                            />
+                                                       {...form.getInputProps(`experience.${i}.company`)} />
                                         </Flex>
                                         <Textarea w={'100%'}
                                                   label="Description"
@@ -246,7 +232,7 @@ export const OlaApply: React.FC = () => {
                                                   autosize
                                                   minRows={2}
                                                   maxRows={4}
-                                                  {...form.getInputProps(`experience.${i}.jobDescription`)}
+                                                  {...form.getInputProps(`experience.${i}.description`)}
                                         />
                                         <AddExperience showButton={experience.length - 1 === i}/>
                                     </Flex>
@@ -259,7 +245,7 @@ export const OlaApply: React.FC = () => {
                                         <TextInput key={i}
                                                    w={'100%'}
                                                    placeholder="Software engineering, Online full-stack course, etc"
-                                                   {...form.getInputProps(`education.${i}.educationTitle`)}
+                                                   {...form.getInputProps(`education.${i}.title`)}
                                         />
                                         {!i ?
                                             <ActionIcon variant="outline" color={'green'}

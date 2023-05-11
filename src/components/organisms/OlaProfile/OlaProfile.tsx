@@ -1,9 +1,8 @@
-import {Avatar, Box, Button, Container, Flex, Paper, Skeleton, Text, Title,} from '@mantine/core';
+import {Avatar, Box, Button, Container, Divider, Flex, Paper, Skeleton, Text, Title,} from '@mantine/core';
 import React, {useEffect} from "react";
 import {useSelector} from "react-redux";
 import {selectAuthUser, selectResume} from "@/store/authSlice";
 import {useRouter} from "next/router";
-import {serializedDate} from "@/common/tools";
 import Link from "next/link";
 import {OlaRouter} from "@/router/OlaRouter";
 
@@ -39,7 +38,7 @@ export const OlaProfile = () => {
                     )
                     : (
                         <Paper p={"lg"} shadow={"md"}>
-                            <Flex gap={"xl"} direction={"column"}>
+                            <Flex gap={"xs"} direction={"column"}>
                                 <Flex gap={"xl"}>
                                     <Avatar size={96} src={resume?.photoURL}></Avatar>
                                     <Flex direction={"column"} gap={"xs"}>
@@ -49,19 +48,22 @@ export const OlaProfile = () => {
                                     </Flex>
                                 </Flex>
                                 <Flex gap={"xs"} direction={"column"}>
+                                    <Divider/>
                                     <Box>
                                         <Title size={"large"}>Professional Title</Title>
                                         <Text>{resume.professionalTitle}</Text>
                                     </Box>
+                                    <Divider/>
                                     <Box>
                                         <Title size={"large"}>Tech Stack</Title>
                                         {resume?.professionalTechStack?.map(tech => (
                                             <Text key={tech}>{tech}</Text>
                                         ))}
                                     </Box>
+                                    <Divider/>
                                     <Flex direction={"column"} gap={"xs"}>
                                         <Title size={"large"}>Experiences</Title>
-                                        {!resume?.experience.length
+                                        {!resume?.experience?.length
                                             ? <Text>{NO_DATA}</Text>
                                             : resume?.experience?.map((job, i) => (
                                                 <Flex key={i} direction={"column"} gap={"xs"}>
@@ -74,16 +76,10 @@ export const OlaProfile = () => {
                                                         <Text>{job.jobCompany || NO_DATA}</Text>
                                                     </Box>
                                                     <Box>
-                                                        <Title size={"medium"}>Dates</Title>
-                                                        <Text> {job.jobDates[0] || job.jobDates[1]
-                                                            ? `${serializedDate(job.jobDates[0])} - ${serializedDate(job.jobDates[1])}`
-                                                            : NO_DATA}
-                                                        </Text>
-                                                    </Box>
-                                                    <Box>
                                                         <Title size={"medium"}>Description</Title>
                                                         <Text>{job.jobDescription || NO_DATA}</Text>
                                                     </Box>
+                                                    <Divider/>
                                                 </Flex>
                                             ))
                                         }

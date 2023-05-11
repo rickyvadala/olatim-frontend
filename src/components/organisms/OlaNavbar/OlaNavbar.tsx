@@ -294,11 +294,22 @@ export const OlaNavbar = () => {
                     </Link>
 
                     <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'}/>
-
                     <Group position="center" grow pb="xl" px="md">
-                        <Button onClick={handleGoogleSignIn} variant="default">Log in</Button>
-                        <Button onClick={handleGoogleSignIn}>Sign up</Button>
+                        {!user ? (
+                            <>
+                                <Button onClick={handleGoogleSignIn} variant="default">Log in</Button>
+                                <Button onClick={handleGoogleSignIn}>Sign up</Button>
+                            </>
+                        ) : (
+                            <Flex gap={16} align={"center"}>
+                                <Avatar size={48} radius="xl" src={user.photoURL} alt="it's me"/>
+                                <Text weight={500}>{user.displayName}</Text>
+                            </Flex>
+                        )}
+
                     </Group>
+
+
                 </ScrollArea>
             </Drawer>
         </Box>
