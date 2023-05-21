@@ -1,3 +1,3 @@
 export interface IEducation {
-    title: string,
+  title: string,
 }

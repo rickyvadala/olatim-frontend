@@ -5,12 +5,12 @@ import {OlaProfile} from "@/components/organisms/OlaProfile/OlaProfile";
 
 export default function Index() {
 
-    return (
-        <>
-            <OlaHead title={'Olatim | Profile'}/>
-            <OlaWebsiteLayout>
-                <OlaProfile/>
-            </OlaWebsiteLayout>
-        </>
-    )
+  return (
+    <>
+      <OlaHead title={'Olatim | Profile'}/>
+      <OlaWebsiteLayout>
+        <OlaProfile/>
+      </OlaWebsiteLayout>
+    </>
+  )
 }

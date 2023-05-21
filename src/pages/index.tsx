@@ -6,14 +6,14 @@ import {OLA_LANDING} from "@/common/data/landing";
 import {OlaWebsiteLayout} from "@/layouts/OlaWebsiteLayout";
 
 export default function Home() {
-    return (
-        <>
-            <OlaHead title={'Olatim | Home'}/>
-            <OlaWebsiteLayout>
-                <OlaHero {...OLA_LANDING.home.hero}/>
-                <OlaAbout {...OLA_LANDING.home.about}/>
-                <OlaContact/>
-            </OlaWebsiteLayout>
-        </>
-    )
+  return (
+    <>
+      <OlaHead title={'Olatim | Home'}/>
+      <OlaWebsiteLayout>
+        <OlaHero {...OLA_LANDING.home.hero}/>
+        <OlaAbout {...OLA_LANDING.home.about}/>
+        <OlaContact/>
+      </OlaWebsiteLayout>
+    </>
+  )
 }

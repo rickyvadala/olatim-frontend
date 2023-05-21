@@ -7,14 +7,14 @@ import {OlaAboutHiring} from "@/components/organisms/OlaAbout/OlaAboutHiring";
 import {OlaWebsiteLayout} from "@/layouts/OlaWebsiteLayout";
 
 export default function Index() {
-    return (
-        <>
-            <OlaHead title={'Olatim | Hiring'}/>
-            <OlaWebsiteLayout>
-                <OlaHero {...OLA_LANDING.hiring.hero}/>
-                <OlaAboutHiring {...OLA_LANDING.hiring.about}/>
-                <OlaContact/>
-            </OlaWebsiteLayout>
-        </>
-    )
+  return (
+    <>
+      <OlaHead title={'Olatim | Hiring'}/>
+      <OlaWebsiteLayout>
+        <OlaHero {...OLA_LANDING.hiring.hero}/>
+        <OlaAboutHiring {...OLA_LANDING.hiring.about}/>
+        <OlaContact/>
+      </OlaWebsiteLayout>
+    </>
+  )
 }

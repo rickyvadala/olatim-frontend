@@ -10,25 +10,25 @@ import {useAppAuthState} from "@/hooks/useAppAuthState";
 type OlaWebsiteLayoutProps = PropsWithChildren
 
 export const OlaWebsiteLayout: React.FC<OlaWebsiteLayoutProps> = ({children}) => {
-    const [user, loading] = useAppAuthState()
-    const dispatch = useDispatch()
-    const asyncGetResume = async () => {
-        if (user?.email) {
-            const res = await getResume(user.email)
-            res && dispatch(setResume(res))
-        }
+  const [user, loading] = useAppAuthState()
+  const dispatch = useDispatch()
+  const asyncGetResume = async () => {
+    if (user?.email) {
+      const res = await getResume(user.email)
+      res && dispatch(setResume(res))
     }
+  }
 
-    useEffect(() => {
-        void asyncGetResume()
-    }, [user])
+  useEffect(() => {
+    void asyncGetResume()
+  }, [user])
 
 
-    return (
-        <>
-            <OlaNavbar/>
-            {children}
-            <OlaFooter data={footer.data}/>
-        </>
-    )
+  return (
+    <>
+      <OlaNavbar/>
+      {children}
+      <OlaFooter data={footer.data}/>
+    </>
+  )
 }
