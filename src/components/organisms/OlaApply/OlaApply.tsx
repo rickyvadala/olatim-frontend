@@ -34,14 +34,14 @@ export const OlaApply: React.FC = () => {
   const [active, setActive] = useState(0);
   const [submitting, setSubmitting] = useState<boolean>(false);
   const resume: IResume | undefined = useSelector(selectResume)
-  const [user, loading] = useAppAuthState()
+  const [user] = useAppAuthState()
 
   const form = useForm({
     initialValues: {
       displayName: '',
       email: '',
       professionalTitle: '',
-      professionalTechStack: [''],
+      professionalTechStack: Array.from(''),
       experience: [{title: '', company: '', description: ''}],
       education: [{title: ''}],
       salaryExpected: '',
@@ -86,7 +86,7 @@ export const OlaApply: React.FC = () => {
 
   const handlePostResume = async () => {
     setSubmitting(true)
-    await postResume({...form.values}, form.values.email!)
+    await postResume({...form.values}, user?.uid)
     nextStep()
     setSubmitting(false)
   }
@@ -105,8 +105,8 @@ export const OlaApply: React.FC = () => {
   }, [resume])
 
   return (
-    <Flex align={"center"} justify={"center"} mih={'100vh'} direction={"column"}
-          p={"xl"} py={96}
+    <Flex align={"center"} justify={"center"} mih={'calc(100vh - 60px)'} direction={"column"}
+          p={"xl"}
           style={{background: 'linear-gradient(90deg, rgba(34,139,230,1) 50%, rgba(0,212,255,1) 100%)'}}>
       <Paper radius="md" p="xl" withBorder miw={320} shadow={'lg'} w={'100%'} maw={960}>
         <Title align={"center"} weight={500} mb='md' size={"xx-large"}>

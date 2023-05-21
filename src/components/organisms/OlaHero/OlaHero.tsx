@@ -75,7 +75,7 @@ export const OlaHero = ({title, titleHighlight, subtitle, items, buttons}: OlaHe
   const {classes} = useStyles();
 
   return (
-    <Flex pt={60} pb={60} mih={'100vh'} align={'center'} style={{background: '#f8f9fa'}}>
+    <Flex py={"xl"} mih={'calc(100vh - 60px)'} align={'center'} style={{background: '#f8f9fa'}}>
       <Container size={'lg'} w={'100%'} px={"xl"}>
         <div className={classes.inner}>
           <div className={classes.content}>

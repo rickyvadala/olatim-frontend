@@ -1,35 +1,35 @@
 import {
-    ActionIcon,
-    Avatar,
-    Box,
-    Burger,
-    Button,
-    Center,
-    Collapse,
-    createStyles,
-    Divider,
-    Drawer,
-    Flex,
-    Group,
-    Header,
-    HoverCard,
-    Menu,
-    rem,
-    ScrollArea,
-    SimpleGrid,
-    Text,
-    ThemeIcon,
-    UnstyledButton,
+  ActionIcon,
+  Avatar,
+  Box,
+  Burger,
+  Button,
+  Center,
+  Collapse,
+  createStyles,
+  Divider,
+  Drawer,
+  Flex,
+  Group,
+  Header,
+  HoverCard,
+  Menu,
+  rem,
+  ScrollArea,
+  SimpleGrid,
+  Text,
+  ThemeIcon,
+  UnstyledButton,
 } from '@mantine/core';
 import {useDisclosure} from '@mantine/hooks';
 import {
-    IconArrowsLeftRight,
-    IconChevronDown,
-    IconLogout,
-    IconNetwork,
-    IconSearch,
-    IconSettings,
-    IconUser
+  IconArrowsLeftRight,
+  IconChevronDown,
+  IconLogout,
+  IconNetwork,
+  IconSearch,
+  IconSettings,
+  IconUser
 } from '@tabler/icons-react';
 import {OlaLogo} from "@/components/atoms/OlaLogo/OlaLogo";
 import Link from "next/link";
@@ -155,7 +155,7 @@ const OlaNavbarAvatar: React.FC<{ user: IUser }> = ({user}) => {
 export const OlaNavbar = () => {
   const [drawerOpened, {toggle: toggleDrawer, close: closeDrawer}] = useDisclosure(false);
   const [linksOpened, {toggle: toggleLinks}] = useDisclosure(false);
-  const [user, loading] = useAppAuthState()
+  const [user] = useAppAuthState()
   const {classes, theme} = useStyles();
 
   const handleGoogleSignIn = async () => {

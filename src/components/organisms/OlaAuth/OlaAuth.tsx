@@ -1,18 +1,18 @@
 import {upperFirst, useToggle} from '@mantine/hooks';
 import {useForm} from '@mantine/form';
 import {
-    Anchor,
-    Button,
-    Checkbox,
-    createStyles,
-    Divider,
-    Flex,
-    Group,
-    Paper,
-    PasswordInput,
-    Stack,
-    Text,
-    TextInput,
+  Anchor,
+  Button,
+  Checkbox,
+  createStyles,
+  Divider,
+  Flex,
+  Group,
+  Paper,
+  PasswordInput,
+  Stack,
+  Text,
+  TextInput,
 } from '@mantine/core';
 import {IconBrandGoogle} from "@tabler/icons-react";
 import {googleSignIn} from "@/services/auth.service";
@@ -28,7 +28,6 @@ const useStyles = createStyles(() => ({
 
 export const OlaAuth = () => {
   const {classes} = useStyles();
-  const dispatch = useDispatch()
   const router = useRouter()
 
   const [type, toggle] = useToggle(['login', 'register']);
