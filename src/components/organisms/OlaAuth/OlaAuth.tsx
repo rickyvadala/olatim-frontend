@@ -17,7 +17,6 @@ import {
 import {IconBrandGoogle} from "@tabler/icons-react";
 import {googleSignIn} from "@/services/auth.service";
 import {useDispatch} from "react-redux";
-import {setAuthUser} from "@/store/authSlice";
 import {useRouter} from "next/router";
 import {OlaRouter} from "@/router/OlaRouter";
 
@@ -48,8 +47,7 @@ export const OlaAuth = () => {
     });
 
     const handleGoogleSignIn = async () => {
-        const {email, photoURL, displayName, uid, phoneNumber} = await googleSignIn()
-        dispatch(setAuthUser({email, photoURL, displayName, uid, phoneNumber}))
+        await googleSignIn()
         void router.push(OlaRouter.ROOT)
     }
 

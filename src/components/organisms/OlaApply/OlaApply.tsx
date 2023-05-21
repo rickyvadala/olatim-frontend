@@ -19,7 +19,7 @@ import {
 import {useForm} from '@mantine/form';
 import {IconBrandGoogle, IconCalendar, IconCurrencyDollar, IconMinus, IconPlus, IconTrash} from "@tabler/icons-react";
 import {googleSignIn} from "@/services/auth.service";
-import {selectAuthUser, selectResume, setAuthUser} from "@/store/authSlice";
+import {selectResume} from "@/store/dataSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {IUser} from "@/models/IUser.interface";
 import {OlaLogo} from "@/components/atoms/OlaLogo/OlaLogo";
@@ -29,13 +29,13 @@ import Link from "next/link";
 import {IResume} from "@/models/IResume.interface";
 import {TECHS} from "@/common/data/techs";
 import _ from 'lodash';
+import {useAppAuthState} from "@/hooks/useAppAuthState";
 
 export const OlaApply: React.FC = () => {
     const [active, setActive] = useState(0);
     const [submitting, setSubmitting] = useState<boolean>(false);
-    const dispatch = useDispatch()
-    const user: IUser | undefined = useSelector(selectAuthUser)
     const resume: IResume | undefined = useSelector(selectResume)
+    const [user, loading] = useAppAuthState()
 
     const form = useForm({
         initialValues: {
@@ -83,10 +83,7 @@ export const OlaApply: React.FC = () => {
 
     const prevStep = () => setActive((current) => (current > 0 ? current - 1 : current));
 
-    const handleGoogleSignIn = async () => {
-        const {email, photoURL, displayName, uid, phoneNumber} = await googleSignIn()
-        dispatch(setAuthUser({email, photoURL, displayName, uid, phoneNumber}))
-    }
+    const handleGoogleSignIn = () => void googleSignIn()
 
     const handlePostResume = async () => {
         setSubmitting(true)

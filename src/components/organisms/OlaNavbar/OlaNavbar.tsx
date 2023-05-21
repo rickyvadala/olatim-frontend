@@ -34,12 +34,12 @@ import {
 import {OlaLogo} from "@/components/atoms/OlaLogo/OlaLogo";
 import Link from "next/link";
 import {useDispatch, useSelector} from "react-redux";
-import {selectAuthUser, setAuthUser} from "@/store/authSlice";
 import {googleSignIn, googleSignOut} from "@/services/auth.service";
 import {IUser} from "@/models/IUser.interface";
 import {OlaRouter} from "@/router/OlaRouter";
 import React from "react";
 import {useRouter} from "next/router";
+import {useAppAuthState} from "@/hooks/useAppAuthState";
 
 const useStyles = createStyles((theme) => ({
     wrapper: {
@@ -124,12 +124,10 @@ const links = [
 ];
 
 const OlaNavbarAvatar: React.FC<{ user: IUser }> = ({user}) => {
-    const dispatch = useDispatch()
     const router = useRouter();
 
     const handleGoogleSignOut = async () => {
         await googleSignOut()
-        dispatch(setAuthUser(undefined))
         void router.push(OlaRouter.AUTH)
     }
 
@@ -158,13 +156,12 @@ const OlaNavbarAvatar: React.FC<{ user: IUser }> = ({user}) => {
 export const OlaNavbar = () => {
     const [drawerOpened, {toggle: toggleDrawer, close: closeDrawer}] = useDisclosure(false);
     const [linksOpened, {toggle: toggleLinks}] = useDisclosure(false);
-    const user: IUser | undefined = useSelector(selectAuthUser)
+    const [user, loading] = useAppAuthState()
     const {classes, theme} = useStyles();
     const dispatch = useDispatch()
 
     const handleGoogleSignIn = async () => {
-        const {email, photoURL, displayName, uid, phoneNumber} = await googleSignIn()
-        dispatch(setAuthUser({email, photoURL, displayName, uid, phoneNumber}))
+        await googleSignIn()
         closeDrawer()
     }
 

@@ -1,7 +1,7 @@
 import {Avatar, Box, Button, Container, Divider, Flex, Paper, Skeleton, Text, Title,} from '@mantine/core';
 import React, {useEffect} from "react";
 import {useSelector} from "react-redux";
-import {selectAuthUser, selectResume} from "@/store/authSlice";
+import {selectAuthUser, selectResume} from "@/store/dataSlice";
 import {useRouter} from "next/router";
 import Link from "next/link";
 import {OlaRouter} from "@/router/OlaRouter";
