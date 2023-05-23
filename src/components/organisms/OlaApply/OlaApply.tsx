@@ -171,7 +171,7 @@ export const OlaApply: React.FC = () => {
                     )}
                     <Flex gap={"md"}>
                       <TextInput w={'50%'} label="Job Title"
-                                 placeholder="Senior frontend developer"
+                                 placeholder="Software developer"
                                  {...form.getInputProps(`experience.${i}.title`)} />
                       <TextInput w={'50%'} label="Company"
                                  placeholder="Olatim.com"
@@ -235,9 +235,11 @@ export const OlaApply: React.FC = () => {
               <Flex gap={"md"}>
                 <NumberInput
                   w={'50%'}
-                  label="Monthly salary expectations (U$D)"
+                  label="Monthly salary (U$D)"
                   placeholder="2000"
+                  step={200}
                   min={0}
+                  max={10000}
                   icon={<IconCurrencyDollar size="1rem"/>}
                   {...form.getInputProps('salaryExpected')}
                 />
@@ -246,6 +248,7 @@ export const OlaApply: React.FC = () => {
                   label="Years of experience"
                   placeholder="5"
                   min={0}
+                  max={100}
                   icon={<IconCalendar size="1rem"/>}
                   {...form.getInputProps('yearsOfExperience')}
                 />

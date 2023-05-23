@@ -78,7 +78,7 @@ export const OlaContact = () => {
   const {classes} = useStyles();
 
   return (
-    <Box className={classes.wrapper} id={'contact'} py={"xl"} mih={'calc(100vh - 60px)'}>
+    <Box className={classes.wrapper} id={'contact'} p={"xl"} mih={'calc(100vh - 60px)'}>
       <SimpleGrid cols={2} spacing={50} breakpoints={[{maxWidth: 'sm', cols: 1}]}>
         <Container size={"xl"} px={"xl"}>
           <Title className={classes.title}>Talk to our team!</Title>
