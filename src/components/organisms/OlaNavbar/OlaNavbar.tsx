@@ -127,7 +127,7 @@ const OlaNavbarAvatar: React.FC<{ user: IUser }> = ({user}) => {
 
   const handleGoogleSignOut = async () => {
     await googleSignOut()
-    void router.push(OlaRouter.AUTH)
+    void router.push(OlaRouter.ROOT)
   }
 
   return (

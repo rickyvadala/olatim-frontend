@@ -12,6 +12,9 @@ import {
   Title,
 } from '@mantine/core';
 import {OlaContactIcons} from "@/components/organisms/OlaContact/OlaContactIcons/OlaContactIcons";
+import {postMessage} from "@/services/messages.service";
+import {useState} from "react";
+import {useForm} from "@mantine/form";
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -76,6 +79,33 @@ const useStyles = createStyles((theme) => ({
 
 export const OlaContact = () => {
   const {classes} = useStyles();
+  const [sending, setSending] = useState<boolean>(false)
+  const form = useForm({
+    initialValues: {
+      email: '',
+      name: '',
+      message: ''
+    },
+
+    validate: {
+      email: (val) => (/^\S+@\S+$/.test(val) ? null : 'Invalid email'),
+      name: (val) => (val.trim().length <= 2 ? `What's your name?` : null),
+      message: (val) => (val.trim().length <= 10 ? 'The message should include at least 10 characters' : null),
+    },
+  });
+
+  const handleSendMessage = async () => {
+    if (form.validate().hasErrors) {
+      return;
+    }
+
+    setSending(true)
+    try {
+      await postMessage(form.values)
+    } finally {
+      setSending(false)
+    }
+  }
 
   return (
     <Box className={classes.wrapper} id={'contact'} p={"xl"} mih={'calc(100vh - 60px)'}>
@@ -91,26 +121,27 @@ export const OlaContact = () => {
           <TextInput
             label="Email"
             placeholder="your@email.com"
-            required
             classNames={{input: classes.input, label: classes.inputLabel}}
+            {...form.getInputProps('email')}
           />
           <TextInput
             label="Name"
             placeholder="John Doe"
             mt="md"
             classNames={{input: classes.input, label: classes.inputLabel}}
+            {...form.getInputProps('name')}
           />
           <Textarea
-            required
             label="Your message"
-            placeholder="I want to start hiring"
+            placeholder="Let's have a virtual coffee!"
             minRows={4}
             mt="md"
             classNames={{input: classes.input, label: classes.inputLabel}}
+            {...form.getInputProps('message')}
           />
 
           <Group position="right" mt="md">
-            <Button className={classes.control} onClick={() => console.log('send')} variant={"gradient"}>
+            <Button loading={sending} className={classes.control} onClick={handleSendMessage} variant={"gradient"}>
               Send message
             </Button>
           </Group>
