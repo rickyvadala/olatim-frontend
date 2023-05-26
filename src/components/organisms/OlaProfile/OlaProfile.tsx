@@ -11,12 +11,12 @@ export const OlaProfile = () => {
   const resume = useSelector(selectResume)
 
   return (
-    <Flex pt={60} pb={60} mih={'100vh'} style={{background: '#f8f9fa'}}>
+    <Flex py={'xl'} mih={'100vh'} style={{background: '#f8f9fa'}}>
       <Container size={'lg'} w={'100%'} px={"xl"} maw={960}>
         <Flex justify={"space-between"} align={"center"}>
           <Title my={"xl"}>My Resume</Title>
           <Link href={OlaRouter.APPLY} style={{textDecoration: 'none'}}>
-            <Button variant="filled">{resume ? 'EDIT' : 'ADD'} Resume</Button>
+            <Button variant="gradient">{resume ? 'EDIT' : 'ADD'} Resume</Button>
           </Link>
         </Flex>
 
@@ -50,7 +50,7 @@ export const OlaProfile = () => {
                       <Divider/>
                       <Box>
                         <Title lh={1} size={"large"}>Tech Stack</Title>
-                        <Flex gap={"sm"} mt={"xs"}>
+                        <Flex gap={"sm"} mt={"xs"} wrap={'wrap'}>
                           {resume?.professionalTechStack?.map(tech => (
                             <Badge size={"md"} variant="gradient" gradient={{from: 'indigo', to: 'cyan'}} key={tech}>
                               {TECHS.find((e: any) => e.value === tech)?.label}

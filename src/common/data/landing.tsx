@@ -54,8 +54,8 @@ export const OLA_LANDING: OlaLandingProps = {
           href: OlaRouter.CONTACT
         },
         {
-          label: 'More Info',
-          href: '#about'
+          label: 'Find a Job',
+          href: OlaRouter.APPLY
         },
       ]
     },

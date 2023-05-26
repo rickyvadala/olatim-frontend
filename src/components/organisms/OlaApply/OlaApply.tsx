@@ -174,7 +174,7 @@ export const OlaApply: React.FC = () => {
                   <Flex gap={"xs"} direction={"column"} key={i} pos={"relative"}>
                     {i > 0 && (
                       <>
-                        <Divider mt={"xs"}/>
+                        <Divider my={"xs"}/>
                         <ActionIcon variant="outline" color={'red'}
                                     pos={"absolute"} top={19} right={0}
                                     onClick={() => form.removeListItem('experience', i)}
