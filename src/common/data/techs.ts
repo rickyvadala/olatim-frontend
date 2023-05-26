@@ -1,4 +1,5 @@
-export const TECHS = [
+export const TECHS: any = [
+  {value: 'dart', label: 'Dart'},
   {value: 'py', label: 'Python'},
   {value: 'js', label: 'JavaScript'},
   {value: 'java', label: 'Java'},

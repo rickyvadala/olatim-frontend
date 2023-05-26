@@ -81,7 +81,7 @@ export const OlaHero = ({title, titleHighlight, subtitle, items, buttons}: OlaHe
           <div className={classes.content}>
             <Title className={classes.title}>
               <Highlight highlight={titleHighlight} highlightStyles={(theme) => ({
-                backgroundImage: theme.fn.linearGradient(45, theme.colors.cyan[5], theme.colors.indigo[5]),
+                backgroundImage: theme.fn.linearGradient(45, theme.colors.indigo[5], theme.colors.cyan[5]),
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
               })}>

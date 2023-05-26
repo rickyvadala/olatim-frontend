@@ -3,6 +3,7 @@ import {
   ActionIcon,
   Avatar,
   Button,
+  createStyles,
   Divider,
   Flex,
   Group,
@@ -30,11 +31,19 @@ import {TECHS} from "@/common/data/techs";
 import _ from 'lodash';
 import {useAppAuthState} from "@/hooks/useAppAuthState";
 
+const useStyles = createStyles((theme) => ({
+  wrapper: {
+    backgroundImage: theme.fn.linearGradient(45, theme.colors.indigo[5], theme.colors.cyan[5]),
+    backgroundColor: 'transparent',
+  },
+}));
+
 export const OlaApply: React.FC = () => {
   const [active, setActive] = useState(0);
   const [submitting, setSubmitting] = useState<boolean>(false);
   const resume: IResume | undefined = useSelector(selectResume)
   const [user] = useAppAuthState()
+  const {classes} = useStyles();
 
   const form = useForm({
     initialValues: {
@@ -105,13 +114,12 @@ export const OlaApply: React.FC = () => {
   }, [resume])
 
   return (
-    <Flex align={"center"} justify={"center"} mih={'calc(100vh - 60px)'} direction={"column"}
-          p={"xl"}
-          style={{background: 'linear-gradient(90deg, rgba(34,139,230,1) 50%, rgba(0,212,255,1) 100%)'}}>
+    <Flex align={"center"} justify={"center"} mih={'calc(100vh - 60px)'} direction={"column"} p={"xl"}
+          className={classes.wrapper}>
       <Paper radius="md" p="xl" withBorder miw={320} shadow={'lg'} w={'100%'} maw={960}>
         <Title align={"center"} weight={500} mb='md' size={"xx-large"}>
           <Highlight highlight={'dream job'} highlightStyles={(theme) => ({
-            backgroundImage: theme.fn.linearGradient(45, theme.colors.cyan[5], theme.colors.indigo[5]),
+            backgroundImage: theme.fn.linearGradient(45, theme.colors.indigo[5], theme.colors.cyan[5]),
             fontWeight: 700,
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
@@ -160,9 +168,9 @@ export const OlaApply: React.FC = () => {
                   <Flex gap={"xs"} direction={"column"} key={i} pos={"relative"}>
                     {i > 0 && (
                       <>
-                        <Divider my={"xs"}/>
+                        <Divider mt={"xs"}/>
                         <ActionIcon variant="outline" color={'red'}
-                                    pos={"absolute"} top={0} right={0}
+                                    pos={"absolute"} top={19} right={0}
                                     onClick={() => form.removeListItem('experience', i)}
                         >
                           <IconTrash size="1rem"/>
@@ -187,7 +195,7 @@ export const OlaApply: React.FC = () => {
                     />
                   </Flex>
                 ))}
-                <Divider my={"xs"}
+                <Divider mt={"xs"}
                          labelPosition="center"
                          label={
                            <Button leftIcon={<IconPlus size="1rem"/>} compact

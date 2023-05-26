@@ -1,9 +1,10 @@
-import {Avatar, Box, Button, Container, Divider, Flex, List, Paper, Skeleton, Text, Title,} from '@mantine/core';
+import {Avatar, Badge, Box, Button, Container, Divider, Flex, List, Paper, Skeleton, Text, Title,} from '@mantine/core';
 import React from "react";
 import {useSelector} from "react-redux";
 import {selectResume} from "@/store/dataSlice";
 import Link from "next/link";
 import {OlaRouter} from "@/router/OlaRouter";
+import {TECHS} from "@/common/data/techs";
 
 const NO_DATA = 'No data'
 export const OlaProfile = () => {
@@ -41,23 +42,27 @@ export const OlaProfile = () => {
                 <Flex gap={"xs"} direction={"column"}>
                   <Divider/>
                   <Box>
-                    <Title size={"large"}>Professional Title</Title>
+                    <Title lh={1} size={"large"}>Professional Title</Title>
                     <Text>{resume.professionalTitle}</Text>
                   </Box>
                   {!!resume?.professionalTechStack?.length && (
                     <>
                       <Divider/>
                       <Box>
-                        <Title size={"large"}>Tech Stack</Title>
-                        {resume?.professionalTechStack?.map(tech => (
-                          <Text key={tech}>{tech}</Text>
-                        ))}
+                        <Title lh={1} size={"large"}>Tech Stack</Title>
+                        <Flex gap={"sm"} mt={"xs"}>
+                          {resume?.professionalTechStack?.map(tech => (
+                            <Badge size={"md"} variant="gradient" gradient={{from: 'indigo', to: 'cyan'}} key={tech}>
+                              {TECHS.find((e: any) => e.value === tech)?.label}
+                            </Badge>
+                          ))}
+                        </Flex>
                       </Box>
                     </>
                   )}
                   <Divider/>
                   <Flex direction={"column"} gap={"xs"}>
-                    <Title size={"large"}>Experiences</Title>
+                    <Title lh={1} size={"large"}>Experiences</Title>
                     {!resume?.experience?.length
                       ? <Text>{NO_DATA}</Text>
                       : resume?.experience?.map((job, i) => (
@@ -80,7 +85,7 @@ export const OlaProfile = () => {
                     }
                   </Flex>
                   <Box>
-                    <Title size={"large"}>Education</Title>
+                    <Title lh={1} size={"large"}>Education</Title>
                     <List>
                       {resume?.education?.map((e, i) => (
                         <List.Item key={i}>{e.title || NO_DATA}</List.Item>
@@ -89,15 +94,15 @@ export const OlaProfile = () => {
                   </Box>
                   <Divider/>
                   <Box>
-                    <Title size={"large"}>Salary Expected</Title>
+                    <Title lh={1} size={"large"}>Salary Expected</Title>
                     <Text>{resume.salaryExpected || NO_DATA}</Text>
                   </Box>
                   <Box>
-                    <Title size={"large"}>Years of Experience</Title>
+                    <Title lh={1} size={"large"}>Years of Experience</Title>
                     <Text>{resume.yearsOfExperience || NO_DATA}</Text>
                   </Box>
                   <Box>
-                    <Title size={"large"}>Linkedin</Title>
+                    <Title lh={1} size={"large"}>Linkedin</Title>
                     <Text>{resume.linkedin || NO_DATA}</Text>
                   </Box>
                 </Flex>

@@ -19,7 +19,7 @@ const useStyles = createStyles((theme) => ({
     justifyContent: 'center',
     alignItems: "center",
     boxSizing: 'border-box',
-    backgroundImage: `linear-gradient(90deg, rgba(34,139,230,1) 50%, rgba(0,212,255,1) 100%)`,
+    backgroundImage: theme.fn.linearGradient(45, theme.colors.indigo[5], theme.colors.cyan[5]),
     minHeight: '100vh'
   },
 

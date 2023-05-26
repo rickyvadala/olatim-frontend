@@ -16,13 +16,12 @@ import {
 } from '@mantine/core';
 import {IconBrandGoogle} from "@tabler/icons-react";
 import {googleSignIn} from "@/services/auth.service";
-import {useDispatch} from "react-redux";
 import {useRouter} from "next/router";
 import {OlaRouter} from "@/router/OlaRouter";
 
-const useStyles = createStyles(() => ({
+const useStyles = createStyles((theme) => ({
   wrapper: {
-    background: 'linear-gradient(90deg, rgba(34,139,230,1) 50%, rgba(0,212,255,1) 100%)'
+    background: theme.fn.linearGradient(45, theme.colors.indigo[5], theme.colors.cyan[5])
   }
 }))
 
