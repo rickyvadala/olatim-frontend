@@ -110,7 +110,7 @@ export const OlaContact = () => {
           />
 
           <Group position="right" mt="md">
-            <Button className={classes.control} onClick={() => console.log('send')}>
+            <Button className={classes.control} onClick={() => console.log('send')} variant={"gradient"}>
               Send message
             </Button>
           </Group>

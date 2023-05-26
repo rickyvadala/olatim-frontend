@@ -63,7 +63,7 @@ export const OlaAbout = ({badge, title, subtitle, features: _features}: OlaAbout
         <Text fz="lg" fw={500} className={classes.cardTitle}>
           {feature.name}
         </Text>
-        <feature.icon size={rem(50)} stroke={2} color={theme.fn.primaryColor()}/>
+        <feature.icon size={rem(50)} stroke={2} color={theme.colors.indigo[5]}/>
       </Flex>
 
       <Text fz="sm" c="dimmed" mt="sm">
@@ -75,7 +75,7 @@ export const OlaAbout = ({badge, title, subtitle, features: _features}: OlaAbout
   return (
     <Container size="lg" my="xl" px={"xl"} id={'about'} py={96}>
       <Group position="center">
-        <Badge variant="filled" size="lg">
+        <Badge variant="gradient" size="lg">
           {badge}
         </Badge>
       </Group>

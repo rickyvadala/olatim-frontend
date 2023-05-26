@@ -7,7 +7,7 @@ import {
   Divider,
   Flex,
   Group,
-  Highlight,
+  Highlight, Image,
   MultiSelect,
   NumberInput,
   Paper,
@@ -30,6 +30,7 @@ import {IResume} from "@/models/IResume.interface";
 import {TECHS} from "@/common/data/techs";
 import _ from 'lodash';
 import {useAppAuthState} from "@/hooks/useAppAuthState";
+import google from '@/assets/images/google-logo.svg';
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -131,7 +132,12 @@ export const OlaApply: React.FC = () => {
         {!user ?
           <>
             <Group grow my="md">
-              <Button onClick={handleGoogleSignIn} leftIcon={<IconBrandGoogle/>}>Google</Button>
+              <Button onClick={handleGoogleSignIn}
+                      leftIcon={<Image maw={24} mah={24} src={google.src} alt={"Google logo"}/>}
+                      variant={"outline"}
+              >
+                Google
+              </Button>
             </Group>
           </> :
           <Flex align={"center"} gap='sm' direction={"column"} mb={"lg"}>
@@ -292,8 +298,8 @@ export const OlaApply: React.FC = () => {
 
         <Group position="right" mt="xl">
           {(active === 1 || active === 2) && (<Button variant="default" onClick={prevStep}>Back</Button>)}
-          {active < 2 && <Button onClick={nextStep}>Next step</Button>}
-          {active === 2 && <Button onClick={handlePostResume} loading={submitting}>Submit</Button>}
+          {active < 2 && <Button variant={'gradient'} onClick={nextStep}>Next step</Button>}
+          {active === 2 && <Button variant={'gradient'} onClick={handlePostResume} loading={submitting}>Submit</Button>}
         </Group>
       </Paper>
     </Flex>

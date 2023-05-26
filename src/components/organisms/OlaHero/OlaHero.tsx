@@ -72,7 +72,7 @@ export type OlaHeroProps = {
 }
 
 export const OlaHero = ({title, titleHighlight, subtitle, items, buttons}: OlaHeroProps) => {
-  const {classes} = useStyles();
+  const {classes, theme} = useStyles();
 
   return (
     <Flex py={"xl"} mih={'calc(100vh - 60px)'} align={'center'} style={{background: '#f8f9fa'}}>
@@ -97,7 +97,7 @@ export const OlaHero = ({title, titleHighlight, subtitle, items, buttons}: OlaHe
               spacing="sm"
               size="sm"
               icon={
-                <ThemeIcon size={20} radius="xl">
+                <ThemeIcon size={20} radius="xl" bg={theme.fn.linearGradient(45, theme.colors.indigo[5], theme.colors.cyan[5])}>
                   <IconCheck size={rem(12)} stroke={1.5}/>
                 </ThemeIcon>
               }
@@ -114,7 +114,7 @@ export const OlaHero = ({title, titleHighlight, subtitle, items, buttons}: OlaHe
                 <Link href={href} key={i}>
                   <Button radius="xl" size="md"
                           className={classes.control}
-                          variant={i ? 'default' : 'filled'}
+                          variant={i ? 'default' : 'gradient'}
                   >
                     {label}
                   </Button>

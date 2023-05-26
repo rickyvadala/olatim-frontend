@@ -255,7 +255,7 @@ export const OlaNavbar = () => {
               :
               <Group className={classes.hiddenMobile}>
                 <Button onClick={handleGoogleSignIn} variant="default">Log in</Button>
-                <Button onClick={handleGoogleSignIn}>Sign up</Button>
+                <Button variant={"gradient"} onClick={handleGoogleSignIn}>Sign up</Button>
               </Group>
             }
             <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.hiddenDesktop}/>
@@ -293,7 +293,7 @@ export const OlaNavbar = () => {
             {!user ? (
               <>
                 <Button onClick={handleGoogleSignIn} variant="default">Log in</Button>
-                <Button onClick={handleGoogleSignIn}>Sign up</Button>
+                <Button onClick={handleGoogleSignIn} variant={"gradient"}>Sign up</Button>
               </>
             ) : (
               <Flex gap={16} align={"center"}>
