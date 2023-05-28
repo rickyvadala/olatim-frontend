@@ -5,10 +5,12 @@ import {selectResume} from "@/store/dataSlice";
 import Link from "next/link";
 import {OlaRouter} from "@/router/OlaRouter";
 import {TECHS} from "@/common/data/techs";
+import {useAppAuthState} from "@/hooks/useAppAuthState";
 
 const NO_DATA = 'No data'
 export const OlaProfile = () => {
   const resume = useSelector(selectResume)
+  const [user] = useAppAuthState()
 
   return (
     <Flex py={'xl'} mih={'100vh'} style={{background: '#f8f9fa'}}>
@@ -32,7 +34,7 @@ export const OlaProfile = () => {
             <Paper p={"lg"} shadow={"md"}>
               <Flex gap={"xs"} direction={"column"}>
                 <Flex gap={"xl"}>
-                  <Avatar size={96} src={resume?.photoURL}></Avatar>
+                  <Avatar size={96} src={resume?.photoURL || user?.photoURL}></Avatar>
                   <Flex direction={"column"} gap={"xs"}>
                     <Title>{resume?.displayName}</Title>
                     <Text>{resume?.email}</Text>

@@ -204,7 +204,7 @@ export const OlaApply: React.FC = () => {
                 <Divider mt={"xs"}
                          labelPosition="center"
                          label={
-                           <Button leftIcon={<IconPlus size="1rem"/>} compact
+                           <Button leftIcon={<IconPlus size="1rem"/>} compact variant={"gradient"}
                                    onClick={() => form.insertListItem('experience', {
                                      title: '',
                                      company: '',
