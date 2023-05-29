@@ -22,6 +22,10 @@ type OlaLandingProps = {
     hero: OlaHeroProps,
     about: OlaAboutProps1
   }
+  referral: {
+    hero: OlaHeroProps,
+    about: OlaAboutProps
+  }
   munity: {
     hero: OlaHeroProps,
     about: OlaAboutProps
@@ -144,6 +148,56 @@ export const OLA_LANDING: OlaLandingProps = {
         {
           name: 'Hire & Keep Building',
           description: 'Our goal is get you here as fast as possible.',
+          icon: IconCircleNumber4,
+        },
+      ]
+    }
+  },
+  referral: {
+    hero: {
+      title: 'Earn up to 400 USD for referring a friend.',
+      titleHighlight: ['Earn', 'referring'],
+      subtitle: 'Already thinking about someone with awesome skills? Just by recommending them to Olatim, you earn money if they get hired.',
+      items: [
+        {
+          name: 'Email us at hello@olatim.com',
+          description: ' – Attach your referral LinkedIn profile or CV, and your name.'
+        },
+        {
+          name: 'Wait for the verification',
+          description: ' – When accepted, you will receive a confirmation email with more info.'
+        },
+      ],
+      buttons: [
+        {
+          label: 'Any Questions?',
+          href: '#about'
+        },
+      ]
+    },
+    about: {
+      badge: 'community powered recruiting',
+      title: 'FAQs 👇',
+      subtitle: 'Helping amazing Latam talent connect with their dream jobs.',
+      features: [
+        {
+          name: 'What is the Referral Program about?',
+          description: 'It’s our way to contribute to the community growth, so that everyone wins while job seekers find the opportunities they are looking for.',
+          icon: IconCircleNumber1,
+        },
+        {
+          name: 'Who are we looking for?',
+          description: ' Software Engineers, Developers, Data Scientists, DevOps, Cloud, Blockchain, UX/UI, Designers, Animation, and other tech-related positions.',
+          icon: IconCircleNumber2,
+        },
+        {
+          name: 'Who can benefit from this?',
+          description: 'Anyone can submit one or multiple recommendations!',
+          icon: IconCircleNumber3,
+        },
+        {
+          name: 'When do I get the benefit?',
+          description: 'You are eligible to receive a payment if your recommendation was effectively hired through our services.',
           icon: IconCircleNumber4,
         },
       ]
