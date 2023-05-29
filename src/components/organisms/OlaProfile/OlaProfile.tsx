@@ -1,11 +1,11 @@
-import {Avatar, Badge, Box, Button, Container, Divider, Flex, List, Paper, Skeleton, Text, Title,} from '@mantine/core';
+import {Avatar, Box, Button, Container, Divider, Flex, List, Paper, Skeleton, Text, Title,} from '@mantine/core';
 import React from "react";
 import {useSelector} from "react-redux";
 import {selectResume} from "@/store/dataSlice";
 import Link from "next/link";
 import {OlaRouter} from "@/router/OlaRouter";
-import {TECHS} from "@/common/data/techs";
 import {useAppAuthState} from "@/hooks/useAppAuthState";
+import {OlaTechStack} from "@/components/atoms/OlaTechStack/OlaTechStack";
 
 const NO_DATA = 'No data'
 export const OlaProfile = () => {
@@ -53,11 +53,7 @@ export const OlaProfile = () => {
                       <Box>
                         <Title lh={1} size={"large"}>Tech Stack</Title>
                         <Flex gap={"sm"} mt={"xs"} wrap={'wrap'}>
-                          {resume?.professionalTechStack?.map(tech => (
-                            <Badge size={"md"} variant="gradient" gradient={{from: 'indigo', to: 'cyan'}} key={tech}>
-                              {TECHS.find((e: any) => e.value === tech)?.label}
-                            </Badge>
-                          ))}
+                          <OlaTechStack professionalTechStack={resume?.professionalTechStack}/>
                         </Flex>
                       </Box>
                     </>

@@ -15,6 +15,7 @@ import {OlaContactIcons} from "@/components/organisms/OlaContact/OlaContactIcons
 import {postMessage} from "@/services/messages.service";
 import {useState} from "react";
 import {useForm} from "@mantine/form";
+import {notifications} from "@mantine/notifications";
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -102,6 +103,16 @@ export const OlaContact = () => {
     setSending(true)
     try {
       await postMessage(form.values)
+      notifications.show({
+        title: 'Message sent',
+        message: 'Hey there, thanks for reaching out!',
+      })
+      form.reset()
+    } catch (e) {
+      notifications.show({
+        title: 'Error',
+        message: 'Ups! Please try again later...',
+      })
     } finally {
       setSending(false)
     }

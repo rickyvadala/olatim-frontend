@@ -9,7 +9,7 @@ import {getFirestore} from "@firebase/firestore";
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 
 
-const firebaseConfig = {
+export const FIREBASE_CONFIG = {
     apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
     authDomain: "olatim-community.firebaseapp.com",
     projectId: "olatim-community",
@@ -20,7 +20,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const APP = initializeApp(firebaseConfig);
+const APP = initializeApp(FIREBASE_CONFIG);
 const AUTH = getAuth(APP);
 const DB = getFirestore();
 

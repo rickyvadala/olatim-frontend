@@ -1,16 +1,16 @@
 import {
-  Button,
-  Container,
-  createStyles,
-  Flex,
-  Group,
-  Highlight,
-  Image,
-  List,
-  rem,
-  Text,
-  ThemeIcon,
-  Title,
+    Button,
+    Container,
+    createStyles,
+    Flex,
+    Group,
+    Highlight,
+    Image,
+    List,
+    rem,
+    Text,
+    ThemeIcon,
+    Title,
 } from '@mantine/core';
 import {IconCheck} from '@tabler/icons-react';
 import image from '@/assets/images/lady-hero.svg';
@@ -96,7 +96,8 @@ export const OlaHero = ({title, titleHighlight, subtitle, items, buttons}: OlaHe
               spacing="sm"
               size="sm"
               icon={
-                <ThemeIcon size={20} radius="xl" bg={theme.fn.linearGradient(45, theme.colors.indigo[5], theme.colors.cyan[5])}>
+                <ThemeIcon size={20} radius="xl"
+                           bg={theme.fn.linearGradient(45, theme.colors.indigo[5], theme.colors.cyan[5])}>
                   <IconCheck size={rem(12)} stroke={1.5}/>
                 </ThemeIcon>
               }
