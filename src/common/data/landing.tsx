@@ -99,10 +99,10 @@ export const OLA_LANDING: OlaLandingProps = {
     hero: {
       title: 'Hire directly, with a one-time-fee.',
       titleHighlight: ['Hire directly'],
-      subtitle: 'Take your business to the next level by hiring globally in a effortless way, while saving money on overhead costs.',
+      subtitle: 'Take your team to the next level by hiring globally in a effortless way, while saving money on overhead costs.',
       items: [
         {
-          name: 'Access curated and qualified talent.',
+          name: 'Access to curated and qualified talent.',
           description: ''
         },
         {
@@ -127,8 +127,8 @@ export const OLA_LANDING: OlaLandingProps = {
     },
     about: {
       badge: 'How it works',
-      title: 'Your Technology Partner',
-      subtitle: 'We know recruiting is expensive and time consuming. Olatim allows you to build your team while you keep focus on your business.',
+      title: 'Your \'Zero-Risk\' Technology Partner',
+      subtitle: 'We know recruiting is expensive and time consuming. Olatim allows you to build your team while you keep focusing on your business growth.',
       features: [
         {
           name: 'Define your hiring needs',
@@ -136,13 +136,13 @@ export const OLA_LANDING: OlaLandingProps = {
           icon: IconCircleNumber1,
         },
         {
-          name: 'Get Pre-screened profiles',
-          description: 'Review qualified candidates that match your goals.',
+          name: 'Review pre-screened profiles',
+          description: 'Connect with qualified nearshore candidates that match your goals.',
           icon: IconCircleNumber2,
         },
         {
           name: 'Interviews & Meet Ups',
-          description: 'Carry out your recruitment process. Get our help if needed!',
+          description: 'Perform your recruitment process. We get as involved as you want.',
           icon: IconCircleNumber3,
         },
         {
@@ -205,49 +205,49 @@ export const OLA_LANDING: OlaLandingProps = {
   },
   munity: {
     hero: {
-      title: 'Earn up to 400 USD for referring a friend.',
-      titleHighlight: ['Earn', 'referring'],
-      subtitle: 'Already thinking about someone with awesome skills? Just by recommending them to Olatim, you earn money if they get hired.',
+      title: 'Apply in minutes and land your next remote job in USD.',
+      titleHighlight: ['Apply', 'remote', 'USD'],
+      subtitle: 'We are a group of developers from Argentina building a curated community of Latam talent. Once you join, we will start referring you everytime your CV fits an open position.',
       items: [
         {
-          name: 'Email us at hello@olatim.com',
-          description: ' – Attach your referral LinkedIn profile or CV, and your name.'
+          name: 'ARE YOU A RECRUITER IT?',
+          description: ' – Monetize your network by recommending candidates. Receive 90% of the fee if hired.'
         },
         {
-          name: 'Wait for the verification',
-          description: ' – When accepted, you will receive a confirmation email with more info.'
+          name: 'How it works',
+          description: ' – Log In and apply to Olatim as a recruiter IT, we will contact you via Email with all the info you need! 🙂'
         },
       ],
       buttons: [
         {
-          label: 'Any Questions?',
-          href: '#about'
+          label: 'Apply for Jobs',
+          href: OlaRouter.APPLY
         },
       ]
     },
     about: {
       badge: 'community powered recruiting',
-      title: 'FAQs 👇',
+      title: 'FAQ\'s 👇',
       subtitle: 'Helping amazing Latam talent connect with their dream jobs.',
       features: [
         {
-          name: 'What is the Referral Program about?',
-          description: 'It’s our way to contribute to the community growth, so that everyone wins while job seekers find the opportunities they are looking for.',
+          name: 'Do I have to fill out another endless form?',
+          description: 'Don\'t worry, we\'ve got you. At Olatim we know the struggle of seeking new roles, that\'s why our applying process can be completed in <5 minutes.',
           icon: IconCircleNumber1,
         },
         {
-          name: 'Who are we looking for?',
-          description: ' Software Engineers, Developers, Data Scientists, DevOps, Cloud, Blockchain, UX/UI, Designers, Animation, and other tech-related positions.',
+          name: 'What kind of profiles are you looking for?',
+          description: ' Software Engineers, Developers (Front, Back, Fullstack), Data, DevOps, Cloud, Blockchain, UX/UI, QA, and many other tech-related positions.',
           icon: IconCircleNumber2,
         },
         {
-          name: 'Who can benefit from this?',
-          description: 'Anyone can submit one or multiple recommendations!',
+          name: 'Is Olatim an outsourcing platform?',
+          description: 'No we aren\'t! You will get a direct contract with your future employer, and we won\'t be taking any money out of your monthly pay.',
           icon: IconCircleNumber3,
         },
         {
-          name: 'When do I get the benefit?',
-          description: 'You are eligible to receive a payment if your recommendation was effectively hired through our services.',
+          name: 'How much can I make as an IT Recruiter?',
+          description: 'At Olatim we value what you bring to the table. You would take 90% of the agreed referral fee, usually the equivalent to one month\'s salary.',
           icon: IconCircleNumber4,
         },
       ]

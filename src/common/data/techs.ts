@@ -1,5 +1,4 @@
 export const TECHS: any = [
-  {value: 'dart', label: 'Dart'},
   {value: 'py', label: 'Python'},
   {value: 'js', label: 'JavaScript'},
   {value: 'java', label: 'Java'},
@@ -15,6 +14,7 @@ export const TECHS: any = [
   {value: 'vue', label: 'Vue.js'},
   {value: 'dotnet', label: '.NET'},
   {value: 'rails', label: 'Ruby on Rails'},
+  {value: 'dart', label: 'Dart'},
   {value: 'django', label: 'Django'},
   {value: 'laravel', label: 'Laravel'},
   {value: 'express', label: 'Express.js'},
@@ -60,11 +60,14 @@ export const TECHS: any = [
   {value: 'firebase', label: 'Firebase'},
   {value: 'finance', label: 'Finance Management'},
   {value: 'investing', label: 'Investing'},
+  {value: 'qa', label: 'QA'},
+  {value: 'restapi', label: 'REST API'},
   {value: 'seo', label: 'SEO'},
   {value: 'copywriting', label: 'Copywriting'},
   {value: 'storytelling', label: 'Storytelling'},
   {value: 'graphic', label: 'Graphic Design'},
   {value: 'motion', label: 'Motion Design'},
   {value: 'uxui', label: 'UX/UI'},
+  {value: 'recruit', label: 'Recruiter IT'},
   {value: 'others', label: 'Others'}
 ];

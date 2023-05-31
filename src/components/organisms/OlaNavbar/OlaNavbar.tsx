@@ -233,10 +233,10 @@ export const OlaNavbar = () => {
                       </ThemeIcon>
                       <div>
                         <Text fw={500} fz="sm">
-                          Referral Program
+                          Peer-to-Peer Recruiting
                         </Text>
                         <Text size="xs" color="dimmed">
-                          Connect others with top job opportunities and earn a fee.
+                          Platform for recruiters IT: Monetize your network.
                         </Text>
                       </div>
                     </Flex>
