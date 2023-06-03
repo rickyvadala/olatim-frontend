@@ -1,4 +1,4 @@
-import {Anchor, Avatar, Container, Flex, Pagination, Table, Title} from "@mantine/core";
+import {Anchor, Avatar, Container, Flex, Pagination, Table, Text, Title} from "@mantine/core";
 import {getResumes} from "@/services/resumes.service";
 import {useAppAuthState} from "@/hooks/useAppAuthState";
 import React, {useCallback, useEffect, useState} from "react";
@@ -26,7 +26,7 @@ export const OlaApp = () => {
       <Table mb={"lg"} striped highlightOnHover>
         <thead>
         <tr>
-          <th/>
+          <th>#</th>
           <th>Name</th>
           <th>Email</th>
           <th>Title</th>
@@ -37,9 +37,13 @@ export const OlaApp = () => {
         </tr>
         </thead>
         <tbody>
-        {resumes.map(resume => (
+        {resumes.map((resume, i) => (
           <tr key={resume.uid}>
-            <td><Avatar size={32} src={resume.photoURL}/></td>
+            <td>
+              <Flex align={"center"} gap={"xs"}>
+                <Text>{i + 1}</Text><Avatar size={48} src={resume.photoURL}/>
+              </Flex>
+            </td>
             <td>{resume.displayName}</td>
             <td>{resume.email}</td>
             <td>{resume.professionalTitle}</td>
