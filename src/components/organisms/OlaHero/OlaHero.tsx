@@ -1,16 +1,16 @@
 import {
-    Button,
-    Container,
-    createStyles,
-    Flex,
-    Group,
-    Highlight,
-    Image,
-    List,
-    rem,
-    Text,
-    ThemeIcon,
-    Title,
+  Button,
+  Container,
+  createStyles,
+  Flex,
+  Group,
+  Highlight,
+  Image,
+  List,
+  rem,
+  Text,
+  ThemeIcon,
+  Title,
 } from '@mantine/core';
 import {IconCheck} from '@tabler/icons-react';
 import image from '@/assets/images/lady-hero.svg';
@@ -22,7 +22,6 @@ const useStyles = createStyles((theme) => ({
   inner: {
     display: 'flex',
     justifyContent: 'space-between',
-
   },
 
   content: {

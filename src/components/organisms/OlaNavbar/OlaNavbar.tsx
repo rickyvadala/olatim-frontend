@@ -5,6 +5,7 @@ import {
   Burger,
   Button,
   Center,
+  clsx,
   Collapse,
   createStyles,
   Divider,
@@ -22,15 +23,7 @@ import {
   UnstyledButton,
 } from '@mantine/core';
 import {useDisclosure} from '@mantine/hooks';
-import {
-  IconArrowsLeftRight,
-  IconChevronDown,
-  IconLogout,
-  IconNetwork,
-  IconSearch,
-  IconSettings,
-  IconUser
-} from '@tabler/icons-react';
+import {IconArrowsLeftRight, IconChevronDown, IconLogout, IconNetwork, IconSearch, IconUser} from '@tabler/icons-react';
 import {OlaLogo} from "@/components/atoms/OlaLogo/OlaLogo";
 import Link from "next/link";
 import {googleSignIn, googleSignOut} from "@/services/auth.service";
@@ -45,6 +38,10 @@ const useStyles = createStyles((theme) => ({
     position: "fixed",
     width: "100%",
     zIndex: 1
+  },
+
+  header: {
+    boxShadow: theme.shadows.md,
   },
 
   link: {
@@ -69,6 +66,13 @@ const useStyles = createStyles((theme) => ({
     ...theme.fn.hover({
       backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
     }),
+
+    borderBottom: `solid transparent 2px`,
+    borderTop: `solid transparent 2px`
+  },
+
+  linkActive: {
+    borderBottomColor: theme.colors.indigo[5]
   },
 
   subLink: {
@@ -142,7 +146,7 @@ const OlaNavbarAvatar: React.FC<{ user: IUser }> = ({user}) => {
         <Link href={OlaRouter.PROFILE} style={{textDecoration: "none"}}>
           <Menu.Item icon={<IconUser size={14}/>}>Profile</Menu.Item>
         </Link>
-        <Menu.Item icon={<IconSettings size={14}/>}>Settings</Menu.Item>
+        {/*<Menu.Item icon={<IconSettings size={14}/>}>Settings</Menu.Item>*/}
         <Menu.Divider/>
         <Menu.Item onClick={handleGoogleSignOut} color="red" icon={<IconLogout size={14}/>}>
           Sign out
@@ -153,6 +157,7 @@ const OlaNavbarAvatar: React.FC<{ user: IUser }> = ({user}) => {
 }
 
 export const OlaNavbar = () => {
+  const {pathname} = useRouter()
   const [drawerOpened, {toggle: toggleDrawer, close: closeDrawer}] = useDisclosure(false);
   const [linksOpened, {toggle: toggleLinks}] = useDisclosure(false);
   const [user] = useAppAuthState()
@@ -187,20 +192,27 @@ export const OlaNavbar = () => {
 
   return (
     <Box className={classes.wrapper}>
-      <Header height={60} px="md">
+      <Header height={60} px="md" withBorder={false} className={classes.header}>
         <Group position="apart" sx={{height: '100%'}}>
           <OlaLogo text={'Olatim'}/>
 
           <Group sx={{height: '100%'}} spacing={0} className={classes.hiddenMobile}>
-            <Link href={OlaRouter.ROOT} className={classes.link}>
+            <Link href={OlaRouter.ROOT}
+                  className={clsx(classes.link, pathname === OlaRouter.ROOT && classes.linkActive)}>
               Home
             </Link>
-            <Link href={OlaRouter.HIRING} className={classes.link}>
+            <Link href={OlaRouter.HIRING}
+                  className={clsx(classes.link, pathname === OlaRouter.HIRING && classes.linkActive)}>
+
               I&apos;m Hiring
             </Link>
             <HoverCard width={600} position="bottom" radius="md" shadow="md" withinPortal>
               <HoverCard.Target>
-                                <span className={classes.link}>
+                                <span className={clsx(
+                                  classes.link,
+                                  pathname === OlaRouter.APPLY && classes.linkActive,
+                                  pathname === OlaRouter.COMMUNITY && classes.linkActive
+                                )}>
                                     <Center inline>
                                         <Box component="span" mr={5}>
                                             Talent
@@ -212,7 +224,7 @@ export const OlaNavbar = () => {
 
               <HoverCard.Dropdown sx={{overflow: 'hidden'}}>
                 <Group position="apart" px="md">
-                  <Text fw={500}>Olaboard!</Text>
+                  <Text fw={500}>Ola-board!</Text>
                 </Group>
 
                 <Divider
@@ -245,7 +257,8 @@ export const OlaNavbar = () => {
                 </div>
               </HoverCard.Dropdown>
             </HoverCard>
-            <Link href={OlaRouter.CONTACT} scroll={false} className={classes.link}>
+            <Link href={OlaRouter.CONTACT}
+                  className={clsx(classes.link, pathname === OlaRouter.CONTACT && classes.linkActive)}>
               Contact
             </Link>
           </Group>
