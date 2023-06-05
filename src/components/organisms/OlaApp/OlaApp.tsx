@@ -33,6 +33,12 @@ export const OlaApp: React.FC = () => {
         if (!flag) return false;
       }
 
+      if (form.values.professionalTitle) {
+        const normalize = (val: string) => val.replaceAll(' ', '').toLowerCase()
+        const flag = normalize(resume.professionalTitle).includes(normalize(form.values.professionalTitle))
+        if (!flag) return false;
+      }
+
       return true;
     })
 

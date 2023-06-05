@@ -153,8 +153,8 @@ export const OlaApply: React.FC = () => {
 
         <Stepper active={active} breakpoint="sm">
           <Stepper.Step label="First step" description="Personal information">
-            <TextInput label="Name" placeholder="Name" {...form.getInputProps('displayName')} />
-            <TextInput mt="md" label="Email" placeholder="Email" {...form.getInputProps('email')} />
+            <TextInput label="Full Name" placeholder="John Doe" {...form.getInputProps('displayName')} />
+            <TextInput mt="md" label="Email" placeholder="hello@olatim.com" {...form.getInputProps('email')} />
           </Stepper.Step>
 
           <Stepper.Step label="Second step" description="Professional information">
@@ -272,7 +272,6 @@ export const OlaApply: React.FC = () => {
                          placeholder="https://www.linkedin.com/in/olatim"
                          {...form.getInputProps('linkedin')}
               />
-
             </Flex>
           </Stepper.Step>
           <Stepper.Completed>
