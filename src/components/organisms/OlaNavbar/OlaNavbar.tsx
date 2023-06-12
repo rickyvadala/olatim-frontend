@@ -37,7 +37,7 @@ const useStyles = createStyles((theme) => ({
   wrapper: {
     position: "fixed",
     width: "100%",
-    zIndex: 1
+    zIndex: 10
   },
 
   header: {
@@ -290,9 +290,12 @@ export const OlaNavbar = () => {
           <Link onClick={closeDrawer} href={OlaRouter.ROOT} className={classes.link}>
             <Text>Home</Text>
           </Link>
+          <Link onClick={closeDrawer} href={OlaRouter.HIRING} className={classes.link}>
+            <Text>I&apos;m Hiring</Text>
+          </Link>
           <UnstyledButton className={classes.link} onClick={toggleLinks}>
             <Center inline>
-              <Box component="span" mr={5}>Services</Box>
+              <Box component="span" mr={5}>Talent</Box>
               <IconChevronDown size={16} color={theme.fn.primaryColor()}/>
             </Center>
           </UnstyledButton>
