@@ -56,7 +56,15 @@ const useStyles = createStyles((theme) => ({
     flex: 1,
 
     [theme.fn.smallerThan('md')]: {
-      display: 'none',
+      paddingTop: 60,
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      maxHeight: 'calc(100vh - 60px)',
+      opacity: 0.1,
+      zIndex: -1,
+      filter: 'blur(8px)',
+      overflow: 'hidden'
     },
   },
 }));
@@ -73,8 +81,8 @@ export const OlaHero = ({title, titleHighlight, subtitle, items, buttons}: OlaHe
   const {classes, theme} = useStyles();
 
   return (
-    <Flex py={"xl"} mih={'calc(100vh - 60px)'} align={'center'} style={{background: '#f8f9fa'}}>
-      <Container size={'lg'} w={'100%'} px={"xl"}>
+    <Flex py={"xl"} mih={'calc(100vh - 60px)'} align={'center'} style={{background: '#f8f9fa', zIndex: 0}}>
+      <Container size={'lg'} w={'100%'} px={"xl"} style={{zIndex: 2}}>
         <div className={classes.inner}>
           <div className={classes.content}>
             <Title className={classes.title}>

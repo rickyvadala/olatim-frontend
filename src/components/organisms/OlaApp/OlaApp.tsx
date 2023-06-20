@@ -84,13 +84,13 @@ export const OlaApp: React.FC = () => {
       <Flex justify={"center"}>
         <Pagination total={10}/>
       </Flex>
-      <Modal opened={opened} onClose={close} withCloseButton={false} size={"xl"}>
-        <Flex py={"sm"} gap={"xs"}>
-          <ActionIcon onClick={() => prevResume(resumeSelected!)}>
+      <Modal opened={opened} onClose={close} withCloseButton={false} size={"xl"} p={0}>
+        <Flex>
+          <ActionIcon size={36} onClick={() => prevResume(resumeSelected!)}>
             <IconArrowLeft/>
           </ActionIcon>
-          <OlaResume resume={resumeSelected!}/>
-          <ActionIcon onClick={() => nextResume(resumeSelected!)}>
+          <OlaResume resume={resumeSelected!} download mx={-20}/>
+          <ActionIcon size={36} onClick={() => nextResume(resumeSelected!)}>
             <IconArrowRight/>
           </ActionIcon>
         </Flex>

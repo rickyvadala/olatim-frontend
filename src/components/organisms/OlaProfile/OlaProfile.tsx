@@ -28,7 +28,7 @@ export const OlaProfile = () => {
             </Skeleton>
           )
           : (
-            <Paper p={"lg"} shadow={"md"}>
+            <Paper shadow={"md"}>
               <OlaResume resume={resume}/>
             </Paper>
           )

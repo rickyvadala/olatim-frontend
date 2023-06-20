@@ -13,13 +13,24 @@ import {
   NumberInput,
   Paper,
   Stepper,
-  Text,
   Textarea,
   TextInput,
   Title
 } from '@mantine/core';
 import {useForm} from '@mantine/form';
-import {IconBrandGoogle, IconCalendar, IconCurrencyDollar, IconMinus, IconPlus, IconTrash} from "@tabler/icons-react";
+import {
+  IconBarcode,
+  IconBook2,
+  IconBrandGoogle,
+  IconBuildingCommunity,
+  IconCalendar,
+  IconCurrencyDollar,
+  IconMinus,
+  IconPlus,
+  IconStars,
+  IconTrash,
+  IconUser
+} from "@tabler/icons-react";
 import {googleSignIn} from "@/services/auth.service";
 import {selectResume} from "@/store/dataSlice";
 import {useSelector} from "react-redux";
@@ -32,6 +43,7 @@ import {TECHS} from "@/common/data/techs";
 import _ from 'lodash';
 import {useAppAuthState} from "@/hooks/useAppAuthState";
 import google from '@/assets/images/google-logo.svg';
+import {OlaIconTitle} from "@/components/atoms/OlaIconTitle/OlaIconTitle";
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -153,12 +165,19 @@ export const OlaApply: React.FC = () => {
 
         <Stepper active={active} breakpoint="sm">
           <Stepper.Step label="First step" description="Personal information">
-            <TextInput label="Full Name" placeholder="John Doe" {...form.getInputProps('displayName')} />
-            <TextInput mt="md" label="Email" placeholder="hello@olatim.com" {...form.getInputProps('email')} />
+            <Flex direction={"column"} gap={"xs"}>
+              <OlaIconTitle title={'Personal information'} icon={<IconUser/>}/>
+
+              <TextInput label="Full Name" placeholder="John Doe" {...form.getInputProps('displayName')} />
+              <TextInput label="Email" placeholder="hello@olatim.com" {...form.getInputProps('email')} />
+            </Flex>
+
           </Stepper.Step>
 
           <Stepper.Step label="Second step" description="Professional information">
-            <Flex direction={"column"} gap={"md"}>
+
+            <Flex direction={"column"} gap={"xs"}>
+              <OlaIconTitle title={'Professional information'} icon={<IconBarcode/>}/>
               <TextInput label="Professional Title"
                          placeholder="Full stack developer"
                          {...form.getInputProps('professionalTitle')}
@@ -170,7 +189,7 @@ export const OlaApply: React.FC = () => {
                            {...form.getInputProps('professionalTechStack')}
               />
               <Flex direction={"column"} gap={"xs"}>
-                <Text weight={500}>Experience</Text>
+                <OlaIconTitle title={'Experiences'} icon={<IconBuildingCommunity/>} pt={"xs"}/>
                 {form.values.experience.map((_: any, i: number) => (
                   <Flex gap={"xs"} direction={"column"} key={i} pos={"relative"}>
                     {i > 0 && (
@@ -216,7 +235,7 @@ export const OlaApply: React.FC = () => {
                          }/>
               </Flex>
               <Flex direction={"column"} gap={"xs"}>
-                <Text weight={500}>Education</Text>
+                <OlaIconTitle title={'Education'} icon={<IconBook2/>}/>
                 {form.values.education.map((_: any, i: number) => (
                   <Flex key={i} gap={"xs"}>
                     <TextInput key={i}
@@ -239,14 +258,14 @@ export const OlaApply: React.FC = () => {
                       </ActionIcon>
                     }
                   </Flex>
-
                 ))}
               </Flex>
             </Flex>
           </Stepper.Step>
 
           <Stepper.Step label="Final step" description="Extra information (optional)">
-            <Flex direction={'column'} gap={"md"}>
+            <Flex direction={'column'} gap={"xs"}>
+              <OlaIconTitle title={'Extra information'} icon={<IconStars/>}/>
               <Flex gap={"md"}>
                 <NumberInput
                   w={'50%'}

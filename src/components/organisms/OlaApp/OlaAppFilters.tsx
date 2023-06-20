@@ -9,7 +9,7 @@ type OlaAppFiltersProps = {
   applyFilters: (form: any) => void
 }
 export const OlaAppFilters: React.FC<OlaAppFiltersProps> = ({applyFilters}) => {
-  const [opened, { toggle }] = useDisclosure(true);
+  const [opened, {toggle}] = useDisclosure(true);
 
   const form = useForm({
     initialValues: {
@@ -70,7 +70,9 @@ export const OlaAppFilters: React.FC<OlaAppFiltersProps> = ({applyFilters}) => {
             placeholder="Full stack"
             {...form.getInputProps('professionalTitle')}
           />
-          <Button onClick={() => applyFilters(form)} variant={"gradient"} leftIcon={<IconSearch/>}>Apply filters</Button>
+          <Button onClick={() => applyFilters(form)} variant={"gradient"} leftIcon={<IconSearch/>}>
+            Apply filters
+          </Button>
         </Flex>
       </Collapse>
     </Paper>
